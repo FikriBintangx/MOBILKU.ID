@@ -1,71 +1,215 @@
-###################
-What is CodeIgniter
-###################
+# 🚗 DRIVE.X
+### Premium Used Car Marketplace Platform
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Modern web-based used car marketplace with premium minimalist interface inspired by Nothing OS and Framer.
 
-*******************
-Release Information
-*******************
+![Preview](assets/banner.png)
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+---
 
-**************************
-Changelog and New Features
-**************************
+## ✨ Overview
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+DRIVE.X adalah platform jual beli mobil bekas berbasis web yang menghubungkan pembeli, penjual, admin showroom, dan kurir dalam satu ekosistem digital.
 
-*******************
-Server Requirements
-*******************
+Platform ini mengotomatisasi:
 
-PHP version 5.6 or newer is recommended.
+- Pembelian mobil dari customer
+- Penjualan mobil ke customer
+- Sourcing kendaraan
+- Pengiriman kendaraan
+- Pengelolaan STNK & BPKB
+- Monitoring transaksi
+- Laporan operasional
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+---
 
-************
-Installation
-************
+## 🎯 Features
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+### Customer
 
-*******
-License
-*******
+- Browse Mobil
+- Cari Mobil
+- Beli Mobil
+- Jual Mobil ke Showroom
+- Upload Dokumen
+- Tracking Status Transaksi
+- Tracking STNK & BPKB
+- Invoice Digital
+- Riwayat Pembelian
+- Riwayat Penjualan
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+### Admin
 
-*********
-Resources
-*********
+- Dashboard Analytics
+- Kelola Mobil
+- Kelola Pelanggan
+- Kelola Penjual
+- Kelola Pembelian
+- Kelola Penjualan
+- Sourcing Mobil
+- Pengiriman Mobil
+- Verifikasi Dokumen
+- Laporan
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+### Courier
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+- Dashboard Kurir
+- Daftar Pengiriman
+- Surat Jalan
+- Tracking Pengiriman
+- Upload Bukti Serah Terima
+- Riwayat Pengiriman
 
-***************
-Acknowledgement
-***************
+---
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+## 🏗️ System Architecture
+
+Customer
+↓
+Jual Mobil
+↓
+Admin Review
+↓
+Survey Kendaraan
+↓
+Pembelian Mobil
+↓
+Stok Mobil
+
+Stok Mobil
+↓
+Customer Membeli
+↓
+Pembayaran
+↓
+STNK & BPKB
+↓
+Pengiriman
+↓
+Serah Terima
+
+---
+
+## 🖼️ Preview
+
+### Landing Page
+
+![Landing](assets/landing.png)
+
+### Customer Dashboard
+
+![Customer](assets/customer.png)
+
+### Admin Dashboard
+
+![Admin](assets/admin.png)
+
+---
+
+## ⚡ Technology Stack
+
+Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+Backend
+- PHP
+
+Database
+- MariaDB
+
+Deployment
+- XAMPP
+
+Design System
+- Nothing OS Inspired
+- Framer Inspired
+- Minimalist Premium UI
+
+---
+
+## 🗄️ Database
+
+Main Entities:
+
+- Users
+- Customers
+- Admins
+- Couriers
+- Cars
+- Transactions
+- Payments
+- Delivery
+- STNK
+- BPKB
+
+---
+
+## 👥 User Roles
+
+| Role | Access |
+|--------|----------|
+| Customer | Buy & Sell Cars |
+| Admin | Manage System |
+| Courier | Deliver Vehicles |
+
+---
+
+## 📊 Business Flow
+
+### Buy Car
+
+Browse Car
+→ Order
+→ Down Payment
+→ Full Payment
+→ STNK Process
+→ Delivery
+→ Vehicle Handover
+
+### Sell Car
+
+Submit Vehicle
+→ Survey
+→ Evaluation
+→ Price Negotiation
+→ Payment
+→ Vehicle Added To Stock
+
+---
+
+## 🎨 Design Philosophy
+
+DRIVE.X menggunakan pendekatan:
+
+- Clean Interface
+- Monochrome Design
+- Minimal Distraction
+- Premium Experience
+- Enterprise Dashboard
+
+Terinspirasi oleh:
+- Nothing OS
+- Framer
+- Linear
+- Vercel
+
+---
+
+## 🚀 Future Roadmap
+
+- [ ] Live Vehicle Tracking
+- [ ] AI Vehicle Valuation
+- [ ] Online Financing
+- [ ] WhatsApp Integration
+- [ ] E-Signature
+- [ ] Mobile Application
+
+---
+
+## 📄 License
+
+Academic Project © 2026
+
+Built with ❤️ by Starr
