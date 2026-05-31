@@ -1,0 +1,319 @@
+/* ==========================================================================
+   DRIVE.X DESIGN SYSTEM (Framer x Nothing OS x Apple Minimalism)
+   Premium Light Mode Visual Architecture
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=DotGothic16&display=swap');
+
+:root {
+  --bg-primary: #121212;
+  --bg-secondary: #FAFAFA;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --border-light: #EAEAEA;
+  --border-medium: #DADADA;
+  --accent-dot: rgba(255, 255, 255, 0.25);
+  
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-matrix: 'DotGothic16', monospace;
+}
+
+/* 1. Global Reset & Body Foundations */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+/* Premium Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: #CCCCCC;
+  border-radius: 99px;
+  border: 2px solid var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999999;
+}
+
+/* 2. Grid & Dot Matrix Background System */
+.anime-grid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(var(--accent-dot) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  opacity: 0.12;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.thin-grid-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 3. Framer & Nothing OS Components */
+.bg-dot-matrix {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
+.border-dotted-matrix {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  border-radius: 28px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+  will-change: transform, opacity;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framer-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  border-radius: 28px;
+  will-change: transform, opacity;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.framer-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: #000000;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+}
+
+/* Nothing OS Dot Matrix Elements */
+.dot-matrix {
+  font-family: var(--font-matrix);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Blinking dots animations */
+.blink-dot {
+  animation: dot-blink 1.2s infinite;
+}
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Matrix Line Scanning effect */
+.matrix-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4), transparent);
+  animation: scan-vertical 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes scan-vertical {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+/* Inputs & Form styling */
+.cyber-input {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  height: 56px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  padding: 0 20px;
+  transition: all 0.25s ease;
+}
+.cyber-input:focus {
+  border-color: #000000;
+  background-color: #FFFFFF;
+  outline: none;
+}
+
+/* Buttons */
+.btn-premium {
+  background-color: #000000;
+  color: #FFFFFF;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-premium:hover {
+  background-color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary-premium {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-secondary-premium:hover {
+  border-color: #000000;
+  background-color: var(--bg-secondary);
+}
+
+/* 4. Badges */
+.cyber-badge {
+  font-family: var(--font-matrix);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+}
+.badge-available {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.badge-sold {
+  background-color: rgba(255, 75, 75, 0.05);
+  color: #ff4b4b;
+  border: 1px solid rgba(255, 75, 75, 0.15);
+}
+
+/* 5. Utility Styles */
+.text-muted {
+  color: var(--text-secondary);
+}
+.bg-light-surface {
+  background-color: var(--bg-secondary);
+}
+.border-light-color {
+  border-color: var(--border-light);
+}
+
+/* ==========================================================================
+   NEW PREMIUM UI/UX ENHANCEMENTS (Nothing OS & Framer Style)
+   ========================================================================== */
+
+/* Mobile Tap Optimization */
+a, button, select, input, textarea {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Click-to-copy Animation & Tooltip */
+.copy-tooltip {
+  position: relative;
+  cursor: pointer;
+}
+.copy-tooltip::after {
+  content: 'Salin Rekening';
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: #000;
+  color: #fff;
+  font-family: var(--font-matrix);
+  font-size: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.copy-tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+.copy-tooltip.copied::after {
+  content: 'Tersalin ✓';
+  background: #10B981;
+}
+
+/* Drag and Drop Upload Area Decorator */
+.upload-drag-area {
+  border: 2px dashed var(--border-medium);
+  background: var(--bg-secondary);
+  transition: all 0.3s ease;
+}
+.upload-drag-area:hover {
+  border-color: #000000;
+  background: #FFFFFF;
+}
+
+/* Table Responsive Container Styling */
+.table-responsive-wrapper {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Smooth Form Focus Transition */
+.form-underlined-input {
+  border: none;
+  border-bottom: 2px solid var(--border-light);
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 0;
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.form-underlined-input:focus {
+  outline: none;
+  border-bottom-color: #000000;
+}
+
+/* Confetti Container */
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  pointer-events: none;
+}
+

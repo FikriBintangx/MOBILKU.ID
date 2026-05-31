@@ -1,0 +1,64 @@
+<mxfile host="Electron">
+  <diagram name="User Use Case" id="0">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="system" parent="1" style="swimlane;startSize=30;html=1;rounded=0;" value="Sistem Mobilku.id (User Module)" vertex="1">
+          <mxGeometry height="750" width="400" x="250" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_login" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Login" vertex="1">
+          <mxGeometry height="60" width="160" x="120" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_browse" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Cari &amp; Lihat Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_detail" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Lihat Detail Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_booking" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Booking / Beli Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_pembayaran" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Melakukan Pembayaran" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_ktp" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Upload Dokumen (KTP)" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_status" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Pantau Status Pesanan" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_jual" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Ajukan Penjualan Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="110" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="User&#xa;(Buyer/Seller)" vertex="1">
+          <mxGeometry height="80" width="40" x="80" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="actor_user" target="uc_login" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="actor_user" target="uc_browse" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="actor_user" target="uc_detail" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="actor_user" target="uc_booking" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="actor_user" target="uc_pembayaran" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" source="actor_user" target="uc_ktp" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" source="actor_user" target="uc_status" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" source="actor_user" target="uc_jual" style="endArrow=none;html=1;rounded=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
