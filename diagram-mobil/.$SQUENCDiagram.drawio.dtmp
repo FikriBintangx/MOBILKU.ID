@@ -1,6 +1,6 @@
 <mxfile host="Electron" pages="20">
   <diagram name="1. Login" id="M1mnFjUCPuzjAfGIqLqL">
-    <mxGraphModel dx="397" dy="288" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="968" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -137,7 +137,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="sMF04JGjZnFzvxL2tWJw" name="2. Cari &amp; Detail Mobil">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1191" dy="1965" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -313,7 +313,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="qns45SILXMB2XJH95xY-" name="3. Pembayaran">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="911" dy="661" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -417,7 +417,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="te0sZUz9EoH9HuRj5vri" name="4. Upload Dokumen">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="968" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -613,7 +613,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="GOJhVEksGLoOIRhubvjc" name="6. Ajukan Penjualan">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="911" dy="661" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -705,7 +705,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="0yPuEgQa9ll4aSHIvZXE" name="7. Verifikasi Pembayaran">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1548" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -938,7 +938,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="9lsD9yMI3IFHICZiwAlm" name="8. Verifikasi Ajuan Penjualan">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1548" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1159,7 +1159,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="rToQUfaYJH2b3Mb_sinN" name="9. Kelola Stok">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="860" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1263,7 +1263,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="lUBeM2y9lZFU6MGGdMeR" name="10. Kelola STNK &amp; BPKB">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="968" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1367,7 +1367,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="hnsFtWs9hTI6ZOcVtvT_" name="11. Kelola Pengiriman">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="860" dy="1724" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1459,7 +1459,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="aZRmqp_l_WJ9OeT7GPxT" name="12. Lihat Laporan">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="860" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1643,7 +1643,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="8LHNU_pQv8nxJaW0Xlna" name="14. Update Progress">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1032" dy="749" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1735,7 +1735,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="RGIuuGlQfVdyUBGSUocf" name="15. Selesaikan Pengiriman">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1032" dy="749" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -1839,7 +1839,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="BE0nDG3VpV4PTlnUxCYi" name="16. Booking Mobil">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1720" dy="1249" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -2096,7 +2096,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Mi41AW4-FDHLoNinTcqA" name="17. Kelola Transaksi">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2211" dy="1606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
@@ -2420,347 +2420,364 @@
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
+        <!-- Lifelines -->
         <mxCell id="reg18-lifeline-user" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);" value="User" vertex="1">
-                  <mxGeometry height="600" width="35" x="20" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="600" width="35" x="20" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="reg18-lifeline-page" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlBoundary;verticalLabelPosition=top;verticalAlign=bottom;" value="Register Page" vertex="1">
-                  <mxGeometry height="600" width="180" x="238" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="600" width="180" x="238" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="reg18-lifeline-controller" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlControl;verticalLabelPosition=top;verticalAlign=bottom;" value="Register Controller" vertex="1">
-                  <mxGeometry height="600" width="180" x="507" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="600" width="180" x="507" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="reg18-lifeline-db" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlEntity;verticalLabelPosition=top;verticalAlign=bottom;" value="User Database" vertex="1">
-                  <mxGeometry height="600" width="180" x="765.5" y="20" as="geometry" />
-                </mxCell>
-        <mxCell id="reg18-msg-1" edge="1" parent="1" source="reg18-lifeline-user" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-page" value="Input data registrasi (nama, email, password, no_telp, alamat)">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="136" y="127" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-num-1" parent="reg18-msg-1" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="1" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-2" edge="1" parent="1" source="reg18-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-controller" value="Kirim data registrasi">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="382" y="179" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-num-2" parent="reg18-msg-2" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="2" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-activation" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=light-dark(#FFFFFF,#000000);strokeColor=light-dark(#000000,#FFFFFF);" vertex="1">
-                  <mxGeometry height="40" width="10" x="592" y="181" as="geometry" />
-                </mxCell>
-        <mxCell id="reg18-selfcall" edge="1" parent="1" source="reg18-activation" style="verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endArrow=block;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="reg18-activation" value="Validasi format input &amp; kecocokan password">
-                  <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
-                    <mxPoint y="-1" as="offset" />
-                    <Array as="points">
-                      <mxPoint x="612" y="191" />
-                      <mxPoint x="612" y="211" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-3" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-db" value="Cek email terdaftar">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="646" y="241" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-num-3" parent="reg18-msg-3" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="3" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-4" edge="1" parent="1" source="reg18-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-controller" value="Status email (ada/tidak)">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="646" y="293" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-num-4" parent="reg18-msg-4" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="4" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="600" width="180" x="765.5" y="20" as="geometry" />
+        </mxCell>
+        <!-- Alt Frame -->
         <mxCell id="reg18-alt-frame" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=light-dark(#000000,#FFFFFF);height=20;width=30;fillColor=none;fontColor=light-dark(#000000,#FFFFFF);" value="alt" vertex="1">
-                  <mxGeometry height="260" width="870" x="50" y="320" as="geometry" />
-                </mxCell>
-        <mxCell id="reg18-alt-guard1" parent="reg18-alt-frame" style="text;strokeColor=light-dark(#000000,#FFFFFF);fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=light-dark(#000000,#FFFFFF);" value="[Email belum terdaftar / Registrasi sukses]" vertex="1">
-                  <mxGeometry height="20" width="840" x="30" as="geometry" />
-                </mxCell>
+          <mxGeometry height="260" width="870" x="50" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="reg18-alt-guard1" parent="reg18-alt-frame" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=light-dark(#000000,#FFFFFF);" value="[Email belum terdaftar / Registrasi sukses]" vertex="1">
+          <mxGeometry height="20" width="840" x="30" as="geometry" />
+        </mxCell>
         <mxCell id="reg18-alt-line" parent="reg18-alt-frame" style="shape=line;dashed=1;whiteSpace=wrap;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;align=center;strokeColor=light-dark(#000000,#FFFFFF);fillColor=none;fontColor=light-dark(#000000,#FFFFFF);" value="[Email sudah terdaftar / Registrasi gagal]" vertex="1">
-                  <mxGeometry height="4" width="870" y="150" as="geometry" />
-                </mxCell>
+          <mxGeometry height="4" width="870" y="150" as="geometry" />
+        </mxCell>
+        <!-- Step 1: Input data -->
+        <mxCell id="reg18-msg-1" edge="1" parent="1" source="reg18-lifeline-user" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-page" value="Input data registrasi (nama, email, password, no_telp, alamat)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="127" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reg18-num-1" parent="reg18-msg-1" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="1" vertex="1">
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-135" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 2: Kirim data -->
+        <mxCell id="reg18-msg-2" edge="1" parent="1" source="reg18-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-controller" value="Kirim data registrasi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="471" y="179" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reg18-num-2" parent="reg18-msg-2" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="2" vertex="1">
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-124" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Self Call Validation -->
+        <mxCell id="reg18-activation" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=light-dark(#FFFFFF,#000000);strokeColor=light-dark(#000000,#FFFFFF);" vertex="1">
+          <mxGeometry height="40" width="10" x="592" y="181" as="geometry" />
+        </mxCell>
+        <mxCell id="reg18-selfcall" edge="1" parent="1" source="reg18-activation" style="verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endArrow=block;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="reg18-activation" value="Validasi format input &amp; kecocokan password">
+          <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
+            <mxPoint y="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="612" y="191" />
+              <mxPoint x="612" y="211" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 3: Cek email -->
+        <mxCell id="reg18-msg-3" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-db" value="Cek email terdaftar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="735" y="241" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reg18-num-3" parent="reg18-msg-3" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="3" vertex="1">
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-130" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 4: Status email -->
+        <mxCell id="reg18-msg-4" edge="1" parent="1" source="reg18-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-controller" value="Status email (ada/tidak)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="738" y="293" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reg18-num-4" parent="reg18-msg-4" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="4" vertex="1">
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="120" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- SUCCESS BRANCH -->
+        <!-- Step 5: Simpan data -->
         <mxCell id="reg18-msg-5" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-db" value="Simpan data user">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="646" y="360" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="735" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="reg18-num-5" parent="reg18-msg-5" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="5" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-6" edge="1" parent="1" source="reg18-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-controller" value="Konfirmasi berhasil">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="646" y="400" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-130" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 6: Konfirmasi -->
+        <mxCell id="reg18-msg-6" edge="1" parent="1" source="reg18-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-controller" value="Konfirmasi berhasil">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="738" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="reg18-num-6" parent="reg18-msg-6" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="6" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-7" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-page" value="Kirim status sukses">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="382" y="435" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="120" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 7: Kirim status -->
+        <mxCell id="reg18-msg-7" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-page" value="Kirim status sukses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="474" y="435" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="reg18-num-7" parent="reg18-msg-7" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="7" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-8" edge="1" parent="1" source="reg18-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-user" value="Registrasi berhasil &amp; redirect ke login">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="136" y="465" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="124" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 8: Tampilkan sukses -->
+        <mxCell id="reg18-msg-8" edge="1" parent="1" source="reg18-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-user" value="Registrasi berhasil &amp; redirect ke login">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="223" y="465" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="reg18-num-8" parent="reg18-msg-8" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="8" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-9" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-page" value="Status registrasi gagal">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="382" y="505" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- FAIL BRANCH -->
+        <!-- Step 9: Kirim error -->
+        <mxCell id="reg18-msg-9" edge="1" parent="1" source="reg18-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-page" value="Status registrasi gagal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="474" y="505" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="reg18-num-9" parent="reg18-msg-9" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="9" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="reg18-msg-10" edge="1" parent="1" source="reg18-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-user" value="Tampilkan error email sudah terdaftar">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="136" y="545" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="124" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 10: Tampilkan error -->
+        <mxCell id="reg18-msg-10" edge="1" parent="1" source="reg18-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="reg18-lifeline-user" value="Tampilkan error email sudah terdaftar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="223" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="reg18-num-10" parent="reg18-msg-10" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="10" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="buyFlow19Id_88888888" name="19. Pembelian">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="442" dy="321" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
         <mxCell id="buy19-lifeline-user" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);" value="User" vertex="1">
-                  <mxGeometry height="900" width="35" x="20" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="800" width="35" x="20" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-lifeline-detailpage" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlBoundary;verticalLabelPosition=top;verticalAlign=bottom;" value="Car Detail Page" vertex="1">
-                  <mxGeometry height="900" width="180" x="230" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="800" width="150" x="200" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-lifeline-orderpage" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlBoundary;verticalLabelPosition=top;verticalAlign=bottom;" value="Order Page" vertex="1">
-                  <mxGeometry height="900" width="180" x="480" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="800" width="150" x="400" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-lifeline-controller" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlControl;verticalLabelPosition=top;verticalAlign=bottom;" value="Order Controller" vertex="1">
-                  <mxGeometry height="900" width="180" x="730" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="800" width="150" x="600" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-lifeline-db" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlEntity;verticalLabelPosition=top;verticalAlign=bottom;" value="Order Database" vertex="1">
-                  <mxGeometry height="900" width="180" x="980" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="800" width="150" x="800" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-msg-1" edge="1" parent="1" source="buy19-lifeline-user" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-detailpage" value="Klik tombol Beli Sekarang">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="179" y="120" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="127" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-1" parent="buy19-msg-1" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="1" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-2" edge="1" parent="1" source="buy19-lifeline-detailpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Redirect ke halaman formulir pembelian">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="445" y="170" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-135" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-2" edge="1" parent="1" source="buy19-lifeline-detailpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Redirect ke halaman formulir pembelian">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="179" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-2" parent="buy19-msg-2" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="2" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-msg-3" edge="1" parent="1" source="buy19-lifeline-user" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Input data diri &amp; pilih metode pembayaran">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="304" y="220" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="231" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-3" parent="buy19-msg-3" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="3" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-150" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-msg-4" edge="1" parent="1" source="buy19-lifeline-orderpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-controller" value="Kirim data pesanan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="695" y="270" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="283" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-4" parent="buy19-msg-4" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="4" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-activation" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=light-dark(#FFFFFF,#000000);strokeColor=light-dark(#000000,#FFFFFF);" vertex="1">
-                  <mxGeometry height="40" width="10" x="815" y="275" as="geometry" />
-                </mxCell>
+          <mxGeometry height="40" width="10" x="670" y="285" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-selfcall" edge="1" parent="1" source="buy19-activation" style="verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endArrow=block;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="buy19-activation" value="Validasi data pembeli &amp; kelengkapan input">
-                  <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
-                    <mxPoint y="-1" as="offset" />
-                    <Array as="points">
-                      <mxPoint x="835" y="285" />
-                      <mxPoint x="835" y="305" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
+            <mxPoint y="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="690" y="295" />
+              <mxPoint x="690" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-msg-5" edge="1" parent="1" source="buy19-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-db" value="Cek ketersediaan &amp; status mobil">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="945" y="350" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-5" parent="buy19-msg-5" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="5" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-6" edge="1" parent="1" source="buy19-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-controller" value="Status mobil (Tersedia/Tidak)">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="945" y="400" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-120" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-6" edge="1" parent="1" source="buy19-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-controller" value="Status mobil (Tersedia/Tidak)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="397" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-6" parent="buy19-msg-6" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="6" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-alt" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=light-dark(#000000,#FFFFFF);height=20;width=30;fillColor=none;fontColor=light-dark(#000000,#FFFFFF);" value="alt" vertex="1">
-                  <mxGeometry height="440" width="1100" x="50" y="430" as="geometry" />
-                </mxCell>
-        <mxCell id="buy19-alt-title1" parent="buy19-alt" style="text;strokeColor=light-dark(#000000,#FFFFFF);fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=light-dark(#000000,#FFFFFF);" value="[Mobil tersedia &amp; Input valid]" vertex="1">
-                  <mxGeometry height="20" width="1070" x="30" as="geometry" />
-                </mxCell>
+          <mxGeometry height="360" width="900" x="50" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="buy19-alt-title1" parent="buy19-alt" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=light-dark(#000000,#FFFFFF);" value="[Mobil tersedia &amp; Input valid]" vertex="1">
+          <mxGeometry height="20" width="870" x="30" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-alt-line" parent="buy19-alt" style="shape=line;dashed=1;whiteSpace=wrap;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;align=center;strokeColor=light-dark(#000000,#FFFFFF);fillColor=none;fontColor=light-dark(#000000,#FFFFFF);" value="[Mobil sudah terjual / dibooking]" vertex="1">
-                  <mxGeometry height="4" width="1100" y="280" as="geometry" />
-                </mxCell>
+          <mxGeometry height="4" width="900" y="220" as="geometry" />
+        </mxCell>
         <mxCell id="buy19-msg-7" edge="1" parent="1" source="buy19-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-db" value="Simpan transaksi (Status: Pending Pembayaran)">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="945" y="480" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-7" parent="buy19-msg-7" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="7" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-8" edge="1" parent="1" source="buy19-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-controller" value="Konfirmasi data disimpan &amp; order ID">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="945" y="530" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-120" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-8" edge="1" parent="1" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" value="Konfirmasi data disimpan &amp; order ID">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="465" />
+            </Array>
+            <mxPoint x="874.5" y="465" as="sourcePoint" />
+            <mxPoint x="673.6818181818185" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-8" parent="buy19-msg-8" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="8" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-9" edge="1" parent="1" source="buy19-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Kirim rincian invoice &amp; instruksi bayar">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="695" y="580" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-9" edge="1" parent="1" source="buy19-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Kirim rincian invoice &amp; instruksi bayar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-9" parent="buy19-msg-9" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="9" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-10" edge="1" parent="1" source="buy19-lifeline-orderpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-user" value="Tampilkan detail invoice &amp; instruksi pembayaran">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="304" y="630" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-10" edge="1" parent="1" source="buy19-lifeline-orderpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-user" value="Tampilkan detail invoice &amp; instruksi pembayaran">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-10" parent="buy19-msg-10" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="10" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-11" edge="1" parent="1" source="buy19-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Kirim error mobil tidak tersedia">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="695" y="750" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="140" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-11" edge="1" parent="1" source="buy19-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-orderpage" value="Kirim error mobil tidak tersedia">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-11" parent="buy19-msg-11" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="11" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="buy19-msg-12" edge="1" parent="1" source="buy19-lifeline-orderpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-user" value="Tampilkan pesan kesalahan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="304" y="800" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="buy19-msg-12" edge="1" parent="1" source="buy19-lifeline-orderpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="buy19-lifeline-user" value="Tampilkan pesan kesalahan">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="buy19-num-12" parent="buy19-msg-12" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="12" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="140" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -2769,297 +2786,323 @@
       <root>
         <mxCell id="0" style="" />
         <mxCell id="1" parent="0" style="" />
+        <!-- Lifelines -->
         <mxCell id="sel20-lifeline-penjual" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);" value="Penjual" vertex="1">
-                  <mxGeometry height="1300" width="35" x="20" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="1200" width="35" x="20" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-lifeline-page" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlBoundary;verticalLabelPosition=top;verticalAlign=bottom;" value="Halaman Jual Mobil" vertex="1">
-                  <mxGeometry height="1300" width="180" x="220" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="1200" width="140" x="180" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-lifeline-controller" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlControl;verticalLabelPosition=top;verticalAlign=bottom;" value="Controller Penjualan" vertex="1">
-                  <mxGeometry height="1300" width="180" x="470" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="1200" width="150" x="360" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-lifeline-db" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlEntity;verticalLabelPosition=top;verticalAlign=bottom;" value="Database Penjualan" vertex="1">
-                  <mxGeometry height="1300" width="180" x="720" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="1200" width="140" x="550" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-lifeline-admin" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);" value="Admin" vertex="1">
-                  <mxGeometry height="1300" width="35" x="970" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="1200" width="35" x="730" y="20" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-lifeline-adminpage" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=60;fillColor=none;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);participant=umlBoundary;verticalLabelPosition=top;verticalAlign=bottom;" value="Halaman Verifikasi Admin" vertex="1">
-                  <mxGeometry height="1300" width="180" x="1070" y="20" as="geometry" />
-                </mxCell>
+          <mxGeometry height="1200" width="160" x="800" y="20" as="geometry" />
+        </mxCell>
+        <!-- Step 1: Input -->
         <mxCell id="sel20-msg-1" edge="1" parent="1" source="sel20-lifeline-penjual" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-page" value="Input detail mobil &amp; upload dokumen">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="174" y="120" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-1" parent="sel20-msg-1" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="1" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 2: Kirim formulir -->
         <mxCell id="sel20-msg-2" edge="1" parent="1" source="sel20-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Kirim formulir pengajuan penjualan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="435" y="170" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-2" parent="sel20-msg-2" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="2" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-100" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Selfcall 1 -->
         <mxCell id="sel20-activation1" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=light-dark(#FFFFFF,#000000);strokeColor=light-dark(#000000,#FFFFFF);" vertex="1">
-                  <mxGeometry height="40" width="10" x="555" y="175" as="geometry" />
-                </mxCell>
+          <mxGeometry height="40" width="10" x="430" y="172" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-selfcall1" edge="1" parent="1" source="sel20-activation1" style="verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endArrow=block;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="sel20-activation1" value="Validasi format data &amp; file lampiran">
-                  <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
-                    <mxPoint y="-1" as="offset" />
-                    <Array as="points">
-                      <mxPoint x="575" y="185" />
-                      <mxPoint x="575" y="205" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
+            <mxPoint y="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="450" y="182" />
+              <mxPoint x="450" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 3: Simpan pengajuan -->
         <mxCell id="sel20-msg-3" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-db" value="Simpan pengajuan (Status: Pending Review)">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="240" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-3" parent="sel20-msg-3" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="3" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-4" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Pengajuan disimpan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="290" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-100" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 4: Konfirmasi simpan -->
+        <mxCell id="sel20-msg-4" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Pengajuan disimpan">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-4" parent="sel20-msg-4" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="4" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-5" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-page" value="Kirim status pending">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="435" y="340" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="90" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 5: Kirim status -->
+        <mxCell id="sel20-msg-5" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-page" value="Kirim status pending">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-5" parent="sel20-msg-5" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="5" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-6" edge="1" parent="1" source="sel20-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-penjual" value="Tampilkan pesan pengajuan terkirim &amp; status pending">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="174" y="390" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="90" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 6: Tampilkan pesan -->
+        <mxCell id="sel20-msg-6" edge="1" parent="1" source="sel20-lifeline-page" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-penjual" value="Tampilkan pesan pengajuan terkirim &amp; status pending">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-6" parent="sel20-msg-6" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="6" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 7: Admin verifikasi -->
         <mxCell id="sel20-msg-7" edge="1" parent="1" source="sel20-lifeline-admin" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-adminpage" value="Buka dashboard &amp; verifikasi ajuan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="1074" y="440" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-7" parent="sel20-msg-7" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="7" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-70" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 8: Req detail -->
         <mxCell id="sel20-msg-8" edge="1" parent="1" source="sel20-lifeline-adminpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Request detail pengajuan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="860" y="490" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-8" parent="sel20-msg-8" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="8" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 9: Ambil data -->
         <mxCell id="sel20-msg-9" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-db" value="Ambil data pengajuan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="540" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-9" parent="sel20-msg-9" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="9" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-10" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Data detail pengajuan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="590" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-100" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 10: Detail data -->
+        <mxCell id="sel20-msg-10" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Data detail pengajuan">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-10" parent="sel20-msg-10" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="10" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-11" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-adminpage" value="Kirim detail data">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="860" y="640" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="90" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 11: Kirim detail -->
+        <mxCell id="sel20-msg-11" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-adminpage" value="Kirim detail data">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-11" parent="sel20-msg-11" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="11" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-12" edge="1" parent="1" source="sel20-lifeline-adminpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-admin" value="Tampilkan rincian ajuan penjualan">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="1074" y="690" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 12: Tampilkan detail -->
+        <mxCell id="sel20-msg-12" edge="1" parent="1" source="sel20-lifeline-adminpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-admin" value="Tampilkan rincian ajuan penjualan">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-12" parent="sel20-msg-12" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="12" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="50" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 13: Verifikasi hasil -->
         <mxCell id="sel20-msg-13" edge="1" parent="1" source="sel20-lifeline-admin" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-adminpage" value="Pilih Approve / Reject">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="1074" y="740" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-13" parent="sel20-msg-13" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="13" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-70" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 14: Kirim hasil -->
         <mxCell id="sel20-msg-14" edge="1" parent="1" source="sel20-lifeline-adminpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Kirim hasil verifikasi">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="860" y="790" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-14" parent="sel20-msg-14" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="14" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Selfcall 2 -->
         <mxCell id="sel20-activation2" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=light-dark(#FFFFFF,#000000);strokeColor=light-dark(#000000,#FFFFFF);" vertex="1">
-                  <mxGeometry height="40" width="10" x="555" y="795" as="geometry" />
-                </mxCell>
+          <mxGeometry height="40" width="10" x="430" y="782" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-selfcall2" edge="1" parent="1" source="sel20-activation2" style="verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endArrow=block;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="sel20-activation2" value="Verifikasi integritas keputusan &amp; status">
-                  <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
-                    <mxPoint y="-1" as="offset" />
-                    <Array as="points">
-                      <mxPoint x="575" y="805" />
-                      <mxPoint x="575" y="825" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" x="-0.5" y="40" as="geometry">
+            <mxPoint y="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="450" y="792" />
+              <mxPoint x="450" y="812" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Alt Frame for Approval Result -->
         <mxCell id="sel20-alt" parent="1" style="shape=umlFrame;dashed=1;pointerEvents=0;dropTarget=0;strokeColor=light-dark(#000000,#FFFFFF);height=20;width=30;fillColor=none;fontColor=light-dark(#000000,#FFFFFF);" value="alt" vertex="1">
-                  <mxGeometry height="420" width="1200" x="50" y="850" as="geometry" />
-                </mxCell>
-        <mxCell id="sel20-alt-title1" parent="sel20-alt" style="text;strokeColor=light-dark(#000000,#FFFFFF);fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=light-dark(#000000,#FFFFFF);" value="[Pengajuan disetujui]" vertex="1">
-                  <mxGeometry height="20" width="1170" x="30" as="geometry" />
-                </mxCell>
+          <mxGeometry height="280" width="940" x="30" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="sel20-alt-title1" parent="sel20-alt" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontColor=light-dark(#000000,#FFFFFF);" value="[Pengajuan disetujui]" vertex="1">
+          <mxGeometry height="20" width="910" x="30" as="geometry" />
+        </mxCell>
         <mxCell id="sel20-alt-line" parent="sel20-alt" style="shape=line;dashed=1;whiteSpace=wrap;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;align=center;strokeColor=light-dark(#000000,#FFFFFF);fillColor=none;fontColor=light-dark(#000000,#FFFFFF);" value="[Pengajuan ditolak]" vertex="1">
-                  <mxGeometry height="4" width="1200" y="150" as="geometry" />
-                </mxCell>
+          <mxGeometry height="4" width="940" y="130" as="geometry" />
+        </mxCell>
+        <!-- Approved -->
+        <!-- Step 15: Update status = Aktif -->
         <mxCell id="sel20-msg-15" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-db" value="Update status mobil = Aktif/Dijual">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="890" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="880" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-15" parent="sel20-msg-15" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="15" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-16" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Data terupdate">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="930" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-100" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 16: Sukses -->
+        <mxCell id="sel20-msg-16" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Data terupdate">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-16" parent="sel20-msg-16" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="16" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="90" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Rejected -->
+        <!-- Step 17: Update status = Ditolak -->
         <mxCell id="sel20-msg-17" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-db" value="Update status mobil = Ditolak">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="1040" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-17" parent="sel20-msg-17" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="17" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-18" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Data terupdate">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="685" y="1080" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="-100" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 18: Sukses -->
+        <mxCell id="sel20-msg-18" edge="1" parent="1" source="sel20-lifeline-db" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-controller" value="Data terupdate">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="1040" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-18" parent="sel20-msg-18" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="18" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-19" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-adminpage" value="Kirim notifikasi sukses verifikasi">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="860" y="1140" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="90" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 19: Kirim notif verifikasi -->
+        <mxCell id="sel20-msg-19" edge="1" parent="1" source="sel20-lifeline-controller" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-adminpage" value="Kirim notifikasi sukses verifikasi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="1130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-19" parent="sel20-msg-19" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="19" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
-        <mxCell id="sel20-msg-20" edge="1" parent="1" source="sel20-lifeline-adminpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-admin" value="Tampilkan notifikasi verifikasi berhasil">
-                  <mxGeometry relative="1" as="geometry">
-                    <Array as="points">
-                      <mxPoint x="1074" y="1190" />
-                    </Array>
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="110" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Step 20: Tampilkan notifikasi -->
+        <mxCell id="sel20-msg-20" edge="1" parent="1" source="sel20-lifeline-adminpage" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);fillColor=none;" target="sel20-lifeline-admin" value="Tampilkan notifikasi verifikasi berhasil">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="1170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="sel20-num-20" parent="sel20-msg-20" style="ellipse;aspect=fixed;fillColor=#FFFFFF;align=center;fontColor=light-dark(#000000,#FFFFFF);strokeColor=light-dark(#000000,#FFFFFF);" value="20" vertex="1">
-                  <mxGeometry height="14" relative="1" width="14" as="geometry">
-                    <mxPoint x="-156" y="-7" as="offset" />
-                  </mxGeometry>
-                </mxCell>
+          <mxGeometry height="14" relative="1" width="14" as="geometry">
+            <mxPoint x="50" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

@@ -244,23 +244,51 @@
                 Pembeli melunasi sisa harga mobil (70% OTR) selama pengurusan STNK. Setelah STNK selesai & harga lunas, mobil dapat diambil atau diantar menggunakan <strong>Surat Jalan</strong>.
               </p>
 
-              <div class="grid grid-cols-2 gap-4 mt-3 bg-neutral-50 p-4 rounded-2xl border border-[#EAEAEA] font-mono text-[10px]">
-                <div class="flex flex-col gap-1">
+               <div class="grid grid-cols-2 gap-4 mt-3 bg-neutral-50 p-4 rounded-2xl border border-[#EAEAEA] font-mono text-[10px]">
+                <div class="flex flex-col gap-1 col-span-2 md:col-span-1">
                   <span class="text-neutral-500 uppercase font-semibold">Status Pelunasan (70%):</span>
                   <span class="<?php echo ($booking['pelunasan_status'] === 'paid') ? 'text-emerald-700' : 'text-red-600'; ?> font-bold text-xs">
                     <?php echo ($booking['pelunasan_status'] === 'paid') ? 'LUNAS' : 'MENUNGGU PELUNASAN'; ?>
                   </span>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <span class="text-neutral-500 uppercase font-semibold">Serah Terima:</span>
-                  <span class="text-black font-extrabold text-xs uppercase">
+                <div class="flex flex-col gap-1 col-span-2 md:col-span-1">
+                  <span class="text-neutral-500 uppercase font-semibold">Fulfillment Unit:</span>
+                  <span class="text-black font-extrabold text-xs uppercase leading-relaxed">
                     <?php 
-                      if (empty($booking['delivery_type'])) echo 'Belum Dikonfigurasi';
-                      elseif ($booking['delivery_type'] === 'pickup') echo 'Ambil Sendiri';
-                      else echo 'Diantar Kurir (' . $booking['delivery_status'] . ')';
+                      if (empty($booking['delivery_type'])) {
+                          echo 'Belum Dikonfigurasi';
+                      } elseif ($booking['delivery_type'] === 'pickup') {
+                          echo 'Ambil Sendiri di Showroom';
+                      } else {
+                          echo 'Diantar ke Alamat';
+                      }
                     ?>
                   </span>
                 </div>
+                <?php if (!empty($booking['delivery_type'])): ?>
+                <div class="flex flex-col gap-1 col-span-2 pt-2 border-t border-[#EAEAEA] font-sans text-xs text-neutral-800">
+                  <?php if ($booking['delivery_type'] === 'pickup'): ?>
+                    <div class="flex items-start gap-1.5 text-neutral-600 font-mono text-[10px] uppercase">
+                      <i class="fa-solid fa-store mt-0.5"></i>
+                      <span>Silakan ambil unit mobil Anda langsung di Showroom DRIVE.X setelah pelunasan diverifikasi.</span>
+                    </div>
+                  <?php else: ?>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-neutral-500 font-mono text-[10px] uppercase font-semibold">Alamat Pengiriman:</span>
+                      <span class="text-black font-medium"><?php echo htmlspecialchars($booking['delivery_address'] ?? '-'); ?></span>
+                    </div>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-dashed border-[#EAEAEA]">
+                      <div class="flex flex-col gap-0.5">
+                        <span class="text-neutral-500 font-mono text-[9px] uppercase font-semibold">Status Pengiriman:</span>
+                        <span class="text-black font-mono text-[10px] font-bold uppercase"><?php echo htmlspecialchars($booking['delivery_status']); ?></span>
+                      </div>
+                      <a href="<?php echo base_url('booking/tracking/' . $booking['id']); ?>" class="flex items-center gap-1.5 text-[9px] font-bold text-white bg-black border border-black px-2.5 py-1.5 rounded-lg hover:bg-neutral-800 transition-colors">
+                        <i class="fa-solid fa-location-crosshairs text-[8px] animate-pulse"></i> Lacak Pengiriman
+                      </a>
+                    </div>
+                  <?php endif; ?>
+                </div>
+                <?php endif; ?>
               </div>
 
               <?php if ($pelunasan_rejected): ?>
@@ -440,7 +468,7 @@
         <?php else: ?>
           <div class="bg-white border border-[#EAEAEA] hover:border-black rounded-[28px] p-8 shadow-[0_4px_30px_rgba(0,0,0,0.02)] transition-all duration-300 stagger-card">
             <h4 class="font-display font-extrabold text-sm tracking-wider text-black uppercase mb-6 flex items-center gap-2">
-              <i class="fa-solid fa-arrow-up-from-bracket"></i> UNGGAH BUKTI PELUNASAN (70%)
+              <i class="fa-solid fa-truck-ramp-box"></i> SERAH TERIMA & PELUNASAN (70%)
             </h4>
 
             <?php echo form_open_multipart('booking/submit_final_payment/' . $booking['id'], array('class' => 'space-y-6 text-xs font-mono')); ?>
@@ -448,42 +476,66 @@
               <div class="flex flex-col gap-1.5 p-4 bg-neutral-50 rounded-2xl border border-[#EAEAEA]">
                 <span class="text-neutral-500 font-bold text-[10px] uppercase">SISA HARGA HARUS DILUNASI (70%):</span>
                 <span class="text-black font-extrabold text-2xl">Rp <?php echo number_format($booking['remaining_payment'], 0, ',', '.'); ?>,-</span>
-                <span class="text-[9px] text-neutral-500 mt-1 font-semibold">*Pelunasan dilakukan selama masa pengurusan STNK (rata-rata 2 minggu).</span>
               </div>
 
-              <!-- Bank account specs for transfer -->
-              <div onclick="window.copyTextToClipboard('1230009871111', this)" class="copy-tooltip p-4 bg-neutral-50 rounded-2xl border border-[#EAEAEA] flex flex-col gap-1 text-[10px] text-neutral-800 hover:border-black transition-colors select-none">
-                <span class="text-neutral-500 uppercase font-semibold mb-1">Rekening Transfer Perusahaan (Klik Salin):</span>
-                <span class="text-black font-extrabold text-sm"><i class="fa-solid fa-copy mr-1 text-xs text-neutral-400"></i> MANDIRI 123-000-987-1111</span>
-                <span class="text-neutral-700 font-medium">A/N PT MOBILKU INTERNET INDONESIA</span>
-              </div>
-
+              <!-- 1. PILIH TIPE SERAH TERIMA -->
               <div class="flex flex-col gap-2">
-                <label class="text-neutral-700 font-bold">Metode Pembayaran:</label>
-                <select name="method" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans px-4 py-3.5 rounded-xl transition-all duration-200 outline-none">
-                  <option value="transfer">Transfer Bank</option>
-                  <option value="cash">Tunai (Showroom)</option>
+                <label class="text-neutral-700 font-bold">1. Pilih Tipe Serah Terima:</label>
+                <select name="delivery_type" id="deliveryTypeSelect" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans px-4 py-3.5 rounded-xl transition-all duration-200 outline-none">
+                  <option value="pickup">Ambil Sendiri di Showroom (Membawa STNK)</option>
+                  <option value="delivery">Kirim ke Alamat Rumah (Melalui Kurir + Surat Jalan)</option>
                 </select>
               </div>
 
+              <!-- ALAMAT PENGIRIMAN (Ditampilkan jika Kirim ke Rumah dipilih) -->
+              <div class="flex flex-col gap-2 hidden" id="deliveryAddressWrapper">
+                <div class="flex justify-between items-center">
+                  <label class="text-neutral-700 font-bold">Alamat Pengiriman Lengkap:</label>
+                  <button type="button" onclick="detectUserLocation()" id="locationBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#DADADA] bg-white text-black hover:border-black font-mono text-[9px] font-bold uppercase transition-all shadow-sm">
+                    <i class="fa-solid fa-location-crosshairs text-[10px]"></i> Bagikan Lokasi Saya
+                  </button>
+                </div>
+                <textarea name="delivery_address" id="deliveryAddressInput" placeholder="Tulis alamat lengkap pengiriman mobil Anda..." class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans p-4 rounded-xl h-20 outline-none resize-none transition-all duration-200"></textarea>
+              </div>
+
+              <!-- 2. PILIH METODE PEMBAYARAN -->
               <div class="flex flex-col gap-2">
-                <label class="text-neutral-700 font-bold">Unggah Bukti Payout/Transfer:</label>
-                <input type="file" name="evidence_file" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-black file:text-white file:cursor-pointer hover:file:bg-neutral-800 transition-all duration-200">
+                <label class="text-neutral-700 font-bold">2. Pilih Metode Pelunasan:</label>
+                <select name="method" id="paymentMethodSelect" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans px-4 py-3.5 rounded-xl transition-all duration-200 outline-none">
+                  <option value="transfer">Transfer Bank Sekarang</option>
+                  <option value="cash" id="cashOptionLabel">Bayar Cash / Tunai di Showroom</option>
+                </select>
               </div>
 
-              <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col gap-2">
-                  <label class="text-neutral-700 font-bold">Nama Bank Pengirim:</label>
-                  <input type="text" name="bank_name" placeholder="BCA/Mandiri" value="<?php echo htmlspecialchars($pre_bank); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+              <!-- CONTAINER TRANSFER BANK (Disembunyikan jika Cash dipilih) -->
+              <div id="transferPaymentWrapper" class="space-y-6">
+                <!-- Bank account specs for transfer -->
+                <div onclick="window.copyTextToClipboard('1230009871111', this)" class="copy-tooltip p-4 bg-neutral-50 rounded-2xl border border-[#EAEAEA] flex flex-col gap-1 text-[10px] text-neutral-800 hover:border-black transition-colors select-none">
+                  <span class="text-neutral-500 uppercase font-semibold mb-1">Rekening Transfer Perusahaan (Klik Salin):</span>
+                  <span class="text-black font-extrabold text-sm"><i class="fa-solid fa-copy mr-1 text-xs text-neutral-400"></i> MANDIRI 123-000-987-1111</span>
+                  <span class="text-neutral-700 font-medium">A/N PT MOBILKU INTERNET INDONESIA</span>
                 </div>
+
                 <div class="flex flex-col gap-2">
-                  <label class="text-neutral-700 font-bold">A/N Pengirim:</label>
-                  <input type="text" name="bank_holder" placeholder="Nama Rekening" value="<?php echo htmlspecialchars($pre_holder); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+                  <label class="text-neutral-700 font-bold">Unggah Bukti Payout/Transfer:</label>
+                  <input type="file" name="evidence_file" id="evidenceFileInput" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-black file:text-white file:cursor-pointer hover:file:bg-neutral-800 transition-all duration-200">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-2">
+                    <label class="text-neutral-700 font-bold">Nama Bank Pengirim:</label>
+                    <input type="text" name="bank_name" id="bankNameInput" placeholder="BCA/Mandiri" value="<?php echo htmlspecialchars($pre_bank); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <label class="text-neutral-700 font-bold">A/N Pengirim:</label>
+                    <input type="text" name="bank_holder" id="bankHolderInput" placeholder="Nama Rekening" value="<?php echo htmlspecialchars($pre_holder); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+                  </div>
                 </div>
               </div>
 
+              <!-- Button Submit -->
               <button type="submit" class="w-full text-center py-4 bg-black text-white hover:bg-neutral-800 rounded-xl font-bold uppercase tracking-wider text-[11px] transition-all duration-300 shadow-sm">
-                Kirim Verifikasi Pelunasan
+                Konfirmasi Serah Terima & Pelunasan
               </button>
             </form>
           </div>
@@ -562,17 +614,58 @@
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     
-    // Address wrapper logic
-    const select = document.getElementById('deliveryTypeSelector');
-    const wrapper = document.getElementById('addressInputWrapper');
-    if (select && wrapper) {
-      select.addEventListener('change', function() {
+    // Alur Form Serah Terima & Pelunasan Terpadu
+    const deliveryTypeSelect = document.getElementById('deliveryTypeSelect');
+    const deliveryAddressWrapper = document.getElementById('deliveryAddressWrapper');
+    const deliveryAddressInput = document.getElementById('deliveryAddressInput');
+    const cashOptionLabel = document.getElementById('cashOptionLabel');
+
+    const paymentMethodSelect = document.getElementById('paymentMethodSelect');
+    const transferPaymentWrapper = document.getElementById('transferPaymentWrapper');
+    const evidenceFileInput = document.getElementById('evidenceFileInput');
+    const bankNameInput = document.getElementById('bankNameInput');
+    const bankHolderInput = document.getElementById('bankHolderInput');
+
+    if (deliveryTypeSelect) {
+      deliveryTypeSelect.addEventListener('change', function() {
         if (this.value === 'delivery') {
-          wrapper.classList.remove('hidden');
+          deliveryAddressWrapper.style.display = 'block';
+          deliveryAddressInput.setAttribute('required', 'required');
+          if (cashOptionLabel) {
+            cashOptionLabel.innerText = "Bayar COD / Tunai saat Mobil Tiba di Rumah";
+          }
         } else {
-          wrapper.classList.add('hidden');
+          deliveryAddressWrapper.style.display = 'none';
+          deliveryAddressInput.removeAttribute('required');
+          if (cashOptionLabel) {
+            cashOptionLabel.innerText = "Bayar Cash / Tunai Langsung di Showroom";
+          }
         }
       });
+    }
+
+    if (paymentMethodSelect) {
+      paymentMethodSelect.addEventListener('change', function() {
+        if (this.value === 'transfer') {
+          transferPaymentWrapper.style.display = 'block';
+          evidenceFileInput.setAttribute('required', 'required');
+          bankNameInput.setAttribute('required', 'required');
+          bankHolderInput.setAttribute('required', 'required');
+        } else {
+          transferPaymentWrapper.style.display = 'none';
+          evidenceFileInput.removeAttribute('required');
+          bankNameInput.removeAttribute('required');
+          bankHolderInput.removeAttribute('required');
+        }
+      });
+    }
+
+    // Trigger initial state checks on load
+    if (deliveryTypeSelect) {
+      deliveryTypeSelect.dispatchEvent(new Event('change'));
+    }
+    if (paymentMethodSelect) {
+      paymentMethodSelect.dispatchEvent(new Event('change'));
     }
 
     // Anime.js interactive Timeline height calculations
@@ -603,4 +696,74 @@
     }
 
   });
+
+  // Geolocation sharing logic using browser API + OSM Nominatim Reverse Geocoding
+  function detectUserLocation() {
+    const btn = document.getElementById('locationBtn');
+    const input = document.getElementById('deliveryAddressInput');
+    
+    if (!navigator.geolocation) {
+      alert('Browser Anda tidak mendukung fitur Geolocation / GPS.');
+      return;
+    }
+    
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> Mencari GPS...';
+    
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i> Menerjemahkan Alamat...';
+        
+        // Reverse Geocoding via OSM Nominatim API
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`)
+          .then(response => response.json())
+          .then(data => {
+            if (data && data.display_name) {
+              input.value = data.display_name;
+              btn.innerHTML = '<i class="fa-solid fa-check text-[10px] text-emerald-600"></i> Lokasi Terisi';
+              btn.style.borderColor = '#10b981';
+            } else {
+              input.value = `Koordinat: ${lat}, ${lon}`;
+              btn.innerHTML = '<i class="fa-solid fa-location-arrow text-[10px] text-emerald-600"></i> Koordinat Terisi';
+            }
+            setTimeout(() => {
+              btn.disabled = false;
+              btn.innerHTML = originalText;
+              btn.style.borderColor = '#DADADA';
+            }, 3500);
+          })
+          .catch(err => {
+            console.error(err);
+            input.value = `Koordinat: ${lat}, ${lon}`;
+            btn.innerHTML = '<i class="fa-solid fa-location-arrow text-[10px] text-emerald-600"></i> Koordinat Terisi';
+            setTimeout(() => {
+              btn.disabled = false;
+              btn.innerHTML = originalText;
+            }, 3500);
+          });
+      },
+      function(error) {
+        let msg = 'Gagal mengakses GPS Anda.';
+        if (error.code === error.PERMISSION_DENIED) {
+          msg = 'Izin akses lokasi ditolak oleh browser/pengguna.';
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          msg = 'Informasi lokasi GPS tidak tersedia.';
+        } else if (error.code === error.TIMEOUT) {
+          msg = 'Waktu pengambilan GPS habis (Timeout).';
+        }
+        alert(msg);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      }
+    );
+  }
 </script>

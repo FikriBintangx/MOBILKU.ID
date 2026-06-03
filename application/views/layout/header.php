@@ -27,18 +27,47 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
-<body class="min-h-screen bg-white text-[#111111] flex flex-col antialiased">
+<style>
+  body {
+    background-image: url('<?php echo base_url("assets/images/bg1.png"); ?>');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  /* Overlay putih untuk membuat background sedikit lebih terang */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.35); /* Agak memutih */
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  /* Sempurnakan UI Landing Page dengan transparansi tipis (TANPA BLUR) */
+  .bg-white {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+  .bg-\\[\\#F5F5F5\\] {
+    background-color: rgba(245, 245, 245, 0.90) !important;
+  }
+</style>
+<body class="min-h-screen text-[#111111] flex flex-col antialiased">
 
   <!-- DRIVE.X Decorative Dot Matrix & Thin Grid Background Pattern -->
   <div class="anime-grid-bg"></div>
   <div class="thin-grid-lines"></div>
 
-  <!-- Sticky Top Bar & Glassmorphic Navigation -->
-  <div class="sticky top-0 z-40 w-full">
+  <!-- Sticky Top Bar & Glassmorphic Navigation (Floating Capsule) -->
+  <div class="sticky top-4 z-50 w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
 
     <!-- Apple & Framer Inspired Minimalist Navigation Header -->
-    <header class="border-b border-[#EAEAEA] bg-white/80 backdrop-blur-md w-full">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <header class="border border-white/40 bg-white/30 backdrop-blur-xl rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-full transition-all">
+      <div class="h-16 px-6 sm:px-8 flex items-center justify-between">
       
         <!-- Brand Logo DRIVE.X -->
         <a href="<?php echo base_url(); ?>" class="flex items-center gap-3 group">
@@ -106,7 +135,7 @@
     <!-- Flash Messages Container -->
     <?php if ($this->session->flashdata('success')): ?>
       <div class="max-w-7xl mx-auto px-4 mt-6">
-        <div class="bg-emerald-500/5 border border-emerald-500/20 text-emerald-800 px-4 py-3.5 rounded-xl text-sm flex items-center gap-3 font-mono">
+        <div class="bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 text-emerald-800 px-4 py-3.5 rounded-xl text-sm flex items-center gap-3 font-mono shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
           <i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i>
           <span><?php echo $this->session->flashdata('success'); ?></span>
         </div>
@@ -115,8 +144,8 @@
 
     <?php if ($this->session->flashdata('error')): ?>
       <div class="max-w-7xl mx-auto px-4 mt-6">
-        <div class="bg-red-500/5 border border-red-500/20 text-red-800 px-4 py-3.5 rounded-xl text-sm flex items-center gap-3 font-mono">
-          <i class="fa-solid fa-triangle-exclamation text-red-600 text-lg text-cyberpink"></i>
+        <div class="bg-red-500/10 backdrop-blur-md border border-red-500/30 text-red-800 px-4 py-3.5 rounded-xl text-sm flex items-center gap-3 font-mono shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
+          <i class="fa-solid fa-triangle-exclamation text-red-600 text-lg"></i>
           <span><?php echo $this->session->flashdata('error'); ?></span>
         </div>
       </div>

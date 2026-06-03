@@ -195,39 +195,73 @@ class Booking extends CI_Controller {
         $booking = $this->Booking_model->get_booking_by_id($booking_id);
         if (!$booking) show_404();
 
-        $config['upload_path']   = './uploads/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
-        $config['max_size']      = 2048;
+        // 1. Simpan tipe serah terima (Ambil / Kirim)
+        $delivery_type = $this->input->post('delivery_type');
+        $delivery_address = $this->input->post('delivery_address');
+        $this->Booking_model->set_fulfillment($booking_id, $delivery_type, $delivery_address);
 
-        if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 0777, TRUE);
+        // Jika kirim ke alamat, otomatis buat tiket pengiriman kurir
+        if ($delivery_type === 'delivery') {
+            $this->load->model('Delivery_model');
+            $this->Delivery_model->create_delivery($booking_id, $delivery_address);
         }
 
-        $this->load->library('upload', $config);
-        $evidence_file = 'pelunasan_receipt_placeholder.png';
-
-        if ($this->upload->do_upload('evidence_file')) {
-            $ev_data = $this->upload->data();
-            $evidence_file = $ev_data['file_name'];
-        }
-
+        // 2. Proses metode pembayaran pelunasan (Transfer / Bayar di Tempat)
         $method = $this->input->post('method');
-        $bank = $this->input->post('bank_name');
-        $account = $this->input->post('bank_account');
-        $holder = $this->input->post('bank_holder');
 
-        $this->Booking_model->log_payment(
-            $booking_id, 
-            $booking['remaining_payment'], 
-            'pelunasan', 
-            $method, 
-            $bank, 
-            $account, 
-            $holder, 
-            $evidence_file
-        );
+        if ($method === 'cash') {
+            $evidence_file = 'cash_payment_placeholder.png';
+            $bank = 'CASH / COD';
+            $account = 'TEMPAT';
+            $holder = ($delivery_type === 'delivery') ? 'Bayar di Rumah (COD)' : 'Bayar Cash di Showroom';
 
-        $this->session->set_flashdata('success', 'Pelunasan berhasil dikirim! Menunggu verifikasi admin untuk serah terima kendaraan.');
+            $this->Booking_model->log_payment(
+                $booking_id, 
+                $booking['remaining_payment'], 
+                'pelunasan', 
+                'cash', 
+                $bank, 
+                $account, 
+                $holder, 
+                $evidence_file
+            );
+
+            $this->session->set_flashdata('success', 'Konfirmasi serah terima & opsi Bayar di Tempat berhasil disimpan! Silakan tunggu mobil dipersiapkan.');
+        } else {
+            $config['upload_path']   = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+            $config['max_size']      = 2048;
+
+            if (!is_dir($config['upload_path'])) {
+                mkdir($config['upload_path'], 0777, TRUE);
+            }
+
+            $this->load->library('upload', $config);
+            $evidence_file = 'pelunasan_receipt_placeholder.png';
+
+            if ($this->upload->do_upload('evidence_file')) {
+                $ev_data = $this->upload->data();
+                $evidence_file = $ev_data['file_name'];
+            }
+
+            $bank = $this->input->post('bank_name');
+            $account = $this->input->post('bank_account');
+            $holder = $this->input->post('bank_holder');
+
+            $this->Booking_model->log_payment(
+                $booking_id, 
+                $booking['remaining_payment'], 
+                'pelunasan', 
+                'transfer', 
+                $bank, 
+                $account, 
+                $holder, 
+                $evidence_file
+            );
+
+            $this->session->set_flashdata('success', 'Konfirmasi serah terima & bukti transfer pelunasan berhasil dikirim! Menunggu verifikasi admin.');
+        }
+
         redirect('booking/detail/' . $booking_id);
     }
 
@@ -336,4 +370,127 @@ class Booking extends CI_Controller {
 
         $this->load->view('printable/invoice', $data);
     }
+
+    /**
+     * Halaman Real-Time Tracking Pengiriman untuk Customer
+     */
+    public function tracking($booking_id) {
+        $booking = $this->Booking_model->get_booking_by_id($booking_id);
+        $user_id = $this->session->userdata('user_id');
+        $user_role = $this->session->userdata('role');
+        if (!$booking || ($booking['user_id'] != $user_id && !in_array($user_role, ['admin', 'manager']))) {
+            show_404();
+        }
+
+        $this->load->model('Delivery_model');
+        
+        // Find the delivery ticket
+        $this->db->select('id_pengiriman');
+        $this->db->from('pengiriman');
+        $this->db->where('id_transaksi', $booking_id);
+        $p_row = $this->db->get()->row_array();
+        
+        if (!$p_row) {
+            $this->session->set_flashdata('error', 'Fitur tracking hanya tersedia jika Anda memilih opsi Dikirim ke Alamat.');
+            redirect('booking/detail/' . $booking_id);
+            return;
+        }
+
+        $delivery = $this->Delivery_model->get_delivery_by_id($p_row['id_pengiriman']);
+        if (!$delivery) {
+            show_error('Data pengiriman tidak valid.');
+            return;
+        }
+
+        $data['booking'] = $booking;
+        $data['delivery'] = $delivery;
+        $data['status_history'] = $this->Delivery_model->get_status_history($p_row['id_pengiriman']);
+        $data['title'] = 'Lacak Pengiriman Real-Time #' . $booking['booking_code'];
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('dashboard/tracking_customer', $data);
+        $this->load->view('layout/footer');
+    }
+
+    /**
+     * Customer confirms delivery has arrived and rates the service
+     */
+    public function confirm_delivery_arrival($booking_id) {
+        $booking = $this->Booking_model->get_booking_by_id($booking_id);
+        $user_id = $this->session->userdata('user_id');
+        $user_role = $this->session->userdata('role');
+        
+        if (!$booking || ($booking['user_id'] != $user_id && !in_array($user_role, ['admin', 'manager']))) {
+            show_404();
+        }
+
+        $this->load->model('Delivery_model');
+        
+        // Find the delivery ticket
+        $this->db->select('id_pengiriman');
+        $this->db->from('pengiriman');
+        $this->db->where('id_transaksi', $booking_id);
+        $p_row = $this->db->get()->row_array();
+        
+        if ($p_row) {
+            $id_pengiriman = $p_row['id_pengiriman'];
+            
+            // 1. Update delivery status to "Selesai"
+            $this->Delivery_model->update_delivery_status($id_pengiriman, 'Selesai', 'Penerima menyatakan kendaraan telah sampai di lokasi.');
+
+            // 2. Insert ratings
+            $rating_showroom = (int) $this->input->post('rating_showroom');
+            $rating_kurir = (int) $this->input->post('rating_kurir');
+            $review_text = $this->input->post('review_text');
+
+            $rating_data = array(
+                'booking_id' => $booking_id,
+                'id_pengiriman' => $id_pengiriman,
+                'rating_showroom' => $rating_showroom > 0 ? $rating_showroom : 5,
+                'rating_kurir' => $rating_kurir > 0 ? $rating_kurir : 5,
+                'review_text' => htmlspecialchars($review_text)
+            );
+            $this->db->insert('ratings', $rating_data);
+
+            $this->session->set_flashdata('success', 'Konfirmasi serah terima berhasil! Terima kasih telah memberikan penilaian terhadap layanan kami.');
+        }
+
+        redirect('booking/tracking/' . $booking_id);
+    }
+
+    /**
+     * API: Ambil koordinat tracking pengiriman spesifik (GET) untuk Customer
+     * Menghindari overwrite session dari controller Admin
+     */
+    public function get_tracking_data_api($id_pengiriman) {
+        $this->load->model('Delivery_model');
+        $delivery = $this->Delivery_model->get_delivery_by_id($id_pengiriman);
+        if (!$delivery) {
+            echo json_encode(array('status' => 'error', 'message' => 'Delivery not found.'));
+            return;
+        }
+
+        // Authorization check: Make sure client owns the booking or is administrative role
+        $user_id = $this->session->userdata('user_id');
+        $user_role = $this->session->userdata('role');
+        $booking = $this->Booking_model->get_booking_by_id($delivery['id_transaksi']);
+        
+        if (!$booking || ($booking['user_id'] != $user_id && !in_array($user_role, array('admin', 'staff', 'kurir', 'manager')))) {
+            echo json_encode(array('status' => 'error', 'message' => 'Unauthorized access.'));
+            return;
+        }
+
+        $latest_tracking = $this->Delivery_model->get_latest_tracking($id_pengiriman);
+        $history = $this->Delivery_model->get_tracking_history($id_pengiriman);
+        $status_history = $this->Delivery_model->get_status_history($id_pengiriman);
+
+        echo json_encode(array(
+            'status' => 'success',
+            'delivery' => $delivery,
+            'latest' => $latest_tracking,
+            'history' => $history,
+            'status_history' => $status_history
+        ));
+    }
 }
+

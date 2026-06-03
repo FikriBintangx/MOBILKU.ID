@@ -11,7 +11,7 @@ class Admin extends CI_Controller {
         $this->load->model('Delivery_model');
         
         // Auto-run schema updates & user seeding for Manager role
-        $this->db->query("ALTER TABLE users MODIFY COLUMN role ENUM('client', 'staff', 'kurir', 'admin', 'manager') NOT NULL DEFAULT 'client'");
+        $this->db->query("ALTER TABLE users MODIFY COLUMN role ENUM('manager', 'admin', 'client') NOT NULL DEFAULT 'client'");
         
         // Seed Manager if not exists
         $manager = $this->db->get_where('users', array('role' => 'manager'))->row_array();
@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
         }
 
         // Enforce administrative authentication (including manager)
-        if (!$this->session->userdata('user_id') || !in_array($this->session->userdata('role'), array('admin', 'staff', 'kurir', 'manager'))) {
+        if (!$this->session->userdata('user_id') || !in_array($this->session->userdata('role'), array('admin', 'manager'))) {
             // Auto authenticate as admin for demonstration convenience if requested
             $this->session->set_userdata(array(
                 'user_id' => 1,
@@ -47,7 +47,7 @@ class Admin extends CI_Controller {
         $data['cars']     = $this->Mobil_model->get_all_cars('all');
         
         // Load pending payment verifications with full detail
-        $this->db->select('p.*, u.fullname as client_name, u.email as client_email, u.phone as client_phone, b.booking_code, b.ktp_image, b.dp_amount, b.remaining_payment, b.booking_fee, c.brand as car_brand, c.model as car_model, c.year as car_year, c.price as car_price, c.plate_number as car_plate, c.image_url as car_image');
+        $this->db->select('p.*, u.fullname as client_name, u.email as client_email, u.phone as client_phone, b.booking_code, b.ktp_image, b.dp_amount, b.remaining_payment, b.booking_fee, b.delivery_type, b.delivery_address, c.brand as car_brand, c.model as car_model, c.year as car_year, c.price as car_price, c.plate_number as car_plate, c.image_url as car_image');
         $this->db->from('payments p');
         $this->db->join('bookings b', 'p.booking_id = b.id', 'left');
         $this->db->join('users u', 'b.user_id = u.id', 'left');
@@ -59,6 +59,7 @@ class Admin extends CI_Controller {
         // Load all users for User Management panel
         $this->db->select('id, username, fullname, email, phone, role, created_at');
         $this->db->from('users');
+        $this->db->where('role !=', 'client');
         $this->db->order_by('created_at', 'DESC');
         $data['users'] = $this->db->get()->result_array();
 
@@ -80,6 +81,34 @@ class Admin extends CI_Controller {
         $this->load->view('layout/header', $data);
         $this->load->view('dashboard/admin', $data);
         $this->load->view('layout/footer');
+    }
+
+    /**
+     * AJAX endpoint for real-time notification badges
+     */
+    public function get_pending_counts() {
+        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager') {
+            echo json_encode(['pesanan' => 0, 'sourcing' => 0, 'progress' => 0]);
+            return;
+        }
+
+        // Get pending payments (pesanan)
+        $this->db->where('status', 'pending');
+        $pesanan = $this->db->count_all_results('payments');
+
+        // Get pending sourcing (pembelian)
+        $this->db->where_in('status', ['pending', 'inspection', 'payout']);
+        $sourcing = $this->db->count_all_results('sourcing');
+
+        // Get progress pengurusan (bookings not cancelled/completed)
+        $this->db->where_not_in('status', ['cancelled', 'completed']);
+        $progress = $this->db->count_all_results('bookings');
+
+        echo json_encode([
+            'pesanan' => $pesanan,
+            'sourcing' => $sourcing,
+            'progress' => $progress
+        ]);
     }
 
     /**
@@ -216,8 +245,8 @@ class Admin extends CI_Controller {
      * Courier Dashboard Portal
      */
     public function kurir() {
-        // Enforce Courier role
-        if ($this->session->userdata('role') !== 'kurir' && $this->session->userdata('role') !== 'admin') {
+        // Enforce Admin/Manager role for Courier dashboard
+        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager') {
             redirect('mobil');
         }
 
@@ -645,6 +674,188 @@ class Admin extends CI_Controller {
         $this->db->query("SET FOREIGN_KEY_CHECKS = 1");
         
         $this->session->set_flashdata('success', 'Database berhasil di-reset ke kondisi awal secara bersih!');
+        redirect('admin');
+    }
+
+    /**
+     * Halaman Monitoring Pengiriman Peta Real-Time untuk Admin
+     */
+    public function monitoring_pengiriman() {
+        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager') {
+            redirect('mobil');
+        }
+
+        $data['couriers']   = $this->db->get('kurir')->result_array();
+        $data['deliveries'] = $this->Delivery_model->get_all_deliveries();
+        
+        // Calculate widget stats
+        $today = date('Y-m-d');
+        $data['stats'] = array(
+            'total_hari_ini' => 0,
+            'perjalanan' => 0,
+            'selesai' => 0,
+            'tertunda' => 0
+        );
+
+        foreach ($data['deliveries'] as $d) {
+            $d_date = date('Y-m-d', strtotime($d['tanggal_pengiriman'] ?? ''));
+            if ($d_date === $today) {
+                $data['stats']['total_hari_ini']++;
+            }
+            if ($d['status_pengiriman'] === 'Selesai') {
+                $data['stats']['selesai']++;
+            } elseif ($d['status_pengiriman'] === 'Gagal Kirim') {
+                $data['stats']['tertunda']++;
+            } elseif (in_array($d['status_pengiriman'], array('Kurir Ditugaskan', 'Kendaraan Dipersiapkan', 'Dalam Perjalanan', 'Tiba di Lokasi', 'Kendaraan Diserahkan', 'Diserahkan ke Pembeli'))) {
+                $data['stats']['perjalanan']++;
+            }
+        }
+
+        $data['title'] = 'Monitoring Pengiriman Real-Time | DRIVE.X';
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('dashboard/admin_monitoring', $data);
+        $this->load->view('layout/footer');
+    }
+
+    /**
+     * API: Update Geolocation Kurir (POST)
+     */
+    public function update_location_api() {
+        $id_pengiriman = $this->input->post('id_pengiriman');
+        $lat = $this->input->post('latitude');
+        $lng = $this->input->post('longitude');
+        $speed = $this->input->post('speed') ?? 0.0;
+
+        if (empty($id_pengiriman) || empty($lat) || empty($lng)) {
+            echo json_encode(array('status' => 'error', 'message' => 'Invalid parameters.'));
+            return;
+        }
+
+        $this->load->model('Delivery_model');
+        $this->Delivery_model->update_tracking($id_pengiriman, $lat, $lng, $speed);
+
+        echo json_encode(array('status' => 'success', 'message' => 'Location updated successfully.'));
+    }
+
+    /**
+     * API: Ambil koordinat tracking pengiriman spesifik (GET)
+     */
+    public function get_tracking_data_api($id_pengiriman) {
+        $this->load->model('Delivery_model');
+        $delivery = $this->Delivery_model->get_delivery_by_id($id_pengiriman);
+        if (!$delivery) {
+            echo json_encode(array('status' => 'error', 'message' => 'Delivery not found.'));
+            return;
+        }
+
+        $latest_tracking = $this->Delivery_model->get_latest_tracking($id_pengiriman);
+        $history = $this->Delivery_model->get_tracking_history($id_pengiriman);
+        $status_history = $this->Delivery_model->get_status_history($id_pengiriman);
+
+        echo json_encode(array(
+            'status' => 'success',
+            'delivery' => $delivery,
+            'latest' => $latest_tracking,
+            'history' => $history,
+            'status_history' => $status_history
+        ));
+    }
+
+    /**
+     * API: Ambil koordinat seluruh kurir aktif (GET)
+     */
+    public function get_active_locations_api() {
+        $this->load->model('Delivery_model');
+        $deliveries = $this->Delivery_model->get_all_deliveries();
+        
+        $active_tracking = array();
+        foreach ($deliveries as $d) {
+            if (in_array($d['status_pengiriman'], array('Kurir Ditugaskan', 'Kendaraan Dipersiapkan', 'Dalam Perjalanan', 'Tiba di Lokasi', 'Kendaraan Diserahkan', 'Diserahkan ke Pembeli'))) {
+                $latest = $this->Delivery_model->get_latest_tracking($d['id_pengiriman']);
+                if (!$latest) {
+                    $latest = array(
+                        'latitude' => -6.200000,
+                        'longitude' => 106.816666,
+                        'speed' => 0.0,
+                        'updated_at' => date('Y-m-d H:i:s')
+                    );
+                }
+                $d['latest_location'] = $latest;
+                $active_tracking[] = $d;
+            }
+        }
+
+        echo json_encode(array(
+            'status' => 'success',
+            'data' => $active_tracking
+        ));
+    }
+
+    /**
+     * Admin/Manager updates user role
+     */
+    public function update_user_role() {
+        if ($this->session->userdata('role') !== 'manager') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Hanya Manager yang dapat mengubah role.');
+            redirect('admin');
+            return;
+        }
+
+        $user_id = $this->input->post('user_id');
+        $role = $this->input->post('role');
+
+        if (!in_array($role, array('manager', 'admin', 'client'))) {
+            $this->session->set_flashdata('error', 'Role tidak valid.');
+            redirect('admin');
+            return;
+        }
+
+        $this->db->where('id', $user_id);
+        $this->db->update('users', array('role' => $role));
+        
+        $this->session->set_flashdata('success', 'Hak akses user berhasil diperbarui.');
+        redirect('admin');
+    }
+
+    /**
+     * Admin/Staff adds a car for a walk-in customer (Sourcing Walk-in)
+     */
+    public function tambah_walkin() {
+        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi.');
+            redirect('admin');
+            return;
+        }
+
+        $fullname = $this->input->post('fullname');
+        $phone = $this->input->post('phone');
+        $brand = $this->input->post('brand');
+        $model = $this->input->post('model');
+        $year = $this->input->post('year');
+        $plate_number = $this->input->post('plate_number');
+        $price_expected = $this->input->post('price_expected');
+
+        // Create a temporary client account if doesn't exist, or just use staff account for sourcing, 
+        // but it's better to log it under the walk-in customer's details directly in car_sourcing.
+        
+        $data_sourcing = array(
+            'user_id' => $this->session->userdata('user_id'), // Track which staff inputted it
+            'brand' => $brand,
+            'model' => $model,
+            'year' => $year,
+            'plate_number' => $plate_number,
+            'transmission' => $this->input->post('transmission') ?? 'Automatic',
+            'mileage' => $this->input->post('mileage') ?? '0',
+            'tax_status' => 'active',
+            'price_expected' => $price_expected,
+            'status' => 'pending',
+            'notes' => 'Walk-in Customer: ' . $fullname . ' (' . $phone . ')'
+        );
+
+        $this->db->insert('car_sourcing', $data_sourcing);
+        
+        $this->session->set_flashdata('success', 'Data mobil walk-in berhasil ditambahkan. Silakan lanjutkan ke tahap inspeksi.');
         redirect('admin');
     }
 }

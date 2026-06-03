@@ -98,8 +98,8 @@
       font-size: 10px;
     }
     @media print {
-      .print-btn {
-        display: none;
+      .print-btn, .back-btn {
+        display: none !important;
       }
       body {
         padding: 0;
@@ -109,8 +109,11 @@
 </head>
 <body>
 
-  <!-- Print Button -->
-  <a href="#" onclick="window.print(); return false;" class="print-btn">CETAK KWITANSI</a>
+  <!-- Controls -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <a href="#" onclick="window.close(); return false;" class="back-btn" style="display: inline-block; width: 100px; padding: 10px; background-color: #f1f1f1; color: #333; text-align: center; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 10px; margin-right: 10px; border: 1px solid #ccc;">TUTUP TAB</a>
+    <a href="#" onclick="window.print(); return false;" class="print-btn" style="display: inline-block; width: 100px; padding: 10px; background-color: #000; color: #fff; text-align: center; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 10px;">CETAK KWITANSI</a>
+  </div>
 
   <div class="receipt-container">
     
@@ -168,6 +171,25 @@
         Rp <?php echo number_format($payment['amount'], 0, ',', '.'); ?>,-
       </div>
     </div>
+
+    <!-- Bukti Transfer / Pembayaran Image -->
+    <?php 
+      if (!empty($payment['evidence_image'])): 
+        $ext = pathinfo($payment['evidence_image'], PATHINFO_EXTENSION);
+        $is_img = in_array(strtolower($ext), ['jpg', 'jpeg', 'png', 'gif']);
+        $file_path = './uploads/' . $payment['evidence_image'];
+        if ($is_img && file_exists($file_path)):
+    ?>
+      <div style="margin-top: 30px; border-top: 1px dashed #333; padding-top: 20px; page-break-inside: avoid;">
+        <div class="label" style="margin-bottom: 10px;">Lampiran Bukti Pembayaran:</div>
+        <div style="text-align: left;">
+          <img src="<?php echo base_url('uploads/' . $payment['evidence_image']); ?>" style="max-height: 350px; max-width: 100%; border: 1px solid #333; padding: 4px; background: #fff;" alt="Bukti Pembayaran">
+        </div>
+      </div>
+    <?php 
+        endif;
+      endif; 
+    ?>
 
     <!-- Signatures -->
     <div class="footer">

@@ -1,4 +1,33 @@
 <!-- 06. DASHBOARD ADMIN WIREFRAME REDESIGN (Framer x Nothing OS Monochrome Layout) -->
+<style>
+  body {
+    background-image: url('<?php echo base_url("assets/images/bg2.png"); ?>');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  /* SOLUSI UI: Panel utama Solid White agar bersih dan kontras dengan background yang ramai */
+  .bg-white {
+    background-color: #ffffff !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08) !important; /* Shadow agar mengambang */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Kembalikan efek frosted halus khusus untuk Card */
+  .framer-card, .card {
+    background-color: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid #EAEAEA !important;
+  }
+  
+  /* Tombol biarkan solid */
+  button.bg-black, .btn-black {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+</style>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10" data-aos="fade-up" data-aos-duration="700">
   
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-[#EAEAEA] rounded-[28px] overflow-hidden shadow-sm min-h-[720px]">
@@ -13,47 +42,91 @@
         </div>
 
         <!-- Navigation Menu List -->
-        <nav class="flex flex-col gap-2 font-sans text-sm font-medium text-[#666666]">
-          <!-- Active: Black capsule with white text & icon -->
-          <a href="javascript:void(0)" onclick="switchAdminPanel('dashboard')" id="menu-dashboard" class="flex items-center gap-3 px-4 py-3 rounded-full bg-black text-white transition-all">
-            <i class="fa-solid fa-chart-line text-xs"></i>
+        <nav class="flex flex-col gap-1 font-sans text-sm font-medium text-[#666666] pb-12">
+          
+          <div class="text-[#999999] text-[9px] font-bold uppercase tracking-widest px-4 mb-2 mt-4">Menu Utama</div>
+          <a href="javascript:void(0)" onclick="switchAdminPanel('dashboard')" id="menu-dashboard" class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-black text-white transition-all mx-2 shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+            <i class="fa-solid fa-chart-line text-xs w-4 text-center"></i>
             <span>Dashboard</span>
           </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('kelola-mobil')" id="menu-kelola-mobil" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-car text-xs"></i>
+
+          <div class="text-[#999999] text-[9px] font-bold uppercase tracking-widest px-4 mb-2 mt-6">Inventory & Transaksi</div>
+          <a href="javascript:void(0)" onclick="switchAdminPanel('kelola-mobil')" id="menu-kelola-mobil" class="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all mx-2">
+            <i class="fa-solid fa-car text-xs w-4 text-center"></i>
             <span>Kelola Mobil</span>
           </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('transaksi')" id="menu-transaksi" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-wallet text-xs"></i>
-            <span>Transaksi</span>
+          
+          <div class="space-y-1 mt-1 mx-2">
+            <button onclick="document.getElementById('submenu-transaksi').classList.toggle('hidden')" class="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-wallet text-xs w-4 text-center"></i>
+                <span>Transaksi</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </button>
+            <div id="submenu-transaksi" class="hidden pl-11 pr-4 py-1 space-y-1 border-l-2 border-[#EAEAEA] ml-6 mb-2 mt-1">
+              <a href="javascript:void(0)" onclick="switchAdminPanel('transaksi')" id="menu-transaksi" class="flex items-center justify-between text-xs text-[#999999] hover:text-black transition-all py-1.5 group">
+                <span>Penjualan / Pesanan</span>
+                <span id="badge-pesanan" class="hidden font-mono dot-matrix bg-red-500 text-white rounded-full px-1.5 py-0.5 text-[8px] font-bold shadow-sm">0</span>
+              </a>
+              <a href="javascript:void(0)" onclick="switchAdminPanel('transaksi'); setTimeout(() => { document.getElementById('progress-section').scrollIntoView({behavior: 'smooth', block: 'start'}); }, 100);" id="menu-progress" class="flex items-center justify-between text-xs text-[#999999] hover:text-black transition-all py-1.5 group">
+                <span>Progress Dokumen</span>
+                <span id="badge-progress" class="hidden font-mono dot-matrix bg-black text-white rounded-full px-1.5 py-0.5 text-[8px] font-bold shadow-sm">0</span>
+              </a>
+              <a href="javascript:void(0)" onclick="switchAdminPanel('sourcing')" id="menu-sourcing" class="flex items-center justify-between text-xs text-[#999999] hover:text-black transition-all py-1.5 group">
+                <span>Pembelian / Sourcing</span>
+                <span id="badge-sourcing" class="hidden font-mono dot-matrix bg-blue-500 text-white rounded-full px-1.5 py-0.5 text-[8px] font-bold shadow-sm">0</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="text-[#999999] text-[9px] font-bold uppercase tracking-widest px-4 mb-2 mt-6">Logistik</div>
+          <div class="space-y-1 mx-2">
+            <button onclick="document.getElementById('submenu-pengiriman').classList.toggle('hidden')" class="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-truck-fast text-xs w-4 text-center"></i>
+                <span>Pengiriman</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </button>
+            <div id="submenu-pengiriman" class="hidden pl-11 pr-4 py-1 space-y-1 border-l-2 border-[#EAEAEA] ml-6 mb-2 mt-1">
+              <a href="javascript:void(0)" onclick="switchAdminPanel('pengiriman')" id="menu-pengiriman" class="block text-xs text-[#999999] hover:text-black transition-all py-1.5">Proses Pengiriman</a>
+              <a href="<?php echo base_url('admin/monitoring_pengiriman'); ?>" class="block text-xs text-[#999999] hover:text-black transition-all py-1.5">Monitoring Tracker</a>
+            </div>
+          </div>
+
+          <div class="text-[#999999] text-[9px] font-bold uppercase tracking-widest px-4 mb-2 mt-6">Manajemen & Laporan</div>
+          <a href="javascript:void(0)" onclick="switchAdminPanel('pelanggan')" id="menu-pelanggan" class="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all mx-2">
+            <i class="fa-solid fa-users text-xs w-4 text-center"></i>
+            <span>Data Pelanggan</span>
           </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('sourcing')" id="menu-sourcing" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-tags text-xs"></i>
-            <span>Sourcing Mobil</span>
-          </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('pengiriman')" id="menu-pengiriman" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-truck-fast text-xs"></i>
-            <span>Pengiriman Mobil</span>
-          </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('pelanggan')" id="menu-pelanggan" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-users text-xs"></i>
-            <span>Pelanggan</span>
-          </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('laporan')" id="menu-laporan" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-file-invoice-dollar text-xs"></i>
-            <span>Laporan</span>
-          </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('pengaturan')" id="menu-pengaturan" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-sliders text-xs"></i>
+
+          <div class="space-y-1 mt-1 mx-2">
+            <button onclick="document.getElementById('submenu-laporan').classList.toggle('hidden')" class="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-file-invoice-dollar text-xs w-4 text-center"></i>
+                <span>Laporan</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </button>
+            <div id="submenu-laporan" class="hidden pl-11 pr-4 py-1 space-y-1 border-l-2 border-[#EAEAEA] ml-6 mb-2 mt-1">
+              <a href="javascript:void(0)" onclick="switchAdminPanel('laporan_penjualan')" id="menu-laporan_penjualan" class="block text-xs text-[#999999] hover:text-black transition-all py-1.5">Laporan Penjualan</a>
+              <a href="javascript:void(0)" onclick="switchAdminPanel('laporan_pembelian')" id="menu-laporan_pembelian" class="block text-xs text-[#999999] hover:text-black transition-all py-1.5">Laporan Pembelian</a>
+            </div>
+          </div>
+
+          <div class="text-[#999999] text-[9px] font-bold uppercase tracking-widest px-4 mb-2 mt-6">Sistem</div>
+          <a href="javascript:void(0)" onclick="switchAdminPanel('pengaturan')" id="menu-pengaturan" class="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all mx-2">
+            <i class="fa-solid fa-sliders text-xs w-4 text-center"></i>
             <span>Pengaturan</span>
           </a>
-          <a href="javascript:void(0)" onclick="switchAdminPanel('user')" id="menu-user" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
-            <i class="fa-solid fa-user-gear text-xs"></i>
-            <span>User</span>
+          <a href="javascript:void(0)" onclick="switchAdminPanel('user')" id="menu-user" class="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black transition-all mx-2">
+            <i class="fa-solid fa-user-gear text-xs w-4 text-center"></i>
+            <span>Manajemen User</span>
           </a>
-          <a href="<?php echo base_url('mobil/logout'); ?>" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-red-50 hover:text-red-600 transition-all font-mono text-xs mt-4">
-            <i class="fa-solid fa-power-off text-xs"></i>
-            <span>Logout</span>
+          <a href="<?php echo base_url('mobil/logout'); ?>" class="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-red-50 hover:text-red-600 transition-all font-mono text-xs mt-6 mx-2 border border-red-100">
+            <i class="fa-solid fa-power-off text-xs w-4 text-center text-red-600"></i>
+            <span class="text-red-600 font-bold">Logout Sistem</span>
           </a>
         </nav>
       </div>
@@ -492,7 +565,143 @@
           </div>
         </div>
 
+
+      </div>
+
+      <!-- 3. TRANSAKSI PANEL -->
+      <div id="panel-transaksi" class="hidden space-y-8 admin-panel-div">
         <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card">
+          <h3 class="font-display font-bold text-base text-black mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-square-check text-black"></i> VERIFIKASI TRANSAKSI DAN PEMBAYARAN MASUK
+          </h3>
+          <?php if (empty($pending_payments)): ?>
+            <div class="text-center py-12 border border-dashed border-[#EAEAEA] rounded-[18px] bg-[#FAFAFA] font-mono text-xs text-[#999999]">
+              Tidak ada antrean verifikasi pembayaran tertunda saat ini.
+            </div>
+          <?php else: ?>
+            <div class="space-y-4">
+            <div class="space-y-6">
+              <?php 
+                $grouped_payments = [];
+                foreach ($pending_payments as $pay) {
+                    $b_id = !empty($pay['booking_id']) ? 'booking_' . $pay['booking_id'] : 'sourcing_' . ($pay['sourcing_id'] ?? uniqid());
+                    $grouped_payments[$b_id][] = $pay;
+                }
+              ?>
+              <?php foreach ($grouped_payments as $b_id => $group): ?>
+                <?php 
+                  $first = $group[0];
+                  $isBooking = (strpos($b_id, 'booking_') === 0);
+                ?>
+                <div class="bg-white border border-[#EAEAEA] rounded-[22px] p-5 space-y-4 shadow-sm">
+                  <!-- Header Group -->
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#F0F0F0] pb-4">
+                    <div>
+                      <?php if ($isBooking): ?>
+                        <div class="flex items-center gap-2">
+                          <span class="px-2 py-0.5 rounded bg-black text-white font-mono text-[9px] font-bold uppercase tracking-wider">BOOKING: <?php echo $first['booking_code']; ?></span>
+                          <span class="text-xs text-neutral-500 font-sans font-semibold"><?php echo $first['client_name']; ?></span>
+                        </div>
+                        <h4 class="font-display font-extrabold text-sm text-black uppercase mt-1">
+                          <i class="fa-solid fa-car text-[10px] mr-1"></i> <?php echo $first['car_brand'] . ' ' . $first['car_model'] . ' (' . $first['car_year'] . ')'; ?>
+                        </h4>
+                      <?php else: ?>
+                        <span class="px-2 py-0.5 rounded bg-neutral-200 text-black font-mono text-[9px] font-bold uppercase tracking-wider">SOURCING</span>
+                        <h4 class="font-display font-extrabold text-sm text-black uppercase mt-1">
+                          <i class="fa-solid fa-tags text-[10px] mr-1"></i> Pembelian Sourcing Mobil
+                        </h4>
+                      <?php endif; ?>
+                    </div>
+                    <?php if ($isBooking): ?>
+                      <div class="text-right font-mono text-[10px] text-neutral-500">
+                        Harga OTR: <strong class="text-black font-sans">Rp <?php echo $first['car_price']; ?></strong>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+
+                  <!-- Inner Payment Items -->
+                  <div class="space-y-3">
+                    <?php foreach ($group as $pay): ?>
+                      <?php
+                        $up = base_url('uploads/');
+                        $detailData = json_encode([
+                          'payment_code' => $pay['payment_code'],
+                          'payment_type' => strtoupper(str_replace('_', ' ', $pay['payment_type'])),
+                          'amount'       => number_format($pay['amount'], 0, ',', '.'),
+                          'payment_method'=> $pay['payment_method'] ?? 'transfer',
+                          'delivery_type'=> $pay['delivery_type'] ?? '',
+                          'delivery_address'=> $pay['delivery_address'] ?? '',
+                          'bank_name'    => strtoupper($pay['bank_name'] ?? ''),
+                          'bank_account' => $pay['bank_account'] ?? '-',
+                          'bank_holder'  => $pay['bank_holder'] ?? '-',
+                          'evidence'     => !empty($pay['evidence_image']) ? $up . $pay['evidence_image'] : '',
+                          'client_name'  => $pay['client_name'] ?? '-',
+                          'client_email' => $pay['client_email'] ?? '-',
+                          'client_phone' => $pay['client_phone'] ?? '-',
+                          'ktp_image'    => !empty($pay['ktp_image']) ? $up . $pay['ktp_image'] : '',
+                          'booking_code' => $pay['booking_code'] ?? '-',
+                          'car_brand'    => $pay['car_brand'] ?? '-',
+                          'car_model'    => $pay['car_model'] ?? '-',
+                          'car_year'     => $pay['car_year'] ?? '-',
+                          'car_price'    => number_format($pay['car_price'] ?? 0, 0, ',', '.'),
+                          'car_plate'    => $pay['car_plate'] ?? '-',
+                          'car_image'    => !empty($pay['car_image']) ? $up . $pay['car_image'] : '',
+                          'dp_amount'    => number_format($pay['dp_amount'] ?? 0, 0, ',', '.'),
+                          'remaining'    => number_format($pay['remaining_payment'] ?? 0, 0, ',', '.'),
+                        ], JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+                      ?>
+                      <div class="p-4 bg-[#FAFAFA] rounded-[14px] border border-[#EAEAEA] hover:border-[#DADADA] transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-xs">
+                        <div class="space-y-1">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-bold text-black text-[10.5px]"><?php echo $pay['payment_code']; ?></span>
+                            <span class="px-2 py-0.5 rounded-full border border-black/10 text-[8px] text-black font-bold uppercase bg-white"><?php echo strtoupper(str_replace('_', ' ', $pay['payment_type'])); ?></span>
+                            <span class="text-[9px] text-[#999]"><?php echo date('d M Y - H:i', strtotime($pay['created_at'])); ?></span>
+                          </div>
+                          <div class="text-[#666666] text-[11px]">
+                            Pengirim: <strong class="text-black font-sans"><?php echo $pay['bank_holder']; ?></strong> (<?php echo strtoupper($pay['bank_name']); ?>) | 
+                            Jumlah: <strong class="text-black font-sans font-bold">Rp <?php echo number_format($pay['amount'], 0, ',', '.'); ?></strong>
+                          </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <!-- DETAIL BUTTON -->
+                          <button
+                            onclick='openPaymentDetail(<?php echo $detailData; ?>)'
+                            class="px-3.5 py-2 rounded-full border border-[#DADADA] bg-white text-[#333] hover:bg-[#F5F5F5] hover:border-black transition-all font-sans font-bold text-[9px] uppercase tracking-wider inline-flex items-center gap-1"
+                          >
+                            <i class="fa-solid fa-magnifying-glass"></i> Detail
+                          </button>
+
+                          <?php if ($this->session->userdata('role') === 'manager'): ?>
+                            <?php if ($isBooking): ?>
+                              <a href="<?php echo base_url('admin/approve_payment/' . $pay['id']); ?>" class="px-4 py-2 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-sans font-bold text-[9px] uppercase tracking-wider inline-flex items-center gap-1">
+                                <i class="fa-solid fa-circle-check"></i> Setujui
+                              </a>
+                              <button onclick="openRejectModal(<?php echo $pay['id']; ?>)" class="px-4 py-2 rounded-full border border-red-200 text-red-600 hover:bg-red-50 transition-all font-sans font-bold text-[9px] uppercase tracking-wider inline-flex items-center gap-1">
+                                <i class="fa-solid fa-circle-xmark"></i> Tolak
+                              </button>
+                            <?php else: ?>
+                              <a href="<?php echo base_url('admin/approve_sourcing_payment/' . $pay['id']); ?>" class="px-4 py-2 rounded-full bg-neutral-200 text-black hover:bg-neutral-300 transition-all font-sans font-bold text-[9px] uppercase tracking-wider">
+                                Setujui Sourcing
+                              </a>
+                            <?php endif; ?>
+                          <?php else: ?>
+                            <span class="px-3 py-1.5 rounded-lg bg-neutral-100 text-neutral-400 font-mono text-[9px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5 border border-neutral-200 select-none">
+                              <i class="fa-solid fa-lock text-[8px]"></i> Persetujuan Manager
+                            </span>
+                          <?php endif; ?>
+                        </div>
+                      </div>
+                    <?php endforeach; ?>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            </div>
+            </div>
+          <?php endif; ?>
+        </div>
+
+        <!-- PROGRESS PENGURUSAN STNK & BPKB DIPINDAHKAN KE SINI -->
+        <div id="progress-section" class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card">
           <h3 class="font-display font-bold text-base text-black mb-6 flex items-center gap-2">
             <i class="fa-solid fa-folder-open text-black"></i> PROGRESS PENGURUSAN STNK & BPKB
           </h3>
@@ -558,105 +767,6 @@
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-
-      <!-- 3. TRANSAKSI PANEL -->
-      <div id="panel-transaksi" class="hidden space-y-8 admin-panel-div">
-        <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card">
-          <h3 class="font-display font-bold text-base text-black mb-6 flex items-center gap-2">
-            <i class="fa-solid fa-square-check text-black"></i> VERIFIKASI TRANSAKSI DAN PEMBAYARAN MASUK
-          </h3>
-          <?php if (empty($pending_payments)): ?>
-            <div class="text-center py-12 border border-dashed border-[#EAEAEA] rounded-[18px] bg-[#FAFAFA] font-mono text-xs text-[#999999]">
-              Tidak ada antrean verifikasi pembayaran tertunda saat ini.
-            </div>
-          <?php else: ?>
-            <div class="space-y-4">
-              <?php foreach ($pending_payments as $pay): ?>
-                <?php
-                  // Helper: build full URL for uploads folder
-                  $up = base_url('uploads/');
-                  $detailData = json_encode([
-                    'payment_code' => $pay['payment_code'],
-                    'payment_type' => strtoupper(str_replace('_', ' ', $pay['payment_type'])),
-                    'amount'       => number_format($pay['amount'], 0, ',', '.'),
-                    'bank_name'    => strtoupper($pay['bank_name'] ?? ''),
-                    'bank_account' => $pay['bank_account'] ?? '-',
-                    'bank_holder'  => $pay['bank_holder'] ?? '-',
-                    // Evidence: full URL
-                    'evidence'     => !empty($pay['evidence_image']) ? $up . $pay['evidence_image'] : '',
-                    'client_name'  => $pay['client_name'] ?? '-',
-                    'client_email' => $pay['client_email'] ?? '-',
-                    'client_phone' => $pay['client_phone'] ?? '-',
-                    // KTP: full URL
-                    'ktp_image'    => !empty($pay['ktp_image']) ? $up . $pay['ktp_image'] : '',
-                    'booking_code' => $pay['booking_code'] ?? '-',
-                    'car_brand'    => $pay['car_brand'] ?? '-',
-                    'car_model'    => $pay['car_model'] ?? '-',
-                    'car_year'     => $pay['car_year'] ?? '-',
-                    'car_price'    => number_format($pay['car_price'] ?? 0, 0, ',', '.'),
-                    'car_plate'    => $pay['car_plate'] ?? '-',
-                    // Car image: full URL
-                    'car_image'    => !empty($pay['car_image']) ? $up . $pay['car_image'] : '',
-                    'dp_amount'    => number_format($pay['dp_amount'] ?? 0, 0, ',', '.'),
-                    'remaining'    => number_format($pay['remaining_payment'] ?? 0, 0, ',', '.'),
-                  ], JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
-                ?>
-
-                <div class="p-5 bg-[#FAFAFA] rounded-[18px] border border-[#EAEAEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs hover:border-[#DADADA] transition-colors">
-                  <div class="space-y-1.5 flex-1">
-                    <div class="flex items-center gap-2 flex-wrap">
-                      <span class="font-bold text-black text-[11px]"><?php echo $pay['payment_code']; ?></span>
-                      <span class="px-2 py-0.5 rounded-full border border-black/10 text-[8px] text-black font-bold uppercase bg-white"><?php echo strtoupper(str_replace('_', ' ', $pay['payment_type'])); ?></span>
-                    </div>
-                    <?php if (!empty($pay['client_name'])): ?>
-                    <div class="flex items-center gap-1.5 text-[#333333]">
-                      <i class="fa-solid fa-user text-[8px] text-[#999]"></i>
-                      <span class="font-sans font-semibold"><?php echo $pay['client_name']; ?></span>
-                    </div>
-                    <?php endif; ?>
-                    <div class="text-[#666666]">Pengirim: <strong class="text-black font-sans"><?php echo $pay['bank_holder']; ?></strong> (<?php echo strtoupper($pay['bank_name']); ?>)</div>
-                    <div class="text-[#666666]">Jumlah: <strong class="text-black font-sans font-bold">Rp <?php echo number_format($pay['amount'], 0, ',', '.'); ?></strong></div>
-                    <?php if (!empty($pay['car_brand'])): ?>
-                    <div class="flex items-center gap-1.5 text-[#999999] text-[9px]">
-                      <i class="fa-solid fa-car text-[8px]"></i>
-                      <?php echo $pay['car_brand'] . ' ' . $pay['car_model'] . ' (' . $pay['car_year'] . ')'; ?>
-                    </div>
-                    <?php endif; ?>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-2">
-                    <!-- DETAIL BUTTON -->
-                    <button
-                      onclick='openPaymentDetail(<?php echo $detailData; ?>)'
-                      class="px-4 py-2.5 rounded-full border border-[#DADADA] bg-white text-[#333] hover:bg-[#F5F5F5] hover:border-black transition-all font-sans font-bold text-[9px] uppercase tracking-wider inline-flex items-center gap-1.5"
-                    >
-                      <i class="fa-solid fa-magnifying-glass"></i> Detail
-                    </button>
-
-                    <?php if ($this->session->userdata('role') === 'manager'): ?>
-                      <?php if (!empty($pay['booking_id'])): ?>
-                        <a href="<?php echo base_url('admin/approve_payment/' . $pay['id']); ?>" class="px-5 py-2.5 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-sans font-bold text-[9px] uppercase tracking-wider inline-flex items-center gap-1">
-                          <i class="fa-solid fa-circle-check"></i> Setujui
-                        </a>
-                        <button onclick="openRejectModal(<?php echo $pay['id']; ?>)" class="px-5 py-2.5 rounded-full border border-red-200 text-red-600 hover:bg-red-50 transition-all font-sans font-bold text-[9px] uppercase tracking-wider inline-flex items-center gap-1">
-                          <i class="fa-solid fa-circle-xmark"></i> Tolak
-                        </button>
-                      <?php else: ?>
-                        <a href="<?php echo base_url('admin/approve_sourcing_payment/' . $pay['id']); ?>" class="px-5 py-2.5 rounded-full bg-neutral-200 text-black hover:bg-neutral-300 transition-all font-sans font-bold text-[9px] uppercase tracking-wider">
-                          Setujui Sourcing
-                        </a>
-                      <?php endif; ?>
-                    <?php else: ?>
-                      <span class="px-4 py-2 rounded-xl bg-neutral-100 text-neutral-400 font-mono text-[9px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5 border border-neutral-200 select-none">
-                        <i class="fa-solid fa-lock text-[8px]"></i> Persetujuan Manager
-                      </span>
-                    <?php endif; ?>
-                  </div>
-                </div>
-              <?php endforeach; ?>
-            </div>
-          <?php endif; ?>
         </div>
       </div>
 
@@ -820,9 +930,14 @@
           <!-- Sourcing Submissions Table -->
           <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.015]" style="background-image: radial-gradient(#000 1.2px, transparent 1.2px); background-size: 14px 14px;"></div>
-            <h3 class="font-display font-bold text-base text-black mb-6 flex items-center gap-2 relative">
-              <i class="fa-solid fa-tags text-black"></i> PENGAJUAN SOURCING & INSPEKSI MOBIL
-            </h3>
+            <div class="flex justify-between items-center mb-6 relative z-10">
+              <h3 class="font-display font-bold text-base text-black flex items-center gap-2">
+                <i class="fa-solid fa-tags text-black"></i> PENGAJUAN SOURCING & INSPEKSI MOBIL
+              </h3>
+              <button onclick="document.getElementById('modal-walkin').style.display='flex'" class="px-4 py-2.5 h-9 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-mono text-[10px] font-bold uppercase flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-plus"></i> Tambah Penjualan (Walk-in)
+              </button>
+            </div>
             <div class="overflow-x-auto relative">
               <table class="w-full text-left font-mono text-xs">
                 <thead>
@@ -908,7 +1023,46 @@
             </div>
           </div>
         </div>
-      </div>      <div id="panel-laporan" class="hidden space-y-6 admin-panel-div">
+      </div>      <div id="panel-laporan_penjualan" class="hidden space-y-6 admin-panel-div">
+        <!-- Penjualan Pie Chart -->
+        <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card flex gap-6">
+          <div class="flex-grow">
+            <h3 class="font-display font-bold text-base text-black flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-chart-pie"></i> GRAFIK PENJUALAN
+            </h3>
+            <p class="text-[10px] text-[#999999] font-mono mb-4">Proporsi Status Penjualan</p>
+            <div class="flex items-center gap-10 h-40">
+              <?php
+                $status_counts = ['completed' => 0, 'pending' => 0, 'processing' => 0, 'cancelled' => 0];
+                foreach ($bookings as $b) {
+                  if (isset($status_counts[$b['status']])) $status_counts[$b['status']]++;
+                }
+                $total_b = max(1, count($bookings));
+              ?>
+              <div class="w-32 h-32 rounded-full relative shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden" style="background: conic-gradient(black <?php echo ($status_counts['completed']/$total_b)*100; ?>%, #EAEAEA 0);">
+                <!-- Inner circle to make it a donut chart -->
+                <div class="absolute inset-[10px] bg-white rounded-full flex flex-col items-center justify-center shadow-inner">
+                   <span class="text-xl font-bold font-sans text-black leading-none"><?php echo $total_b; ?></span>
+                   <span class="text-[8px] font-mono text-[#999999] tracking-wider mt-1">TOTAL DATA</span>
+                </div>
+              </div>
+              <div class="space-y-3 text-xs font-mono">
+                <div class="flex items-center justify-between w-40 border-b border-[#EAEAEA] pb-2">
+                  <div class="flex items-center gap-2"><div class="w-3 h-3 bg-black rounded-sm"></div> <span class="font-bold">Selesai</span></div>
+                  <span class="text-[#666666]"><?php echo $status_counts['completed']; ?></span>
+                </div>
+                <div class="flex items-center justify-between w-40 border-b border-[#EAEAEA] pb-2">
+                  <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#EAEAEA] rounded-sm"></div> <span class="font-bold text-[#999999]">Lainnya</span></div>
+                  <span class="text-[#666666]"><?php echo $total_b - $status_counts['completed']; ?></span>
+                </div>
+              </div>
+            </div>
+            <a href="<?php echo base_url('admin/cetak_laporan?type=penjualan'); ?>" target="_blank" class="mt-6 px-4 py-2 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-mono text-[10px] font-bold uppercase inline-flex items-center gap-1.5">
+              <i class="fa-solid fa-file-pdf"></i> Cetak Laporan Penjualan (PDF)
+            </a>
+          </div>
+        </div>
+
         <!-- Financial Summary Cards -->
         <?php 
           $total_revenue = 0;
@@ -1353,6 +1507,49 @@
         </div>
       </div>
 
+      <!-- PANEL LAPORAN PEMBELIAN -->
+      <div id="panel-laporan_pembelian" class="hidden space-y-6 admin-panel-div">
+        <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card">
+          <h3 class="font-display font-bold text-base text-black flex items-center gap-2 mb-2">
+            <i class="fa-solid fa-chart-pie"></i> GRAFIK PEMBELIAN (SOURCING)
+          </h3>
+          <p class="text-[10px] text-[#999999] font-mono mb-4">Proporsi Status Sourcing Mobil</p>
+          <div class="flex items-center gap-10 h-40">
+            <?php
+              $src_counts = ['purchased' => 0, 'rejected' => 0, 'pending' => 0, 'inspected' => 0];
+              foreach ($sourcing as $s) {
+                if (isset($src_counts[$s['status']])) $src_counts[$s['status']]++;
+              }
+              $total_s = max(1, count($sourcing));
+            ?>
+            <div class="w-32 h-32 rounded-full relative shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden" style="background: conic-gradient(black <?php echo ($src_counts['purchased']/$total_s)*100; ?>%, #999999 <?php echo (($src_counts['purchased']+$src_counts['inspected'])/$total_s)*100; ?>%, #EAEAEA 0);">
+              <!-- Inner circle to make it a donut chart -->
+              <div class="absolute inset-[10px] bg-white rounded-full flex flex-col items-center justify-center shadow-inner">
+                 <span class="text-xl font-bold font-sans text-black leading-none"><?php echo $total_s; ?></span>
+                 <span class="text-[8px] font-mono text-[#999999] tracking-wider mt-1">TOTAL DATA</span>
+              </div>
+            </div>
+            <div class="space-y-3 text-xs font-mono">
+              <div class="flex items-center justify-between w-48 border-b border-[#EAEAEA] pb-2">
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-black rounded-sm"></div> <span class="font-bold">Terbeli</span></div>
+                <span class="text-[#666666]"><?php echo $src_counts['purchased']; ?></span>
+              </div>
+              <div class="flex items-center justify-between w-48 border-b border-[#EAEAEA] pb-2">
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#999999] rounded-sm"></div> <span class="font-bold text-[#666666]">Inspeksi</span></div>
+                <span class="text-[#666666]"><?php echo $src_counts['inspected']; ?></span>
+              </div>
+              <div class="flex items-center justify-between w-48 border-b border-[#EAEAEA] pb-2">
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-[#EAEAEA] rounded-sm"></div> <span class="font-bold text-[#999999]">Lainnya</span></div>
+                <span class="text-[#666666]"><?php echo ($total_s - $src_counts['purchased'] - $src_counts['inspected']); ?></span>
+              </div>
+            </div>
+          </div>
+          <a href="<?php echo base_url('admin/cetak_laporan?type=pembelian'); ?>" target="_blank" class="mt-6 px-4 py-2 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-mono text-[10px] font-bold uppercase inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-file-pdf"></i> Cetak Laporan Pembelian (PDF)
+          </a>
+        </div>
+      </div>
+
       <div id="panel-pengaturan" class="hidden admin-panel-div">
         <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm framer-card space-y-6">
           <div class="pb-4 border-b border-[#EAEAEA]">
@@ -1525,39 +1722,39 @@
           <div class="overflow-x-auto relative">
             <table class="w-full text-left font-mono text-xs">
               <thead>
-                <tr class="border-b border-[#EAEAEA] text-[#666666]">
-                  <th class="py-3 uppercase font-semibold">Kode Order</th>
-                  <th class="py-3 uppercase font-semibold">Pembeli / Alamat</th>
-                  <th class="py-3 uppercase font-semibold">Kendaraan</th>
-                  <th class="py-3 uppercase font-semibold">Kurir Ditugaskan</th>
-                  <th class="py-3 uppercase font-semibold">Status Pengiriman</th>
-                  <th class="py-3 uppercase text-right font-semibold">Aksi</th>
+                <tr class="border-b border-[#EAEAEA] text-[#666666] text-[10px]">
+                  <th class="py-3 uppercase font-semibold" style="width: 140px; min-width: 140px;">Kode Order</th>
+                  <th class="py-3 uppercase font-semibold" style="min-width: 250px;">Pembeli / Alamat</th>
+                  <th class="py-3 uppercase font-semibold" style="min-width: 200px;">Kendaraan</th>
+                  <th class="py-3 uppercase font-semibold" style="min-width: 150px;">Kurir Ditugaskan</th>
+                  <th class="py-3 uppercase font-semibold" style="min-width: 140px;">Status Pengiriman</th>
+                  <th class="py-3 uppercase text-right font-semibold" style="width: 200px; min-width: 200px;">Aksi</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#EAEAEA] text-[#333333]">
                 <?php if (!empty($deliveries)): ?>
                   <?php foreach ($deliveries as $del): ?>
                     <tr class="hover:bg-[#FAFAFA] transition-colors">
-                      <td class="py-4">
+                      <td class="py-4" style="vertical-align: middle;">
                         <strong class="text-black font-sans block text-[13px] leading-tight"><?php echo esc($del['booking_code']); ?></strong>
-                        <span class="text-[9px] text-[#999999] block"><?php echo esc($del['nomor_surat'] ? $del['nomor_surat'] : 'Belum Terbit'); ?></span>
+                        <span class="text-[9px] font-bold text-neutral-500 block mt-0.5"><?php echo esc($del['nomor_surat'] ? $del['nomor_surat'] : 'SURAT JALAN BELUM TERBIT'); ?></span>
                       </td>
-                      <td class="py-4">
-                        <span class="font-bold text-black block"><?php echo esc($del['client_name']); ?></span>
-                        <span class="text-[9px] text-[#999999] block italic max-w-xs truncate"><?php echo esc($del['alamat_tujuan']); ?></span>
+                      <td class="py-4" style="vertical-align: middle;">
+                        <span class="font-sans font-bold text-black text-[13px] block"><?php echo esc($del['client_name']); ?></span>
+                        <span class="text-[10px] text-[#666666] block leading-relaxed mt-0.5" style="max-width: 260px; white-space: normal; word-break: break-word;"><?php echo esc($del['alamat_tujuan']); ?></span>
                       </td>
-                      <td class="py-4">
-                        <strong class="text-black uppercase"><?php echo esc($del['brand'] . ' ' . $del['model']); ?></strong>
-                        <span class="text-[9px] text-[#999999] block"><?php echo esc($del['plate_number']); ?></span>
+                      <td class="py-4" style="vertical-align: middle;">
+                        <strong class="text-black font-sans text-[12px] block uppercase"><?php echo esc($del['brand'] . ' ' . $del['model']); ?></strong>
+                        <span class="text-[9px] font-mono text-neutral-500 block mt-0.5"><?php echo esc($del['plate_number']); ?></span>
                       </td>
-                      <td class="py-4">
+                      <td class="py-4" style="vertical-align: middle;">
                         <?php if ($del['courier_name']): ?>
-                          <span class="text-black font-bold flex items-center gap-1.5"><i class="fa-solid fa-user-check text-[10px]"></i> <?php echo esc($del['courier_name']); ?></span>
+                          <span class="text-black font-sans font-bold text-xs flex items-center gap-1.5"><i class="fa-solid fa-user-check text-[10px] text-emerald-600"></i> <?php echo esc($del['courier_name']); ?></span>
                         <?php else: ?>
-                          <span class="text-red-500 font-bold uppercase text-[9px]"><i class="fa-solid fa-circle-exclamation mr-1"></i>Belum Ditugaskan</span>
+                          <span class="px-2 py-0.5 rounded border border-red-200 text-red-600 bg-red-50 font-bold uppercase text-[9px] inline-flex items-center gap-1"><i class="fa-solid fa-circle-exclamation text-[8px]"></i>Belum Ditugaskan</span>
                         <?php endif; ?>
                       </td>
-                      <td class="py-4">
+                      <td class="py-4" style="vertical-align: middle;">
                         <?php
                           $dst = $del['status_pengiriman'];
                           $dbg = 'bg-[#F5F5F5] text-black border-black/10';
@@ -1565,25 +1762,25 @@
                           elseif ($dst === 'Dalam Perjalanan') $dbg = 'bg-blue-50 text-blue-800 border-blue-200';
                           elseif ($dst === 'Kurir Ditugaskan') $dbg = 'bg-neutral-100 text-neutral-800 border-neutral-300';
                         ?>
-                        <span class="px-2.5 py-0.5 rounded-full <?php echo $dbg; ?> text-[9px] font-semibold uppercase border">
+                        <span class="px-2.5 py-0.5 rounded-full <?php echo $dbg; ?> text-[9px] font-bold uppercase border whitespace-nowrap">
                           <?php echo esc($dst); ?>
                         </span>
                       </td>
-                      <td class="py-4 text-right whitespace-nowrap">
+                      <td class="py-4 text-right" style="vertical-align: middle; white-space: nowrap;">
                         <?php if ($dst === 'Menunggu Penugasan'): ?>
                           <!-- Assign Courier Inline Form -->
-                          <?php echo form_open('admin/assign_courier_task', ['class' => 'inline-flex items-center gap-1.5 m-0']); ?>
+                          <?php echo form_open('admin/assign_courier_task', ['class' => 'flex items-center gap-2 m-0 justify-end']); ?>
                             <input type="hidden" name="id_pengiriman" value="<?php echo $del['id_pengiriman']; ?>">
-                            <select name="id_kurir" required class="cyber-input text-[10px] py-1 px-2.5">
+                            <select name="id_kurir" required class="bg-white border border-[#DADADA] text-black font-sans px-2.5 py-1.5 rounded-xl text-[10px] outline-none focus:border-black transition-colors" style="width: 120px;">
                               <option value="">Pilih Kurir...</option>
                               <?php foreach ($couriers as $k): ?>
                                 <option value="<?php echo $k['id_kurir']; ?>"><?php echo esc($k['nama']); ?></option>
                               <?php endforeach; ?>
                             </select>
-                            <button type="submit" class="px-3 py-1.5 rounded-xl bg-black text-white hover:bg-neutral-800 font-bold uppercase text-[9px]">Tugaskan</button>
+                            <button type="submit" class="px-3.5 py-2 rounded-full bg-black text-white hover:bg-neutral-800 font-sans font-bold uppercase text-[9px] tracking-wider transition-all">Tugaskan</button>
                           </form>
                         <?php else: ?>
-                          <a href="<?php echo base_url('admin/surat_jalan/' . $del['id_transaksi']); ?>" target="_blank" class="px-3 py-1.5 rounded-xl border border-[#DADADA] text-black hover:border-black font-bold uppercase text-[9px] tracking-wider"><i class="fa-solid fa-print"></i> Cetak SJ</a>
+                          <a href="<?php echo base_url('admin/surat_jalan/' . $del['id_transaksi']); ?>" target="_blank" class="px-3.5 py-2 rounded-full border border-[#DADADA] text-black bg-white hover:border-black font-sans font-bold uppercase text-[9px] tracking-wider inline-flex items-center gap-1"><i class="fa-solid fa-print"></i> Cetak SJ</a>
                         <?php endif; ?>
                       </td>
                     </tr>
@@ -1921,6 +2118,7 @@
                   <th class="py-3 uppercase font-semibold">Telp</th>
                   <th class="py-3 uppercase font-semibold">Role</th>
                   <th class="py-3 uppercase text-right font-semibold">Bergabung</th>
+                  <th class="py-3 uppercase text-right font-semibold">Aksi</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#EAEAEA] text-[#333333]">
@@ -1942,7 +2140,7 @@
                       <td class="py-4 text-[#666666]"><?php echo $u['phone']; ?></td>
                       <td class="py-4">
                         <?php
-                          $roleClass = ['admin'=>'bg-black text-white','staff'=>'bg-[#F5F5F5] text-black border border-black/20','kurir'=>'bg-[#F5F5F5] text-[#666666]','client'=>'bg-[#F5F5F5] text-black'];
+                          $roleClass = ['manager'=>'bg-purple-600 text-white', 'admin'=>'bg-black text-white','staff'=>'bg-[#F5F5F5] text-black border border-black/20','kurir'=>'bg-[#F5F5F5] text-[#666666]','client'=>'bg-[#F5F5F5] text-black'];
                           $rc = $roleClass[$u['role']] ?? 'bg-[#F5F5F5] text-black';
                         ?>
                         <span class="px-2.5 py-0.5 rounded-full <?php echo $rc; ?> text-[9px] font-semibold font-display uppercase">
@@ -1950,11 +2148,16 @@
                         </span>
                       </td>
                       <td class="py-4 text-right text-[#999999]"><?php echo date('d M Y', strtotime($u['created_at'])); ?></td>
+                      <td class="py-4 text-right">
+                        <?php if($this->session->userdata('role') === 'manager' && $u['id'] !== $this->session->userdata('user_id')): ?>
+                          <button onclick="openRoleModal(<?php echo $u['id']; ?>, '<?php echo $u['role']; ?>')" class="px-3 py-1 rounded-xl bg-black text-white font-bold uppercase text-[9px]">Edit Role</button>
+                        <?php endif; ?>
+                      </td>
                     </tr>
                   <?php endforeach; ?>
                 <?php else: ?>
                   <tr>
-                    <td colspan="5" class="py-12 text-center text-[#999999]">Belum ada user terdaftar saat ini.</td>
+                    <td colspan="6" class="py-12 text-center text-[#999999]">Belum ada user terdaftar saat ini.</td>
                   </tr>
                 <?php endif; ?>
               </tbody>
@@ -2101,20 +2304,20 @@
 
       <!-- BANK TRANSFER DETAILS -->
       <div>
-        <p style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#999;margin:0 0 12px;">Detail Transfer Bank</p>
+        <p id="detail-bank-heading" style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#999;margin:0 0 12px;">Detail Transfer Bank</p>
         <div style="background:#FAFAFA;border:1px solid #EAEAEA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">Bank</span>
+            <span id="detail-bank-name-label" style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">Bank</span>
             <span id="detail-bank-name" style="font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;color:#000;">-</span>
           </div>
-          <div style="height:1px;background:#EAEAEA;"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">No. Rekening</span>
+          <div id="detail-bank-divider-1" style="height:1px;background:#EAEAEA;"></div>
+          <div id="detail-bank-account-row" style="display:flex;justify-content:space-between;align-items:center;">
+            <span id="detail-bank-account-label" style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">No. Rekening</span>
             <span id="detail-bank-account" style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:13px;color:#000;letter-spacing:0.06em;">-</span>
           </div>
-          <div style="height:1px;background:#EAEAEA;"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">Nama Pemilik</span>
+          <div id="detail-bank-divider-2" style="height:1px;background:#EAEAEA;"></div>
+          <div id="detail-bank-holder-row" style="display:flex;justify-content:space-between;align-items:center;">
+            <span id="detail-bank-holder-label" style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">Nama Pemilik</span>
             <span id="detail-bank-holder" style="font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:#000;">-</span>
           </div>
         </div>
@@ -2137,6 +2340,24 @@
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">No. Telepon</span>
             <span id="detail-client-phone" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#333;">-</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- METODE PENYERAHAN -->
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#999;margin:0 0 12px;">Penyerahan Unit</p>
+        <div style="background:#FAFAFA;border:1px solid #EAEAEA;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">Metode Penyerahan</span>
+            <span id="detail-delivery-type" style="font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;color:#000;">-</span>
+          </div>
+          <div id="detail-delivery-address-row" style="display:none;flex-direction:column;gap:10px;">
+            <div style="height:1px;background:#EAEAEA;"></div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#999;">Alamat Pengiriman</span>
+              <span id="detail-delivery-address" style="font-family:'Outfit',sans-serif;font-size:12px;color:#333;line-height:1.4;">-</span>
+            </div>
           </div>
         </div>
       </div>
@@ -2220,19 +2441,41 @@
       });
     }
 
-    // Reset all menu link classes to inactive
-    const menus = ['dashboard', 'kelola-mobil', 'transaksi', 'sourcing', 'pengiriman', 'pelanggan', 'laporan', 'pengaturan', 'user'];
-    menus.forEach(m => {
+    // Define which ones are main menus and which are sub menus
+    const mainMenus = ['dashboard', 'kelola-mobil', 'pelanggan', 'pengaturan', 'user'];
+    const subMenus = ['transaksi', 'sourcing', 'pengiriman', 'laporan_penjualan', 'laporan_pembelian'];
+
+    // Reset main menus
+    mainMenus.forEach(m => {
       const el = document.getElementById('menu-' + m);
       if (el) {
-        el.className = 'flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black text-[#666666] transition-all';
+        el.className = 'flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-[#F5F5F5] hover:text-black text-[#666666] transition-all mx-2';
       }
     });
 
-    // Make current target menu active (Black capsule with white text & icon)
+    // Reset sub menus
+    subMenus.forEach(m => {
+      const el = document.getElementById('menu-' + m);
+      if (el) {
+        el.className = 'block text-xs text-[#999999] hover:text-black transition-all py-1.5';
+      }
+    });
+
+    // Make current target menu active
     const activeEl = document.getElementById('menu-' + panelId);
     if (activeEl) {
-      activeEl.className = 'flex items-center gap-3 px-4 py-3 rounded-full bg-black text-white transition-all shadow-sm';
+      if (mainMenus.includes(panelId)) {
+        activeEl.className = 'flex items-center gap-3 px-4 py-2.5 rounded-xl bg-black text-white transition-all mx-2 shadow-[0_4px_12px_rgba(0,0,0,0.1)]';
+      } else if (subMenus.includes(panelId)) {
+        // Efek selected garis bawah hitam
+        activeEl.className = 'block w-max text-xs text-black font-bold border-b-2 border-black transition-all py-1';
+        
+        // Auto-expand parent dropdown
+        const parentSub = activeEl.closest('div[id^="submenu-"]');
+        if (parentSub) {
+          parentSub.classList.remove('hidden');
+        }
+      }
     }
   }
 
@@ -2367,10 +2610,53 @@
     document.getElementById('detail-dp').textContent = 'Rp ' + (data.dp_amount || '-');
     document.getElementById('detail-remaining').textContent = 'Rp ' + (data.remaining || '-');
 
-    // -- Bank --
-    document.getElementById('detail-bank-name').textContent = data.bank_name || '-';
-    document.getElementById('detail-bank-account').textContent = data.bank_account || '-';
-    document.getElementById('detail-bank-holder').textContent = data.bank_holder || '-';
+    // -- Bank / Payment Method --
+    if (data.payment_method === 'cash') {
+      document.getElementById('detail-bank-heading').textContent = 'Metode Pembayaran';
+      document.getElementById('detail-bank-name-label').textContent = 'Tipe Pembayaran';
+      document.getElementById('detail-bank-name').textContent = 'Tunai (Cash / COD)';
+      
+      document.getElementById('detail-bank-divider-1').style.display = 'block';
+      document.getElementById('detail-bank-account-row').style.display = 'flex';
+      document.getElementById('detail-bank-account-label').textContent = 'Keterangan';
+      
+      let ket = 'Bayar Cash di Showroom';
+      if (data.delivery_type === 'delivery') {
+        ket = 'Bayar di Rumah (COD)';
+      }
+      document.getElementById('detail-bank-account').textContent = ket;
+      
+      document.getElementById('detail-bank-divider-2').style.display = 'none';
+      document.getElementById('detail-bank-holder-row').style.display = 'none';
+    } else {
+      document.getElementById('detail-bank-heading').textContent = 'Detail Transfer Bank';
+      document.getElementById('detail-bank-name-label').textContent = 'Bank';
+      document.getElementById('detail-bank-name').textContent = data.bank_name || '-';
+      
+      document.getElementById('detail-bank-divider-1').style.display = 'block';
+      document.getElementById('detail-bank-account-row').style.display = 'flex';
+      document.getElementById('detail-bank-account-label').textContent = 'No. Rekening';
+      document.getElementById('detail-bank-account').textContent = data.bank_account || '-';
+      
+      document.getElementById('detail-bank-divider-2').style.display = 'block';
+      document.getElementById('detail-bank-holder-row').style.display = 'flex';
+      document.getElementById('detail-bank-holder-label').textContent = 'Nama Pemilik';
+      document.getElementById('detail-bank-holder').textContent = data.bank_holder || '-';
+    }
+
+    // -- Delivery Type & Address --
+    const devType = data.delivery_type || '';
+    if (devType === 'pickup') {
+      document.getElementById('detail-delivery-type').textContent = 'Ambil Sendiri di Showroom';
+      document.getElementById('detail-delivery-address-row').style.display = 'none';
+    } else if (devType === 'delivery') {
+      document.getElementById('detail-delivery-type').textContent = 'Kirim ke Alamat';
+      document.getElementById('detail-delivery-address-row').style.display = 'flex';
+      document.getElementById('detail-delivery-address').textContent = data.delivery_address || '-';
+    } else {
+      document.getElementById('detail-delivery-type').textContent = 'Belum Dikonfigurasi';
+      document.getElementById('detail-delivery-address-row').style.display = 'none';
+    }
 
     // -- User --
     document.getElementById('detail-client-name').textContent = data.client_name || '-';
@@ -2464,4 +2750,126 @@
       }
     }
   }, true);
+</script>
+
+<!-- WALK-IN SOURCING MODAL -->
+<div id="modal-walkin" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.45); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+  <div style="background:#fff; border-radius:28px; border:1px solid #EAEAEA; box-shadow:0 32px 80px rgba(0,0,0,0.18); padding:32px; width:100%; max-width:480px; position:relative; margin:16px;" font-mono text-xs>
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+      <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#000; margin:0; text-transform:uppercase;">Tambah Penjualan (Walk-in)</h3>
+      <button onclick="document.getElementById('modal-walkin').style.display='none'" style="border:none;background:none;cursor:pointer;font-size:18px;"><i class="fa-solid fa-xmark text-neutral-400"></i></button>
+    </div>
+    <?php echo form_open('admin/tambah_walkin', ['class' => 'space-y-4 font-mono text-xs']); ?>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">Nama Pelanggan:</label>
+          <input type="text" name="fullname" required class="cyber-input text-xs w-full py-2">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">No Telepon:</label>
+          <input type="text" name="phone" required class="cyber-input text-xs w-full py-2">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">Merek Mobil:</label>
+          <input type="text" name="brand" required placeholder="Toyota" class="cyber-input text-xs w-full py-2">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">Model / Tipe:</label>
+          <input type="text" name="model" required placeholder="Avanza G" class="cyber-input text-xs w-full py-2">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">Tahun:</label>
+          <input type="number" name="year" required min="1990" max="<?php echo date('Y'); ?>" class="cyber-input text-xs w-full py-2">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">Plat Nomor:</label>
+          <input type="text" name="plate_number" required placeholder="B 1234 ABC" class="cyber-input text-xs w-full py-2">
+        </div>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="font-bold text-black uppercase">Harga Jual Diminta (Rp):</label>
+        <input type="number" name="price_expected" required class="cyber-input text-xs w-full py-2">
+      </div>
+      <div class="flex justify-end gap-2 pt-4">
+        <button type="button" onclick="document.getElementById('modal-walkin').style.display='none'" class="px-5 py-2 rounded-xl border border-[#EAEAEA] text-neutral-500 font-bold uppercase">Batal</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-black text-white font-bold uppercase">Simpan Data</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ROLE EDIT MODAL -->
+<div id="modal-role" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.45); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+  <div style="background:#fff; border-radius:28px; border:1px solid #EAEAEA; box-shadow:0 32px 80px rgba(0,0,0,0.18); padding:32px; width:100%; max-width:400px; position:relative; margin:16px;" font-mono text-xs>
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+      <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#000; margin:0; text-transform:uppercase;">Edit Hak Akses Role</h3>
+      <button onclick="document.getElementById('modal-role').style.display='none'" style="border:none;background:none;cursor:pointer;font-size:18px;"><i class="fa-solid fa-xmark text-neutral-400"></i></button>
+    </div>
+    <?php echo form_open('admin/update_user_role', ['class' => 'space-y-4 font-mono text-xs']); ?>
+      <input type="hidden" name="user_id" id="role-user-id">
+      <div class="flex flex-col gap-1.5">
+        <label class="font-bold text-black uppercase">Role Baru:</label>
+        <select name="role" id="role-select" required class="cyber-input text-xs w-full py-2 bg-white">
+          <option value="client">Client</option>
+          <option value="admin">Admin (Staff)</option>
+          <option value="manager">Manager (Superadmin)</option>
+        </select>
+      </div>
+      <div class="flex justify-end gap-2 pt-4">
+        <button type="button" onclick="document.getElementById('modal-role').style.display='none'" class="px-5 py-2 rounded-xl border border-[#EAEAEA] text-neutral-500 font-bold uppercase">Batal</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-black text-white font-bold uppercase">Update Role</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Real-time Notification Badge Polling
+  function fetchPendingCounts() {
+    fetch('<?php echo base_url("admin/get_pending_counts"); ?>?t=' + new Date().getTime(), { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => {
+        const badgePesanan = document.getElementById('badge-pesanan');
+        const badgeSourcing = document.getElementById('badge-sourcing');
+        const badgeProgress = document.getElementById('badge-progress');
+        
+        if (data.pesanan > 0) {
+          badgePesanan.textContent = data.pesanan;
+          badgePesanan.classList.remove('hidden');
+        } else {
+          badgePesanan.classList.add('hidden');
+        }
+
+        if (data.sourcing > 0) {
+          badgeSourcing.textContent = data.sourcing;
+          badgeSourcing.classList.remove('hidden');
+        } else {
+          badgeSourcing.classList.add('hidden');
+        }
+
+        if (badgeProgress) {
+          if (data.progress > 0) {
+            badgeProgress.textContent = data.progress;
+            badgeProgress.classList.remove('hidden');
+          } else {
+            badgeProgress.classList.add('hidden');
+          }
+        }
+      })
+      .catch(err => console.error('Error fetching pending counts:', err));
+  }
+
+  // Initial fetch and poll every 5 seconds
+  fetchPendingCounts();
+  setInterval(fetchPendingCounts, 5000);
+
+function openRoleModal(userId, currentRole) {
+  document.getElementById('role-user-id').value = userId;
+  document.getElementById('role-select').value = currentRole;
+  document.getElementById('modal-role').style.display = 'flex';
+}
 </script>

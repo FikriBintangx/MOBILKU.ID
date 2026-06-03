@@ -271,8 +271,8 @@ class Booking_model extends CI_Model {
      */
     public function set_fulfillment($booking_id, $type, $address = '') {
         $booking = $this->get_booking_by_id($booking_id);
-        if (!$booking || $booking['stnk_status'] !== 'completed' || $booking['pelunasan_status'] !== 'paid') {
-            return false; // Can only dispatch/deliver once STNK is finished AND paid in full
+        if (!$booking || $booking['dp_status'] !== 'paid') {
+            return false; // Can configure once DP is verified
         }
 
         $data = array(

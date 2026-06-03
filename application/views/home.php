@@ -11,50 +11,50 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative py-8">
 
     <!-- LEFT: Typography + CTAs -->
-    <div class="lg:col-span-6 space-y-8 stagger-item z-10">
-      <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-black/10 bg-[#F5F5F5] text-[10px] font-mono tracking-wider text-black">
-        <i class="fa-solid fa-dot-circle blink-dot text-[8px]"></i> DRIVE.X PLATFORM
+    <div class="lg:col-span-5 lg:col-start-1 space-y-6 stagger-item z-10 bg-white/30 backdrop-blur-xl border border-white/50 rounded-[32px] p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] max-w-md mx-auto lg:mx-0 -translate-y-4 lg:-translate-y-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/20 bg-white/60 backdrop-blur-md text-[9px] font-mono tracking-wider text-black font-semibold">
+        <i class="fa-solid fa-dot-circle blink-dot text-[7px] text-black"></i> DRIVE.X PLATFORM
       </div>
 
-      <h1 class="text-5xl sm:text-7xl font-display font-extrabold tracking-tighter text-black leading-[0.92]" id="heroTitle">
+      <h1 class="text-4xl sm:text-6xl font-display font-extrabold tracking-tighter text-black leading-[0.95]" id="heroTitle">
         Find The Next<br>
         Generation Car
       </h1>
 
-      <p class="text-sm sm:text-base text-[#666666] leading-relaxed max-w-lg font-sans">
-        Pengalaman komparasi dan transaksi mobil premium digital dengan antarmuka termutakhir. Terinspirasi dari Framer dan Nothing OS.
+      <p class="text-xs sm:text-sm text-black/80 font-medium leading-relaxed font-sans">
+        Eksplorasi koleksi mobil premium pilihan dengan pengalaman transaksi digital kelas dunia. Rasakan kemudahan, keamanan, dan eksklusivitas dalam satu platform terintegrasi.
       </p>
 
-      <div class="flex flex-wrap items-center gap-4 pt-2">
-        <a href="#katalog" class="btn-premium px-8 py-4 text-sm uppercase tracking-wider font-semibold">
+      <div class="flex flex-wrap items-center gap-3 pt-1">
+        <a href="#katalog" class="btn-premium px-6 py-3 text-xs uppercase tracking-wider font-semibold rounded-full bg-black text-white hover:bg-neutral-800 transition-all shadow-lg">
           [ Browse Cars ]
         </a>
-        <a href="#filter" class="btn-secondary-premium px-8 py-4 text-sm uppercase tracking-wider font-semibold">
+        <a href="#filter" class="btn-secondary-premium px-6 py-3 text-xs uppercase tracking-wider font-bold rounded-full bg-white/50 backdrop-blur-md border border-black text-black hover:bg-white/80 transition-all">
           Filter Search
         </a>
       </div>
 
       <!-- Live stats ticker -->
-      <div class="flex items-center gap-8 pt-4 border-t border-[#EAEAEA]">
+      <div class="flex items-center gap-6 pt-3 border-t border-black/10">
         <div>
-          <span class="text-black font-display font-bold text-2xl block leading-none"><?php echo count($cars); ?></span>
-          <span class="text-[9px] font-mono text-[#999999] uppercase tracking-widest">Unit Tersedia</span>
+          <span class="text-black font-display font-bold text-xl block leading-none"><?php echo count($cars); ?></span>
+          <span class="text-[8px] font-mono text-black font-bold uppercase tracking-widest">Unit Tersedia</span>
         </div>
-        <div class="w-px h-10 bg-[#EAEAEA]"></div>
+        <div class="w-px h-8 bg-black/10"></div>
         <div>
-          <span class="text-black font-display font-bold text-2xl block leading-none"><?php echo count($brands); ?></span>
-          <span class="text-[9px] font-mono text-[#999999] uppercase tracking-widest">Brand</span>
+          <span class="text-black font-display font-bold text-xl block leading-none"><?php echo count($brands); ?></span>
+          <span class="text-[8px] font-mono text-black font-bold uppercase tracking-widest">Brand</span>
         </div>
-        <div class="w-px h-10 bg-[#EAEAEA]"></div>
+        <div class="w-px h-8 bg-black/10"></div>
         <div>
-          <span class="text-black font-display font-bold text-2xl block leading-none dot-matrix blink-dot">●</span>
-          <span class="text-[9px] font-mono text-[#999999] uppercase tracking-widest">Live</span>
+          <span class="text-black font-display font-bold text-xl block leading-none dot-matrix blink-dot">●</span>
+          <span class="text-[8px] font-mono text-black font-bold uppercase tracking-widest">Live</span>
         </div>
       </div>
     </div>
 
     <!-- RIGHT: Dynamic Product Card Slider from Database -->
-    <div class="lg:col-span-6 flex flex-col items-center lg:items-end justify-center stagger-item z-10" id="heroVisualizer">
+    <div class="lg:col-span-7 flex flex-col items-center lg:items-end justify-center stagger-item z-10" id="heroVisualizer">
       <div class="relative w-full max-w-[340px]" id="carSliderWrapper">
 
         <!-- Slide Track -->
@@ -80,8 +80,8 @@
           <div class="car-slide" data-index="<?php echo $si; ?>"
                style="position: absolute; top:0; left:0; width:100%; opacity: <?php echo $si===0 ? '1' : '0'; ?>; pointer-events: <?php echo $si===0 ? 'auto' : 'none'; ?>; z-index: <?php echo $si===0 ? '10' : '1'; ?>;">
 
-            <!-- Premium Product Card (exact design match) -->
-            <div class="bg-white border border-[#EAEAEA] rounded-[28px] overflow-hidden shadow-sm relative group">
+            <!-- Premium Product Card (Frosted Glass) -->
+            <div class="bg-white/40 backdrop-blur-xl border border-white/60 rounded-[32px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative group">
               <!-- Dot matrix overlay -->
               <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(#000 0.7px, transparent 0.7px); background-size: 13px 13px; opacity: 0.022;"></div>
 
@@ -108,7 +108,7 @@
               </div>
 
               <!-- CAR VISUAL with matrix column right side -->
-              <div class="relative mx-4 mb-3 h-[168px] bg-[#F8F8F8] rounded-[18px] overflow-hidden border border-[#EEEEEE] flex items-center justify-center">
+              <div class="relative mx-4 mb-3 h-[168px] rounded-[18px] overflow-hidden flex items-center justify-center">
                 <!-- Dot column right decoration -->
                 <div class="absolute right-3 inset-y-0 flex flex-col justify-center gap-[6px] pointer-events-none">
                   <?php for($d=0;$d<9;$d++): $op=0.15+($d*0.07); if($op>0.8)$op=0.8; ?>
@@ -119,7 +119,7 @@
                 <?php if (!empty($sc['image_url'])): ?>
                   <img src="<?php echo base_url('uploads/'.$sc['image_url']); ?>"
                        alt="<?php echo $sc['brand'].' '.$sc['model']; ?>"
-                       class="h-32 w-auto object-contain transform group-hover:scale-105 transition-transform duration-700 drop-shadow-sm">
+                       class="h-32 w-auto object-contain transform group-hover:scale-105 transition-transform duration-700 drop-shadow-2xl mix-blend-darken">
                 <?php elseif (strpos($typeLC,'suv')!==false || strpos($typeLC,'mpv')!==false || strpos($typeLC,'multi')!==false): ?>
                   <!-- SUV / MPV: higher roofline -->
                   <svg viewBox="0 0 220 110" class="w-52 h-28 transform group-hover:scale-105 transition-transform duration-700 drop-shadow-sm">
@@ -218,18 +218,18 @@
           <?php endforeach; ?>
         </div><!-- end sliderTrack -->
 
-        <!-- Navigation Controls -->
-        <div class="flex items-center justify-between mt-5 px-1">
-          <button onclick="changeSlide(-1)" class="w-10 h-10 rounded-full border border-[#DADADA] text-black hover:bg-black hover:text-white hover:border-black transition-all flex items-center justify-center">
-            <i class="fa-solid fa-chevron-left text-xs"></i>
+        <!-- Navigation Controls (Frosted Glass) -->
+        <div class="flex items-center justify-center gap-3 -mt-6 px-1 relative z-20">
+          <button onclick="changeSlide(-1)" class="w-8 h-8 rounded-full border border-white/60 text-black bg-white/40 backdrop-blur-xl hover:bg-white/60 hover:scale-105 transition-all flex items-center justify-center shadow-[0_4px_20px_rgb(0,0,0,0.08)]">
+            <i class="fa-solid fa-chevron-left text-[10px]"></i>
           </button>
-          <div class="flex items-center gap-2" id="globalDotNav">
+          <div class="flex items-center gap-1.5 bg-white/30 backdrop-blur-xl border border-white/50 px-2.5 py-1.5 rounded-full shadow-[0_4px_20px_rgb(0,0,0,0.08)]" id="globalDotNav">
             <?php foreach ($sliderCars as $si => $sc): ?>
-            <button onclick="goToSlide(<?php echo $si; ?>)" class="slide-nav-dot rounded-full transition-all duration-300 h-2 <?php echo $si===0 ? 'bg-black' : 'bg-[#DADADA]'; ?>" style="width: <?php echo $si===0 ? '24px' : '8px'; ?>"></button>
+            <button onclick="goToSlide(<?php echo $si; ?>)" class="slide-nav-dot rounded-full transition-all duration-300 h-1 <?php echo $si===0 ? 'bg-black' : 'bg-white/70 hover:bg-black/50'; ?>" style="width: <?php echo $si===0 ? '16px' : '4px'; ?>"></button>
             <?php endforeach; ?>
           </div>
-          <button onclick="changeSlide(1)" class="w-10 h-10 rounded-full border border-[#DADADA] text-black hover:bg-black hover:text-white hover:border-black transition-all flex items-center justify-center">
-            <i class="fa-solid fa-chevron-right text-xs"></i>
+          <button onclick="changeSlide(1)" class="w-8 h-8 rounded-full border border-white/60 text-black bg-white/40 backdrop-blur-xl hover:bg-white/60 hover:scale-105 transition-all flex items-center justify-center shadow-[0_4px_20px_rgb(0,0,0,0.08)]">
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
         </div>
 
@@ -248,79 +248,106 @@
   const total = slides.length;
   if (!total) return;
 
-  function showSlide(idx, direction = 1) {
-    const prevIndex = current;
+  function showSlide(idx, direction = 1, instant = false) {
     current = idx;
+    const prevIdx = (idx - 1 + total) % total;
+    const nextIdx = (idx + 1) % total;
+
+    navDots.forEach(function(dot, i) {
+      if (i === idx) {
+        dot.classList.remove('bg-white/70', 'hover:bg-black/50');
+        dot.classList.add('bg-black');
+        dot.style.width = '24px';
+      } else {
+        dot.classList.remove('bg-black');
+        dot.classList.add('bg-white/70', 'hover:bg-black/50');
+        dot.style.width = '8px';
+      }
+    });
 
     slides.forEach(function(s, i) {
+      const card = s.firstElementChild;
+      anime.remove(s);
+      anime.remove(card);
+      
+      const isHidden = s.style.display === 'none' || card.style.opacity === '0' || s.style.opacity === '0';
+      const dur = instant ? 0 : 800;
+      const ease = 'easeOutExpo';
+
+      // Wrapper must not have opacity or transform to preserve blur
+      s.style.opacity = '1';
+      s.style.transform = 'none';
+
       if (i === idx) {
-        // The new active slide
+        // Active Slide (Center)
+        if (isHidden) card.style.transform = `translateX(${direction > 0 ? '60%' : '-60%'}) scale(0.85)`;
         s.style.display = 'block';
-        s.style.position = 'absolute';
-        s.style.pointerEvents = 'auto';
         s.style.zIndex = '10';
-        s.style.opacity = '0';
+        s.style.pointerEvents = 'auto';
         
-        // Reset translate and scale for animate
-        const xOffset = direction * 40;
-        
-        // Premium Staggered Reveal for elements inside the active card
-        anime.remove(s);
         anime({
-          targets: s,
-          opacity: [0, 1],
-          translateX: [xOffset, 0],
-          scale: [0.95, 1],
-          duration: 700,
-          easing: 'easeOutExpo'
+          targets: card,
+          translateX: '0%',
+          scale: 1,
+          opacity: 1,
+          duration: dur,
+          easing: ease
         });
 
-        // Stagger sub-elements inside the card to feel alive and premium
-        const title = s.querySelector('h3');
-        const visual = s.querySelector('.relative.mx-4.mb-3');
-        const specs = s.querySelectorAll('.grid.grid-cols-3 > div');
-        const footer = s.querySelector('.flex.items-center.justify-between.px-5.py-4');
-        const price = s.querySelector('.absolute.top-\\[72px\\].right-4');
-
-        if (title) anime({ targets: title, opacity: [0, 1], translateY: [8, 0], duration: 400, delay: 100, easing: 'easeOutQuad' });
-        if (visual) anime({ targets: visual, opacity: [0, 1], scale: [0.9, 1], duration: 600, delay: 150, easing: 'easeOutExpo' });
-        if (specs.length) anime({ targets: specs, opacity: [0, 1], translateY: [10, 0], delay: anime.stagger(60, {start: 200}), duration: 450, easing: 'easeOutQuad' });
-        if (footer) anime({ targets: footer, opacity: [0, 1], translateY: [10, 0], duration: 400, delay: 300, easing: 'easeOutQuad' });
-        if (price) anime({ targets: price, opacity: [0, 1], scale: [0.8, 1], duration: 500, delay: 250, easing: 'easeOutBack' });
-
-      } else if (i === prevIndex) {
-        // The old active slide transitioning out
+        // Stagger inner elements only on active slide
+        if (!instant) {
+          const title = s.querySelector('h3');
+          const visual = s.querySelector('.relative.mx-4.mb-3');
+          if (title) anime({ targets: title, opacity: [0, 1], translateY: [8, 0], duration: 400, delay: 100, easing: 'easeOutQuad' });
+          if (visual) anime({ targets: visual, opacity: [0, 1], scale: [0.9, 1], duration: 600, delay: 150, easing: 'easeOutExpo' });
+        }
+      } else if (i === prevIdx) {
+        // Prev Slide (Left)
+        if (isHidden) card.style.transform = `translateX(-100%) scale(0.7)`;
+        s.style.display = 'block';
+        s.style.zIndex = '5';
         s.style.pointerEvents = 'none';
-        s.style.zIndex = '1';
         
-        anime.remove(s);
         anime({
-          targets: s,
-          opacity: 0,
-          translateX: -direction * 40,
-          scale: 0.95,
-          duration: 450,
-          easing: 'easeInQuad',
-          complete: function() {
-            s.style.display = 'none';
-            s.style.position = 'absolute';
-            s.style.top = '0';
-            s.style.left = '0';
-            s.style.width = '100%';
-            s.style.transform = 'none';
-          }
+          targets: card,
+          translateX: '-70%',
+          scale: 0.72,
+          opacity: 1, // Keep opacity 1 to preserve blur
+          duration: dur,
+          easing: ease
+        });
+      } else if (i === nextIdx) {
+        // Next Slide (Right)
+        if (isHidden) card.style.transform = `translateX(100%) scale(0.7)`;
+        s.style.display = 'block';
+        s.style.zIndex = '5';
+        s.style.pointerEvents = 'none';
+        
+        anime({
+          targets: card,
+          translateX: '70%',
+          scale: 0.72,
+          opacity: 1, // Keep opacity 1 to preserve blur
+          duration: dur,
+          easing: ease
         });
       } else {
-        // All other inactive slides
-        s.style.display = 'none';
-        s.style.opacity = '0';
-        s.style.position = 'absolute';
-        s.style.top = '0';
-        s.style.left = '0';
-        s.style.width = '100%';
-        s.style.pointerEvents = 'none';
+        // Hidden Slides
         s.style.zIndex = '1';
-        s.style.transform = 'none';
+        s.style.pointerEvents = 'none';
+        
+        anime({
+          targets: card,
+          opacity: 0,
+          scale: 0.7,
+          duration: dur,
+          easing: ease,
+          complete: function() {
+            if (current !== i && i !== prevIdx && i !== nextIdx) {
+              s.style.display = 'none';
+            }
+          }
+        });
       }
     });
 
@@ -330,21 +357,21 @@
       if (i === idx) {
         anime({
           targets: d,
-          width: ['8px', '24px'],
+          width: ['4px', '16px'],
           backgroundColor: '#000000',
           duration: 350,
           easing: 'easeOutQuad'
         });
-      } else if (d.style.width === '24px' || d.classList.contains('bg-black')) {
+      } else if (d.style.width === '16px' || d.classList.contains('bg-black')) {
         anime({
           targets: d,
-          width: ['24px', '8px'],
+          width: ['16px', '4px'],
           backgroundColor: '#DADADA',
           duration: 350,
           easing: 'easeOutQuad'
         });
       } else {
-        d.style.width = '8px';
+        d.style.width = '4px';
         d.style.backgroundColor = '#DADADA';
       }
     });
@@ -369,23 +396,18 @@
     autoTimer = setInterval(function() {
       const nextIdx = (current + 1) % total;
       showSlide(nextIdx, 1);
-    }, 4500);
+    }, 120000); // 2 menit
   }
   
-  // Initialize first slide on load without slide effect
-  slides.forEach(function(s, i) {
-    if (i !== 0) {
-      s.style.display = 'none';
-      s.style.opacity = '0';
-      s.style.position = 'absolute';
-      s.style.top = '0';
-      s.style.left = '0';
-      s.style.width = '100%';
-      s.style.pointerEvents = 'none';
-    } else {
-      s.style.display = 'block';
-    }
-  });
+  // Initialize first slide on load with CoverFlow effect
+  showSlide(0, 1, true);
+
+  // Restart auto on hover out
+  const wrapper = document.getElementById('carSliderWrapper');
+  if(wrapper) {
+      wrapper.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      wrapper.addEventListener('mouseleave', () => startAuto());
+  }
   
   if (total > 1) startAuto();
 
@@ -526,7 +548,7 @@
             <span class="font-display font-bold text-sm text-black">Rp <?php echo number_format($car['price'], 0, ',', '.'); ?>,-</span>
           </div>
           <a href="<?php echo base_url('mobil/detail/' . $car['id']); ?>" class="px-5 py-2.5 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-semibold text-xs tracking-tight uppercase">
-            Beli
+            Detail
           </a>
         </div>
 
@@ -539,6 +561,18 @@
 <!-- Homepage Animation & Filter Scripts -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    startAuto();
+  }
+  
+  // Initialize slider with CoverFlow positions instantly
+  showSlide(0, 1, true);
+
+  // Restart auto on hover out
+  const wrapper = document.getElementById('carSliderWrapper');
+  if(wrapper) {
+      wrapper.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      wrapper.addEventListener('mouseleave', () => startAuto());
+  }
 
     // Setup AJAX grid filtering
     const filterBrand  = document.getElementById('filterBrand');
@@ -626,7 +660,7 @@
                 <span class="font-display font-bold text-sm text-black">${formattedPrice}</span>
               </div>
               <a href="<?php echo base_url('mobil/detail/'); ?>${car.id}" class="px-5 py-2.5 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-semibold text-xs tracking-tight uppercase">
-                Beli
+                Detail
               </a>
             </div>
           </div>

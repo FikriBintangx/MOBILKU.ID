@@ -15,8 +15,8 @@
     <!-- Left Column: Visual Car Image & Tab Details -->
     <div class="lg:col-span-7 flex flex-col gap-8">
       
-      <!-- Premium Showroom Picture Area -->
-      <div class="bg-[#F5F5F5] border border-[#EAEAEA] rounded-[24px] p-8 relative flex items-center justify-center min-h-[400px] overflow-hidden group shadow-sm">
+      <!-- Premium Showroom Picture Area (Frosted Glass) -->
+      <div class="bg-white/40 backdrop-blur-xl border border-white/60 rounded-[32px] p-8 relative flex items-center justify-center min-h-[400px] overflow-hidden group shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
         <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#000 1.2px, transparent 1.2px); background-size: 16px 16px;"></div>
 
         <div class="absolute top-4 left-6">
@@ -29,7 +29,7 @@
         </div>
 
         <?php if (!empty($car['image_url'])): ?>
-          <img src="<?php echo base_url('uploads/'.$car['image_url']); ?>" alt="<?php echo $car['brand'].' '.$car['model']; ?>" class="max-h-[280px] w-auto object-contain transform group-hover:scale-105 transition-transform duration-700 drop-shadow-md z-10">
+          <img src="<?php echo base_url('uploads/'.$car['image_url']); ?>" alt="<?php echo $car['brand'].' '.$car['model']; ?>" class="max-h-[280px] w-auto object-contain transform group-hover:scale-105 transition-transform duration-700 drop-shadow-2xl mix-blend-darken z-10">
         <?php else: ?>
           <i class="fa-solid fa-car text-black/5 text-[12rem] absolute select-none transform group-hover:scale-105 transition-transform duration-700"></i>
         <?php endif; ?>
@@ -40,24 +40,42 @@
         </div>
       </div>
 
-      <!-- Carousel Image Gallery Thumbnails -->
+      <!-- Dynamic Performance Specs -->
+      <?php
+        $priceM      = floatval($car['price']) / 1000000;
+        $mockPower   = round(150 + ($priceM * 0.35));
+        $mockSpeed   = round(180 + ($priceM * 0.12));
+        $mock0100    = number_format(max(3.2, 11.5 - ($priceM * 0.008)), 1);
+      ?>
       <div class="grid grid-cols-4 gap-4">
-        <div class="bg-[#F5F5F5] border border-black rounded-[14px] p-3 flex items-center justify-center h-20 cursor-pointer">
-          <i class="fa-solid fa-car-side text-black/20 text-3xl"></i>
+        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-[24px] p-4 flex flex-col justify-center items-center h-24 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <span class="text-[8px] font-mono text-[#666] tracking-widest uppercase mb-1 text-center">POWER</span>
+          <div class="font-display font-bold text-xl text-black flex items-baseline">
+            <?php echo $mockPower; ?><span class="text-[9px] ml-1 text-[#666]">HP</span>
+          </div>
         </div>
-        <div class="bg-[#F5F5F5] border border-[#EAEAEA] rounded-[14px] p-3 flex items-center justify-center h-20 cursor-pointer hover:border-black transition-all">
-          <i class="fa-solid fa-car-rear text-black/10 text-3xl"></i>
+        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-[24px] p-4 flex flex-col justify-center items-center h-24 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <span class="text-[8px] font-mono text-[#666] tracking-widest uppercase mb-1 text-center">TOP SPEED</span>
+          <div class="font-display font-bold text-xl text-black flex items-baseline">
+            <?php echo $mockSpeed; ?><span class="text-[9px] ml-1 text-[#666]">KM/H</span>
+          </div>
         </div>
-        <div class="bg-[#F5F5F5] border border-[#EAEAEA] rounded-[14px] p-3 flex items-center justify-center h-20 cursor-pointer hover:border-black transition-all">
-          <i class="fa-solid fa-gauge-high text-black/10 text-3xl"></i>
+        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-[24px] p-4 flex flex-col justify-center items-center h-24 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <span class="text-[8px] font-mono text-[#666] tracking-widest uppercase mb-1 text-center">0-100</span>
+          <div class="font-display font-bold text-xl text-black flex items-baseline">
+            <?php echo $mock0100; ?><span class="text-[9px] ml-1 text-[#666]">SEC</span>
+          </div>
         </div>
-        <div class="bg-[#F5F5F5] border border-[#EAEAEA] rounded-[14px] p-3 flex items-center justify-center h-20 cursor-pointer hover:border-black transition-all">
-          <i class="fa-solid fa-chair text-black/10 text-3xl"></i>
+        <div class="bg-white/40 backdrop-blur-md border border-white/60 rounded-[24px] p-4 flex flex-col justify-center items-center h-24 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <span class="text-[8px] font-mono text-[#666] tracking-widest uppercase mb-1 text-center">CLASS</span>
+          <div class="font-display font-bold text-xl text-black flex items-baseline uppercase">
+            <?php echo $car['type']; ?>
+          </div>
         </div>
       </div>
 
       <!-- Custom Tabs Navigation (Deskripsi, Spesifikasi, Riwayat Servis) -->
-      <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm">
+      <div class="bg-white/50 backdrop-blur-xl border border-white/50 rounded-[32px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
         <div class="flex border-b border-[#EAEAEA] pb-3 gap-6 text-xs font-mono mb-6">
           <button onclick="switchTab('desc')" id="tab-desc" class="text-black font-bold border-b-2 border-black pb-3 outline-none">DESKRIPSI</button>
           <button onclick="switchTab('specs')" id="tab-specs" class="text-[#666666] hover:text-black pb-3 outline-none">SPESIFIKASI</button>
@@ -100,7 +118,7 @@
     <div class="lg:col-span-5 flex flex-col gap-8">
       
       <!-- Specifications Table Grid -->
-      <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm">
+      <div class="bg-white/50 backdrop-blur-xl border border-white/50 rounded-[32px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
         <span class="text-[9px] font-mono text-[#999999] tracking-wider uppercase block mb-1"><?php echo $car['brand']; ?></span>
         <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-black mb-6 leading-tight"><?php echo $car['model']; ?></h2>
 
@@ -145,7 +163,7 @@
       </div>
 
       <!-- Apple-like Checkout Booking Block -->
-      <div class="bg-[#FAFAFA] border border-[#EAEAEA] rounded-[24px] p-6 sm:p-8 shadow-sm">
+      <div class="bg-white/40 backdrop-blur-xl border border-white/60 rounded-[32px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
         <h4 class="font-display font-semibold text-xs tracking-wider text-black uppercase mb-6">
           <i class="fa-solid fa-receipt mr-2"></i>RINGKASAN HARGA & PESANAN
         </h4>

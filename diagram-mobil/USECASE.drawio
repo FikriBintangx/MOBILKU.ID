@@ -1,139 +1,252 @@
 <mxfile host="Electron">
   <diagram name="Use Case Diagram Mobilku.id" id="0">
-    <mxGraphModel dx="1548" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="1106" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1800" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="system" parent="1" style="swimlane;startSize=30;html=1;rounded=0;" value="Sistem Mobilku.id" vertex="1">
-          <mxGeometry height="1100" width="800" x="350" y="40" as="geometry" />
+        <mxCell id="system" parent="1" style="swimlane;startSize=30;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);align=center;fontStyle=1;" value="Sistem Mobilku.id" vertex="1">
+          <mxGeometry height="1550" width="850" x="350" y="40" as="geometry" />
         </mxCell>
-        <mxCell id="uc_login" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Login" vertex="1">
-          <mxGeometry height="60" width="160" x="320" y="50" as="geometry" />
+        <mxCell id="uc_login" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Login" vertex="1">
+          <mxGeometry height="60" width="160" x="220" y="37" as="geometry" />
         </mxCell>
-        <mxCell id="uc_browse" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Cari &amp; Lihat Mobil" vertex="1">
-          <mxGeometry height="60" width="200" x="50" y="150" as="geometry" />
+        <mxCell id="uc_logout" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Logout" vertex="1">
+          <mxGeometry height="60" width="160" x="470" y="37" as="geometry" />
         </mxCell>
-        <mxCell id="uc_detail" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Lihat Detail Mobil" vertex="1">
-          <mxGeometry height="60" width="200" x="50" y="230" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_booking" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Booking / Beli Mobil" vertex="1">
-          <mxGeometry height="60" width="200" x="50" y="310" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_pembayaran" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Melakukan Pembayaran&#xa;(Bukti Pesanan/DP/Lunas)" vertex="1">
-          <mxGeometry height="70" width="200" x="50" y="400" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_ktp" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Upload Dokumen (KTP)" vertex="1">
-          <mxGeometry height="60" width="200" x="50" y="490" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_status" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Pantau Status Pesanan" vertex="1">
-          <mxGeometry height="60" width="200" x="50" y="570" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_jual" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Ajukan Penjualan Mobil" vertex="1">
-          <mxGeometry height="60" width="200" x="50" y="650" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_kelola" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola Transaksi" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="150" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_verifpay" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Verifikasi Pembayaran" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="230" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_verifjual" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Verifikasi Ajuan Jual" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="310" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_stok" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola Stok Mobil" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="390" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_stnk" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola STNK &amp; BPKB" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="470" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_pengiriman_admin" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Kelola Pengiriman" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="550" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_report" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Lihat Laporan" vertex="1">
-          <mxGeometry height="60" width="200" x="550" y="630" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_tugas" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Terima Tugas Pengiriman" vertex="1">
-          <mxGeometry height="60" width="220" x="300" y="850" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_progress" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Update Progress Pengiriman" vertex="1">
-          <mxGeometry height="60" width="220" x="300" y="930" as="geometry" />
-        </mxCell>
-        <mxCell id="uc_finish" parent="system" style="ellipse;whiteSpace=wrap;html=1;" value="Selesaikan Pengiriman" vertex="1">
-          <mxGeometry height="60" width="220" x="300" y="1010" as="geometry" />
-        </mxCell>
-        <mxCell id="actor_user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="User&#xa;(Buyer/Seller)" vertex="1">
-          <mxGeometry height="80" width="40" x="110" y="190" as="geometry" />
-        </mxCell>
-        <mxCell id="actor_admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Admin" vertex="1">
-          <mxGeometry height="80" width="40" x="1250" y="350" as="geometry" />
-        </mxCell>
-        <mxCell id="actor_kurir" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Kurir" vertex="1">
-          <mxGeometry height="80" width="40" x="150" y="900" as="geometry" />
-        </mxCell>
-        <mxCell id="a1" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_login">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a2" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_browse">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a3" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_detail">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a4" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_booking">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a5" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_pembayaran">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a6" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_ktp">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a7" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_status">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a8" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="uc_jual">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a9" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_login">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a10" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_kelola">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a11" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_verifpay">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a12" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_verifjual">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a13" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_stok">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a14" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_stnk">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a15" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_pengiriman_admin">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a16" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="uc_report">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a17" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" target="uc_login">
+        <mxCell id="sep_purchase_line" edge="1" parent="system" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="70" y="930" />
-              <mxPoint x="70" y="130" />
-            </Array>
-            <mxPoint x="150" y="930" as="sourcePoint" />
+            <mxPoint y="110" as="sourcePoint" />
+            <mxPoint x="850" y="110" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="a18" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;" target="uc_tugas">
+        <mxCell id="sep_purchase_label" parent="system" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=2;fontSize=11;" value="-- MODUL PEMBELIAN (PURCHASE MODULE) --" vertex="1">
+          <mxGeometry height="30" width="250" x="300" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_browse" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Cari &amp; Lihat Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_lihat_daftar" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Lihat Daftar Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_booking" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Booking / Beli Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_pembayaran" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Melakukan Pembayaran&#xa;(DP / Lunas)" vertex="1">
+          <mxGeometry height="70" width="200" x="50" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_ktp" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Upload KTP Pembeli" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_status" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Pantau Status Pesanan" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_batal" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Batalkan Pesanan" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_data" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Kelola Data Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="550" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_transaksi" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Kelola Transaksi" vertex="1">
+          <mxGeometry height="60" width="180" x="550" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_verif_pembayaran" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Verifikasi Pembayaran" vertex="1">
+          <mxGeometry height="60" width="180" x="400" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="sep_sales_line" edge="1" parent="system" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="750" as="sourcePoint" />
+            <mxPoint x="850" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sep_sales_label" parent="system" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=2;fontSize=11;" value="-- MODUL PENJUALAN (SALES MODULE) --" vertex="1">
+          <mxGeometry height="30" width="250" x="300" y="735" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_aju_jual" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Ajukan Penjualan Mobil" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_upload_dokumen" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Upload Dokumen Jual" vertex="1">
+          <mxGeometry height="60" width="180" x="240" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_pantau_status" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Pantau Status Pengajuan" vertex="1">
+          <mxGeometry height="60" width="180" x="50" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_verif_ajuan" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Verifikasi Ajuan Jual" vertex="1">
+          <mxGeometry height="60" width="180" x="550" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_bayar_user" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Bayar ke User" vertex="1">
+          <mxGeometry height="60" width="180" x="550" y="920" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_konfirmasi_terima" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Konfirmasi Penerimaan&#xa;Pembayaran" vertex="1">
+          <mxGeometry height="60" width="220" x="50" y="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_serah_bpkb" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Serah Terima BPKB" vertex="1">
+          <mxGeometry height="60" width="180" x="526" y="1081" as="geometry" />
+        </mxCell>
+        <mxCell id="sep_delivery_line" edge="1" parent="system" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="1200" as="sourcePoint" />
+            <mxPoint x="850" y="1200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sep_delivery_label" parent="system" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=2;fontSize=11;" value="-- MODUL PENGIRIMAN (DELIVERY MODULE) --" vertex="1">
+          <mxGeometry height="30" width="250" x="300" y="1185" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_terima_tugas" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Terima Tugas Pengiriman" vertex="1">
+          <mxGeometry height="60" width="200" x="50" y="1250" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_update_progress" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Update Progres Pengiriman" vertex="1">
+          <mxGeometry height="60" width="200" x="50" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_selesaikan_pengiriman" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Selesaikan Pengiriman" vertex="1">
+          <mxGeometry height="60" width="200" x="50" y="1430" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_tugaskan_kurir" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Menugaskan Kurir" vertex="1">
+          <mxGeometry height="60" width="180" x="517" y="1246" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_pengiriman" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Kelola Pengiriman" vertex="1">
+          <mxGeometry height="60" width="180" x="566" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_stnk_bpkb" parent="system" style="ellipse;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Kelola STNK &amp; BPKB" vertex="1">
+          <mxGeometry height="60" width="180" x="631" y="1430" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_login_logout" edge="1" parent="system" source="uc_login" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_logout" value="&amp;lt;include&amp;gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="a19" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;" target="uc_progress">
+        <mxCell id="inc_browse_list" edge="1" parent="system" source="uc_browse" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_lihat_daftar" value="&amp;lt;include&amp;gt;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="a20" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;" target="uc_finish">
+        <mxCell id="inc_kelola_list" edge="1" parent="system" source="uc_kelola_data" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_lihat_daftar" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_booking_transaksi" edge="1" parent="system" source="uc_booking" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_kelola_transaksi" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_pembayaran_verif" edge="1" parent="system" source="uc_pembayaran" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_verif_pembayaran" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_transaksi_verif" edge="1" parent="system" source="uc_kelola_transaksi" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_verif_pembayaran" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_aju_verif" edge="1" parent="system" source="uc_aju_jual" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_verif_ajuan" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_aju_dokumen" edge="1" parent="system" source="uc_aju_jual" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_upload_dokumen" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_aju_pantau" edge="1" parent="system" source="uc_aju_jual" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_pantau_status" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_verif_bayar" edge="1" parent="system" source="uc_verif_ajuan" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_bayar_user" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_bayar_konfirm" edge="1" parent="system" source="uc_bayar_user" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_konfirmasi_terima" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_konfirm_serah" edge="1" parent="system" source="uc_konfirmasi_terima" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_serah_bpkb" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_tugas_update" edge="1" parent="system" source="uc_terima_tugas" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_update_progress" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_update_selesai" edge="1" parent="system" source="uc_update_progress" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_selesaikan_pengiriman" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_tugas_kurir" edge="1" parent="system" source="uc_tugaskan_kurir" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_terima_tugas" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_kurir_kelola" edge="1" parent="system" source="uc_tugaskan_kurir" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_kelola_pengiriman" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc_kelola_stnk" edge="1" parent="system" source="uc_kelola_pengiriman" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);fontColor=light-dark(#000000, #ffffff);labelBackgroundColor=light-dark(#ffffff, #121212);fontStyle=1;" target="uc_kelola_stnk_bpkb" value="&amp;lt;include&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="User&#xa;(Buyer/Seller)" vertex="1">
+          <mxGeometry height="80" width="40" x="60" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Admin" vertex="1">
+          <mxGeometry height="80" width="40" x="1550" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_kurir" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=light-dark(#000000, #ffffff);fillColor=light-dark(#ffffff, #121212);fontColor=light-dark(#000000, #ffffff);fontStyle=1;" value="Kurir" vertex="1">
+          <mxGeometry height="80" width="40" x="100" y="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="au_login" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_browse" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_browse">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_lihat_daftar" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_lihat_daftar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_booking" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_booking">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_pembayaran" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_pembayaran">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_ktp" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_ktp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_status" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_status">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_batal" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_batal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_aju_jual" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_aju_jual">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_pantau_status" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_pantau_status">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au_konfirmasi_terima" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_konfirmasi_terima">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_login" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_kelola_data" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_kelola_data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_kelola_transaksi" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_kelola_transaksi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_verif_pembayaran" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_verif_pembayaran">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_verif_ajuan" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_verif_ajuan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_bayar_user" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_bayar_user">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_serah_bpkb" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_serah_bpkb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_tugaskan_kurir" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_tugaskan_kurir">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_kelola_pengiriman" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_kelola_pengiriman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aa_kelola_stnk_bpkb" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_kelola_stnk_bpkb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ak_login" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_login">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="1340" />
+              <mxPoint x="40" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ak_terima_tugas" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_terima_tugas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ak_update_progress" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_update_progress">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ak_selesaikan_pengiriman" edge="1" parent="1" source="actor_kurir" style="endArrow=none;html=1;rounded=0;strokeColor=light-dark(#000000, #ffffff);" target="uc_selesaikan_pengiriman">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

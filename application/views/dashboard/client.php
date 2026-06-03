@@ -1,4 +1,32 @@
 <style>
+  body {
+    background-image: url('<?php echo base_url("assets/images/bg1.png"); ?>');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  /* Panel utama tanpa blur */
+  .bg-white {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Pastikan hanya card sungguhan yang mendapat style, JANGAN .stagger-card karena itu class animasi */
+  .framer-card, .card, .booking-card {
+    background-color: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08) !important;
+    border: 1px solid #EAEAEA !important;
+  }
+  
+  /* Tombol biarkan solid */
+  button.bg-black, .btn-black, .bg-black {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
   /* ===== Multi-select Delete Mode Styles ===== */
   .booking-card {
     position: relative;
@@ -115,19 +143,6 @@
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   
-  <!-- Flash messages -->
-  <?php if ($this->session->flashdata('success')): ?>
-    <div class="mb-6 flex items-center gap-3 bg-emerald-50 border border-emerald-200 text-emerald-800 px-5 py-3.5 rounded-2xl text-xs font-mono font-bold stagger-card">
-      <i class="fa-solid fa-circle-check text-emerald-600"></i>
-      <?php echo $this->session->flashdata('success'); ?>
-    </div>
-  <?php endif; ?>
-  <?php if ($this->session->flashdata('error')): ?>
-    <div class="mb-6 flex items-center gap-3 bg-red-50 border border-red-200 text-red-800 px-5 py-3.5 rounded-2xl text-xs font-mono font-bold stagger-card">
-      <i class="fa-solid fa-circle-xmark text-red-500"></i>
-      <?php echo $this->session->flashdata('error'); ?>
-    </div>
-  <?php endif; ?>
 
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12 stagger-card">
     <div>
@@ -135,17 +150,33 @@
       <p class="text-xs text-neutral-600 font-mono font-medium">Kelola transaksi pembelian mobil bekas Anda secara terkomputerisasi.</p>
     </div>
     <div class="flex gap-3 flex-wrap">
+      <?php
+        $shipping_booking = null;
+        if (!empty($bookings)) {
+            foreach ($bookings as $bk) {
+                if ($bk['delivery_type'] === 'delivery' && in_array($bk['delivery_status'], array('pending', 'shipping'))) {
+                    $shipping_booking = $bk;
+                    break;
+                }
+            }
+        }
+      ?>
+      <?php if ($shipping_booking): ?>
+        <a href="<?php echo base_url('booking/tracking/' . $shipping_booking['id']); ?>" class="px-4 py-2.5 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-black hover:bg-white/60 font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
+          <i class="fa-solid fa-location-crosshairs text-black animate-pulse"></i> Tracking Pengiriman
+        </a>
+      <?php endif; ?>
       <?php if (!empty($bookings)): ?>
         <!-- Select mode toggle button -->
         <button id="btn-toggle-select" onclick="toggleSelectMode()"
-          class="px-4 py-2 rounded-xl border border-[#DADADA] bg-white text-black hover:border-black font-mono text-xs font-bold transition-all flex items-center gap-2">
+          class="px-4 py-2.5 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-black hover:bg-white/60 font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
           <i class="fa-solid fa-trash-can"></i> Hapus Transaksi
         </button>
       <?php endif; ?>
-      <a href="<?php echo base_url('sourcing'); ?>" class="px-4 py-2 rounded-xl border border-black text-black hover:bg-neutral-50 font-mono text-xs font-bold transition-all flex items-center gap-2">
+      <a href="<?php echo base_url('sourcing'); ?>" class="px-4 py-2.5 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-black hover:bg-white/60 font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
         <i class="fa-solid fa-tags"></i> Tawarkan Mobil Saya
       </a>
-      <a href="<?php echo base_url(); ?>" class="px-4 py-2.5 rounded-xl bg-black text-white hover:bg-neutral-800 font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-sm">
+      <a href="<?php echo base_url(); ?>" class="px-4 py-2.5 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-black hover:bg-white/60 font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-[0_4px_15px_rgb(0,0,0,0.05)]">
         <i class="fa-solid fa-car"></i> Cari Mobil Lain
       </a>
     </div>
@@ -563,15 +594,15 @@
 </div>
 
 <!-- ===== DELETE CONFIRM MODAL ===== -->
-<div id="delete-confirm-modal" onclick="handleModalBackdropClick(event)">
-  <div id="delete-confirm-box" style="background:#fff;border-radius:28px;border:1px solid #EAEAEA;box-shadow:0 40px 100px rgba(0,0,0,0.22);padding:40px 44px;width:100%;max-width:440px;position:relative;margin:16px;">
+<div id="delete-confirm-overlay" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,0.3);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(16px);">
+  <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(32px);width:90%;max-width:380px;border-radius:32px;padding:28px;box-shadow:0 12px 40px rgba(0,0,0,0.08);border:1px solid rgba(255,255,255,0.5);position:relative;transform:translateY(20px);opacity:0;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" id="delete-confirm-modal">
     
     <!-- Dot matrix decoration -->
-    <div style="position:absolute;inset:0;border-radius:28px;overflow:hidden;pointer-events:none;opacity:0.025;background-image:radial-gradient(#000 1.2px, transparent 1.2px);background-size:14px 14px;"></div>
+    <div style="position:absolute;inset:0;border-radius:32px;overflow:hidden;pointer-events:none;opacity:0.025;background-image:radial-gradient(#000 1.2px, transparent 1.2px);background-size:14px 14px;"></div>
     
     <!-- Icon + Title -->
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
-      <div style="width:44px;height:44px;border-radius:50%;background:#FEF2F2;border:1.5px solid #FECACA;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(239,68,68,0.1);border:1.5px solid rgba(239,68,68,0.2);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <i class="fa-solid fa-trash-can" style="color:#EF4444;font-size:17px;"></i>
       </div>
       <div>
@@ -580,10 +611,10 @@
       </div>
     </div>
 
-    <div style="height:1px;background:#EAEAEA;margin-bottom:20px;"></div>
+    <div style="height:1px;background:rgba(0,0,0,0.05);margin-bottom:20px;"></div>
 
     <!-- Warning -->
-    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:14px;padding:12px 16px;margin-bottom:24px;display:flex;align-items:flex-start;gap:10px;">
+    <div style="background:rgba(254,242,242,0.5);border:1px solid rgba(254,202,202,0.5);border-radius:18px;padding:12px 16px;margin-bottom:24px;display:flex;align-items:flex-start;gap:10px;backdrop-filter:blur(8px);">
       <i class="fa-solid fa-triangle-exclamation" style="color:#EF4444;font-size:13px;flex-shrink:0;margin-top:1px;"></i>
       <div>
         <p id="modal-count-text" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#b91c1c;margin:0 0 4px;font-weight:700;">0 transaksi akan dihapus</p>
@@ -593,10 +624,10 @@
 
     <!-- Action buttons -->
     <div style="display:flex;gap:10px;">
-      <button onclick="closeDeleteConfirm()" style="flex:1;padding:13px;border-radius:50px;border:1.5px solid #EAEAEA;background:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#666;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#F5F5F5'" onmouseout="this.style.background='#fff'">
+      <button onclick="closeDeleteConfirm()" style="flex:1;padding:13px;border-radius:50px;border:1.5px solid rgba(0,0,0,0.1);background:rgba(255,255,255,0.4);backdrop-filter:blur(10px);font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#333;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.4)'">
         Batal
       </button>
-      <button onclick="submitDelete()" style="flex:1.5;padding:13px;border-radius:50px;border:none;background:#EF4444;font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.2s;" onmouseover="this.style.background='#DC2626'" onmouseout="this.style.background='#EF4444'">
+      <button onclick="submitDelete()" style="flex:1.5;padding:13px;border-radius:50px;border:none;background:rgba(239,68,68,0.9);backdrop-filter:blur(10px);font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.2s;" onmouseover="this.style.background='#DC2626'" onmouseout="this.style.background='rgba(239,68,68,0.9)'">
         <i class="fa-solid fa-trash-can"></i> Ya, Hapus Sekarang
       </button>
     </div>

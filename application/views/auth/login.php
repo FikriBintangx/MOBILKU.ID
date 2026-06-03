@@ -61,19 +61,15 @@
     <div class="mt-8 pt-6 border-t border-dashed border-[#EAEAEA]">
       <span class="text-[9px] font-mono text-[#999999] tracking-[0.2em] uppercase block mb-4 text-center">Instan Simulator Peran</span>
       
-      <form action="<?php echo base_url('mobil/login_sim'); ?>" method="POST" class="grid grid-cols-2 gap-2">
+      <form action="<?php echo base_url('mobil/login_sim'); ?>" method="POST" class="grid grid-cols-3 gap-2">
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         
-        <button type="submit" name="role" value="manager" class="py-2.5 px-3 rounded-xl border border-black bg-black text-white hover:bg-neutral-800 font-sans font-bold text-[9px] uppercase tracking-wider transition-all">
-          <i class="fa-solid fa-user-shield mr-1"></i> Manager
+        <button type="submit" name="role" value="customer" class="py-2.5 px-3 rounded-xl border border-black bg-black text-white hover:bg-neutral-800 font-sans font-bold text-[9px] uppercase tracking-wider transition-all">
+          <i class="fa-solid fa-user mr-1"></i> Customer
         </button>
         
         <button type="submit" name="role" value="admin" class="py-2.5 px-3 rounded-xl border border-[#DADADA] bg-white text-[#333] hover:bg-neutral-50 hover:border-black font-sans font-bold text-[9px] uppercase tracking-wider transition-all">
           <i class="fa-solid fa-user-gear mr-1"></i> Admin
-        </button>
-
-        <button type="submit" name="role" value="staff" class="py-2.5 px-3 rounded-xl border border-[#DADADA] bg-white text-[#333] hover:bg-neutral-50 hover:border-black font-sans font-bold text-[9px] uppercase tracking-wider transition-all">
-          <i class="fa-solid fa-user-pen mr-1"></i> Staff
         </button>
 
         <button type="submit" name="role" value="kurir" class="py-2.5 px-3 rounded-xl border border-[#DADADA] bg-white text-[#333] hover:bg-neutral-50 hover:border-black font-sans font-bold text-[9px] uppercase tracking-wider transition-all">

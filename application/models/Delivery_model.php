@@ -27,6 +27,9 @@ class Delivery_model extends CI_Model {
         $this->db->insert('pengiriman', $data);
         $id_pengiriman = $this->db->insert_id();
 
+        // Log status history
+        $this->add_status_history($id_pengiriman, 'Menunggu Penugasan');
+
         // Update booking delivery status
         $this->db->where('id', $booking_id);
         $this->db->update('bookings', array('delivery_status' => 'pending'));
@@ -43,6 +46,9 @@ class Delivery_model extends CI_Model {
             'id_kurir' => $id_kurir,
             'status_pengiriman' => 'Kurir Ditugaskan'
         ));
+
+        // Log status history
+        $this->add_status_history($id_pengiriman, 'Kurir Ditugaskan');
 
         // Generate Surat Jalan if not exists
         $this->generate_surat_jalan($id_pengiriman);
@@ -88,6 +94,9 @@ class Delivery_model extends CI_Model {
 
         $this->db->where('id_pengiriman', $id_pengiriman);
         $this->db->update('pengiriman', $data);
+
+        // Log status history
+        $this->add_status_history($id_pengiriman, $status);
 
         // Sync with bookings status
         $delivery = $this->get_delivery_by_id($id_pengiriman);
@@ -157,12 +166,13 @@ class Delivery_model extends CI_Model {
      * Retrieve all delivery requests (for Admin dashboard)
      */
     public function get_all_deliveries() {
-        $this->db->select('p.*, b.booking_code, u.fullname as client_name, c.brand, c.model, c.plate_number, k.nama as courier_name');
+        $this->db->select('p.*, b.booking_code, u.fullname as client_name, c.brand, c.model, c.plate_number, k.nama as courier_name, sj.nomor_surat');
         $this->db->from('pengiriman p');
         $this->db->join('bookings b', 'p.id_transaksi = b.id');
         $this->db->join('users u', 'b.user_id = u.id');
         $this->db->join('cars c', 'b.car_id = c.id');
         $this->db->join('kurir k', 'p.id_kurir = k.id_kurir', 'left');
+        $this->db->join('surat_jalan sj', 'p.id_pengiriman = sj.id_pengiriman', 'left');
         $this->db->order_by('p.id_pengiriman', 'DESC');
         return $this->db->get()->result_array();
     }
@@ -214,4 +224,61 @@ class Delivery_model extends CI_Model {
 
         return $stats;
     }
+
+    /**
+     * Update/insert tracking koordinat baru kurir
+     */
+    public function update_tracking($id_pengiriman, $lat, $lng, $speed = 0.0) {
+        $data = array(
+            'id_pengiriman' => $id_pengiriman,
+            'latitude' => $lat,
+            'longitude' => $lng,
+            'speed' => $speed,
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tracking_lokasi', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
+     * Ambil koordinat tracking terbaru
+     */
+    public function get_latest_tracking($id_pengiriman) {
+        $this->db->where('id_pengiriman', $id_pengiriman);
+        $this->db->order_by('id_tracking', 'DESC');
+        $this->db->limit(1);
+        return $this->db->get('tracking_lokasi')->row_array();
+    }
+
+    /**
+     * Ambil riwayat koordinat tracking (untuk rute garis)
+     */
+    public function get_tracking_history($id_pengiriman) {
+        $this->db->where('id_pengiriman', $id_pengiriman);
+        $this->db->order_by('id_tracking', 'ASC');
+        return $this->db->get('tracking_lokasi')->result_array();
+    }
+
+    /**
+     * Catat riwayat status pengiriman
+     */
+    public function add_status_history($id_pengiriman, $status) {
+        $data = array(
+            'id_pengiriman' => $id_pengiriman,
+            'status' => $status,
+            'waktu' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('riwayat_status', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
+     * Ambil seluruh riwayat status untuk timeline
+     */
+    public function get_status_history($id_pengiriman) {
+        $this->db->where('id_pengiriman', $id_pengiriman);
+        $this->db->order_by('waktu', 'ASC');
+        return $this->db->get('riwayat_status')->result_array();
+    }
 }
+

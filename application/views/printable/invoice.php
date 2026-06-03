@@ -413,10 +413,10 @@
         <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">
           Metode Serah Terima: <br>
           <strong style="color: var(--text-main); font-family: var(--font-mono);">
-            <?php echo $booking['delivery_method'] === 'kirim_alamat' ? 'KIRIM KE ALAMAT' : 'AMBIL LANGSUNG'; ?>
+            <?php echo $booking['delivery_type'] === 'delivery' ? 'KIRIM KE ALAMAT' : 'AMBIL LANGSUNG'; ?>
           </strong>
         </p>
-        <?php if ($booking['delivery_method'] === 'kirim_alamat'): ?>
+        <?php if ($booking['delivery_type'] === 'delivery'): ?>
           <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
             Alamat: <?php echo esc($booking['delivery_address']); ?>
           </p>

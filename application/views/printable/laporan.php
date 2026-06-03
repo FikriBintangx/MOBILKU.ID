@@ -162,7 +162,7 @@
 
   <div class="print-controls">
     <div>
-      <button onclick="window.history.back()" class="btn btn-outline">&larr; Kembali</button>
+      <button onclick="window.close()" class="btn btn-outline">&larr; KEMBALI</button>
       <button onclick="window.print()" class="btn">Cetak PDF / Print</button>
     </div>
     <span style="font-size: 11px; color: #666;">*Gunakan opsi cetak Landscape/Potrait sesuai kenyamanan browser Anda.</span>

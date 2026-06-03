@@ -1,3 +1,7 @@
+<!-- Leaflet JS & CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 <!-- 07. PORTAL KURIR LOGISTIK (Nothing OS Monochrome Aesthetic) -->
 <style>
   :root {
@@ -5,6 +9,11 @@
     --text-main: #111111;
     --text-muted: #666666;
     --border-color: #eaeaea;
+  }
+  
+  /* Dark Leaflet map for courier */
+  .dark-leaflet-map .leaflet-tile {
+    filter: invert(1) hue-rotate(180deg) grayscale(1) contrast(1.2) brightness(0.9);
   }
   .framer-card {
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -56,6 +65,10 @@
           <a href="javascript:void(0)" onclick="switchKurirTab('deliveries')" id="nav-deliveries" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
             <i class="fa-solid fa-truck-ramp-box text-xs"></i>
             <span>Pengiriman Saya</span>
+          </a>
+          <a href="javascript:void(0)" onclick="switchKurirTab('tracking')" id="nav-tracking" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
+            <i class="fa-solid fa-route text-xs"></i>
+            <span>Tracking Aktif</span>
           </a>
           <a href="javascript:void(0)" onclick="switchKurirTab('history')" id="nav-history" class="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#F5F5F5] hover:text-black transition-all">
             <i class="fa-solid fa-clock-rotate-left text-xs"></i>
@@ -290,6 +303,92 @@
         </div>
       </div>
 
+      <!-- 5. TRACKING AKTIF PANEL -->
+      <div id="panel-tracking" class="kurir-tab-panel space-y-6">
+        <div class="pb-3 border-b border-[#EAEAEA]">
+          <h3 class="font-display font-extrabold text-xl text-black">Live Tracking Pengiriman</h3>
+          <p class="text-xs text-[#666666] font-mono">Pilih tugas aktif di bawah ini untuk memulai pemantauan rute dan pembaruan GPS secara real-time.</p>
+        </div>
+
+        <?php 
+          $active_list = array_filter($deliveries, function($d) {
+            return $d['status_pengiriman'] !== 'Selesai' && $d['status_pengiriman'] !== 'Dibatalkan';
+          });
+        ?>
+
+        <!-- Selector tugas aktif -->
+        <div class="flex flex-col sm:flex-row gap-4 items-center bg-white border border-[#EAEAEA] p-5 rounded-[20px] font-mono text-xs shadow-sm">
+          <label class="font-bold text-black uppercase">Pilih Tugas Pengiriman:</label>
+          <select id="active-delivery-selector" onchange="initCourierTrackingMap(this)" class="cyber-input text-xs flex-grow font-sans outline-none">
+            <option value="">-- Pilih Tugas Aktif --</option>
+            <?php foreach ($active_list as $del): ?>
+              <option value="<?php echo $del['id_pengiriman']; ?>" 
+                      data-address="<?php echo esc($del['alamat_tujuan']); ?>" 
+                      data-code="<?php echo esc($del['booking_code']); ?>" 
+                      data-car="<?php echo esc($del['brand'] . ' ' . $del['model']); ?>" 
+                      data-plate="<?php echo esc($del['plate_number']); ?>" 
+                      data-client="<?php echo esc($del['client_name']); ?>" 
+                      data-status="<?php echo esc($del['status_pengiriman']); ?>">
+                <?php echo esc($del['booking_code']); ?> - <?php echo esc($del['brand'] . ' ' . $del['model']); ?> (<?php echo esc($del['client_name']); ?>)
+              </option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <!-- Map & Controls (Visible only when a delivery is selected) -->
+        <div id="tracking-interface" class="space-y-6 hidden">
+          
+          <!-- Ringkasan Detail Pengiriman (Floating Card ala Framer) -->
+          <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="font-mono text-xs text-[#666666] space-y-1">
+              <span class="text-[9px] text-[#999999] block uppercase">TUJUAN PENGIRIMAN</span>
+              <p>Pembeli: <strong class="text-black" id="track-buyer-name">-</strong></p>
+              <p>Alamat: <strong class="text-black italic" id="track-destination-addr">-</strong></p>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <!-- Simulator Controls -->
+              <button id="btn-start-simulation" onclick="startLocationSimulation()" class="px-4 py-2.5 bg-black text-white hover:bg-neutral-800 rounded-xl font-bold uppercase text-[10px] tracking-wider flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-play"></i> Mulai Simulator
+              </button>
+              <button id="btn-stop-simulation" onclick="stopLocationSimulation()" class="px-4 py-2.5 bg-red-600 text-white hover:bg-red-700 rounded-xl font-bold uppercase text-[10px] tracking-wider flex items-center gap-1.5 shadow-sm hidden">
+                <i class="fa-solid fa-stop"></i> Hentikan Simulator
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Dark Map -->
+          <div class="relative bg-white rounded-[24px] overflow-hidden border border-[#EAEAEA] shadow-sm">
+            <div id="kurir-map" style="height: 400px;" class="dark-leaflet-map"></div>
+          </div>
+
+          <!-- Status Update & Controls -->
+          <div class="bg-white border border-[#EAEAEA] rounded-[24px] p-6 shadow-sm font-mono text-xs space-y-4">
+            <h4 class="font-display font-bold text-xs uppercase tracking-wider text-black">Update Status & Posisi Pengiriman</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1.5">
+                <label class="font-bold text-black uppercase">Status Saat Ini:</label>
+                <select id="quick-status-select" class="cyber-input text-xs w-full">
+                  <option value="Menunggu Penjemputan">Menunggu Penjemputan</option>
+                  <option value="Kendaraan Dipersiapkan">Kendaraan Dipersiapkan</option>
+                  <option value="Dalam Perjalanan">Dalam Perjalanan</option>
+                  <option value="Tiba di Lokasi">Tiba di Lokasi</option>
+                  <option value="Kendaraan Diserahkan">Kendaraan Diserahkan</option>
+                  <option value="Selesai">Selesai (Serah Terima Selesai)</option>
+                </select>
+              </div>
+              <div class="flex items-end">
+                <button onclick="submitQuickStatus()" class="w-full py-2.5 bg-black text-white font-bold uppercase rounded-xl hover:bg-neutral-800 transition-all">
+                  Perbarui Status
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
   </div>
 </section>
@@ -372,7 +471,7 @@
     }
 
     // Reset navigation active styles
-    const navs = ['dashboard', 'deliveries', 'history', 'profile'];
+    const navs = ['dashboard', 'deliveries', 'tracking', 'history', 'profile'];
     navs.forEach(n => {
       const el = document.getElementById('nav-' + n);
       if (el) {
@@ -385,7 +484,221 @@
     if (activeNav) {
       activeNav.className = 'flex items-center gap-3 px-4 py-3 rounded-full bg-black text-white transition-all shadow-sm';
     }
+
+    // Auto invalidate size if map exists
+    if (tabId === 'tracking' && kurirMapObj) {
+      setTimeout(() => {
+        kurirMapObj.invalidateSize();
+      }, 200);
+    }
   }
+
+  // --- MAPS & SIMULATION VARIABLES ---
+  let kurirMapObj = null;
+  let kurirMarker = null;
+  let destinationMarker = null;
+  let routePolyline = null;
+  let simulationInterval = null;
+  let simSteps = [];
+  let currentSimStep = 0;
+  
+  const showroomCoords = [-6.200000, 106.816666]; // Showroom start point
+
+  function initCourierTrackingMap(selectEl) {
+    const selectedOpt = selectEl.options[selectEl.selectedIndex];
+    const trackingInterface = document.getElementById('tracking-interface');
+    
+    if (!selectedOpt.value) {
+      trackingInterface.classList.add('hidden');
+      stopLocationSimulation();
+      return;
+    }
+
+    // Stop current simulation if running
+    stopLocationSimulation();
+
+    // Show interface
+    trackingInterface.classList.remove('hidden');
+
+    const address = selectedOpt.getAttribute('data-address');
+    const clientName = selectedOpt.getAttribute('data-client');
+    const status = selectedOpt.getAttribute('data-status');
+
+    document.getElementById('track-buyer-name').innerText = clientName;
+    document.getElementById('track-destination-addr').innerText = address;
+    document.getElementById('quick-status-select').value = status;
+
+    // Calculate customer destination coordinate based on address text hash
+    let hash = 0;
+    for (let i = 0; i < address.length; i++) {
+      hash = address.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const latOffset = (hash % 100) / 1500;
+    const lngOffset = ((hash >> 2) % 100) / 1500;
+    const destinationCoords = [showroomCoords[0] + latOffset, showroomCoords[1] + lngOffset];
+
+    // Generate simulation coordinates path (10 steps)
+    simSteps = [];
+    for (let j = 0; j <= 15; j++) {
+      const ratio = j / 15;
+      const stepLat = showroomCoords[0] + (destinationCoords[0] - showroomCoords[0]) * ratio;
+      const stepLng = showroomCoords[1] + (destinationCoords[1] - showroomCoords[1]) * ratio;
+      simSteps.push([stepLat, stepLng]);
+    }
+    currentSimStep = 0;
+
+    // Initialize or reset map
+    if (kurirMapObj) {
+      kurirMapObj.remove();
+    }
+
+    kurirMapObj = L.map('kurir-map').setView(showroomCoords, 13);
+    
+    // CartoDB Dark Matter tile layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(kurirMapObj);
+
+    // House Icon (Home style)
+    const homeIcon = L.divIcon({
+      html: `<div style="width:34px;height:34px;background:#ffffff;border:2px solid #000000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(255,255,255,0.1);">
+              <i class="fa-solid fa-house" style="color:#000000;font-size:13px;"></i>
+             </div>`,
+      className: '',
+      iconSize: [34, 34],
+      iconAnchor: [17, 17]
+    });
+
+    // Premium Car Icon
+    const carIcon = L.divIcon({
+      html: `<div style="width:36px;height:36px;background:#ffffff;border:2px solid #000000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(255,255,255,0.2);">
+              <i class="fa-solid fa-car-side" style="color:#000;font-size:14px;"></i>
+             </div>`,
+      className: '',
+      iconSize: [36, 36],
+      iconAnchor: [18, 18]
+    });
+
+    // Add Markers
+    destinationMarker = L.marker(destinationCoords, {icon: homeIcon}).addTo(kurirMapObj)
+      .bindPopup("<b>Rumah Pembeli (Tujuan)</b><br>" + address);
+    
+    kurirMarker = L.marker(showroomCoords, {icon: carIcon}).addTo(kurirMapObj)
+      .bindPopup("<b>Posisi Kurir</b>");
+
+    // Draw route path line
+    routePolyline = L.polyline([showroomCoords, destinationCoords], {
+      color: '#ffffff',
+      weight: 2,
+      opacity: 0.6,
+      dashArray: '5, 5'
+    }).addTo(kurirMapObj);
+
+    // Fit bounds to show entire route
+    kurirMapObj.fitBounds(routePolyline.getBounds(), {padding: [40, 40]});
+
+    // Send initial location update to database
+    updateCourierLocation(showroomCoords[0], showroomCoords[1], 0.0);
+  }
+
+  // Send Location Update API request
+  function updateCourierLocation(lat, lng, speed) {
+    const selector = document.getElementById('active-delivery-selector');
+    const id_pengiriman = selector.value;
+    if (!id_pengiriman) return;
+
+    const data = new URLSearchParams();
+    data.append('id_pengiriman', id_pengiriman);
+    data.append('latitude', lat);
+    data.append('longitude', lng);
+    data.append('speed', speed);
+
+    fetch('<?php echo base_url("admin/update_location_api"); ?>', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: data.toString()
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log('Location logged:', res);
+    })
+    .catch(err => console.error('Error logging location:', err));
+  }
+
+  // Simulator path movements
+  function startLocationSimulation() {
+    const selector = document.getElementById('active-delivery-selector');
+    if (!selector.value) return;
+
+    document.getElementById('btn-start-simulation').classList.add('hidden');
+    document.getElementById('btn-stop-simulation').classList.remove('hidden');
+
+    simulationInterval = setInterval(() => {
+      if (currentSimStep >= simSteps.length) {
+        // Destination reached, auto stop
+        stopLocationSimulation();
+        alert('Simulator: Anda telah sampai di lokasi tujuan pembeli!');
+        
+        // Auto select quick status to "Tiba di Lokasi"
+        document.getElementById('quick-status-select').value = 'Tiba di Lokasi';
+        return;
+      }
+
+      const coords = simSteps[currentSimStep];
+      
+      // Update Marker position
+      if (kurirMarker) {
+        kurirMarker.setLatLng(coords);
+        kurirMapObj.panTo(coords);
+      }
+
+      // Send to API
+      updateCourierLocation(coords[0], coords[1], 45.0); // 45 km/h simulated speed
+
+      currentSimStep++;
+    }, 3000);
+  }
+
+  function stopLocationSimulation() {
+    if (simulationInterval) {
+      clearInterval(simulationInterval);
+      simulationInterval = null;
+    }
+    document.getElementById('btn-start-simulation').classList.remove('hidden');
+    document.getElementById('btn-stop-simulation').classList.add('hidden');
+  }
+
+  // Update status quickly from tracking page
+  function submitQuickStatus() {
+    const selector = document.getElementById('active-delivery-selector');
+    const id_pengiriman = selector.value;
+    const status = document.getElementById('quick-status-select').value;
+    if (!id_pengiriman) return;
+
+    const data = new URLSearchParams();
+    data.append('status_pengiriman', status);
+    data.append('catatan', 'Diperbarui secara instan melalui Peta Tracking portal kurir.');
+
+    fetch('<?php echo base_url("admin/update_delivery_status_p/"); ?>' + id_pengiriman, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: data.toString()
+    })
+    .then(res => {
+      alert('Status berhasil diubah menjadi: ' + status);
+      // Reload page list data to sync
+      window.location.reload();
+    })
+    .catch(err => console.error('Error updating status:', err));
+  }
+
+
 
   function openStatusModal(id, currentStatus) {
     const overlay = document.getElementById('status-modal-overlay');

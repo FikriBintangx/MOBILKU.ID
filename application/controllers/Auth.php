@@ -130,10 +130,8 @@ class Auth extends CI_Controller {
             redirect($redirect_url);
         }
 
-        if ($role === 'admin' || $role === 'staff' || $role === 'manager') {
+        if ($role === 'manager' || $role === 'admin') {
             redirect('admin');
-        } elseif ($role === 'kurir') {
-            redirect('admin/kurir');
         } else {
             redirect('booking/dashboard');
         }
