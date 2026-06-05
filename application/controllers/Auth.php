@@ -132,6 +132,8 @@ class Auth extends CI_Controller {
 
         if ($role === 'manager' || $role === 'admin') {
             redirect('admin');
+        } elseif ($role === 'kurir') {
+            redirect('admin/kurir');
         } else {
             redirect('booking/dashboard');
         }

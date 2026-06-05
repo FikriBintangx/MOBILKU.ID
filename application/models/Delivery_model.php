@@ -150,7 +150,7 @@ class Delivery_model extends CI_Model {
      * Retrieve single delivery with related transaction, car, customer, and courier details
      */
     public function get_delivery_by_id($id_pengiriman) {
-        $this->db->select('p.*, b.booking_code, b.stnk_status, b.bpkb_status, b.status as booking_overall_status, u.fullname as client_name, u.phone as client_phone, c.brand, c.model, c.year, c.plate_number, c.color, c.engine_number, c.frame_number, c.price as car_price, k.nama as courier_name, k.no_hp as courier_phone, sj.nomor_surat, sj.tanggal as sj_date, bp.foto_serah_terima, bp.tanda_tangan_penerima, bp.foto_kendaraan, bp.waktu_upload');
+        $this->db->select('p.*, b.booking_code, b.stnk_status, b.bpkb_status, b.pelunasan_status, b.status as booking_overall_status, u.fullname as client_name, u.phone as client_phone, c.brand, c.model, c.year, c.plate_number, c.color, c.engine_number, c.frame_number, c.price as car_price, k.nama as courier_name, k.no_hp as courier_phone, sj.nomor_surat, sj.tanggal as sj_date, bp.foto_serah_terima, bp.tanda_tangan_penerima, bp.foto_kendaraan, bp.waktu_upload');
         $this->db->from('pengiriman p');
         $this->db->join('bookings b', 'p.id_transaksi = b.id');
         $this->db->join('users u', 'b.user_id = u.id');

@@ -73,19 +73,19 @@
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     <div class="bg-white border border-[#EAEAEA] rounded-[20px] p-5 shadow-sm framer-shadow">
       <span class="text-[#666666] block text-[9px] uppercase font-mono tracking-wider">Total Pengiriman Hari Ini</span>
-      <span class="text-black font-display font-extrabold text-2xl mt-1 block"><?php echo $stats['total_hari_ini']; ?></span>
+      <span id="widget-today" class="text-black font-display font-extrabold text-2xl mt-1 block"><?php echo $stats['total_hari_ini']; ?></span>
     </div>
     <div class="bg-white border border-[#EAEAEA] rounded-[20px] p-5 shadow-sm framer-shadow">
       <span class="text-[#666666] block text-[9px] uppercase font-mono tracking-wider">Dalam Perjalanan</span>
-      <span class="text-black font-display font-extrabold text-2xl mt-1 block text-blue-600"><?php echo $stats['perjalanan']; ?></span>
+      <span id="widget-transit" class="text-black font-display font-extrabold text-2xl mt-1 block text-blue-600"><?php echo $stats['perjalanan']; ?></span>
     </div>
     <div class="bg-white border border-[#EAEAEA] rounded-[20px] p-5 shadow-sm framer-shadow">
       <span class="text-[#666666] block text-[9px] uppercase font-mono tracking-wider">Pengiriman Selesai</span>
-      <span class="text-emerald-600 font-display font-extrabold text-2xl mt-1 block"><?php echo $stats['selesai']; ?></span>
+      <span id="widget-complete" class="text-emerald-600 font-display font-extrabold text-2xl mt-1 block"><?php echo $stats['selesai']; ?></span>
     </div>
     <div class="bg-white border border-[#EAEAEA] rounded-[20px] p-5 shadow-sm framer-shadow">
       <span class="text-[#666666] block text-[9px] uppercase font-mono tracking-wider">Gagal / Tertunda</span>
-      <span class="text-amber-600 font-display font-extrabold text-2xl mt-1 block"><?php echo $stats['tertunda']; ?></span>
+      <span id="widget-failed" class="text-amber-600 font-display font-extrabold text-2xl mt-1 block"><?php echo $stats['tertunda']; ?></span>
     </div>
   </div>
 
@@ -140,6 +140,10 @@
             <div class="flex justify-between">
               <span class="text-neutral-500">Status:</span>
               <span class="px-2 py-0.5 rounded-full border border-black/10 bg-black text-white text-[9px] font-bold uppercase" id="card-status">-</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-neutral-500">Kecepatan:</span>
+              <span class="text-black font-bold" id="card-speed">-</span>
             </div>
             <div class="flex justify-between pt-2 border-t border-[#EAEAEA]">
               <span class="text-neutral-500">Estimasi Tiba:</span>
@@ -204,6 +208,14 @@
           currentActiveDeliveries = res.data;
           renderCourierList(res.data);
           updateMapMarkers(res.data);
+
+          // Update live widgets dynamically
+          if (res.stats) {
+            document.getElementById('widget-today').innerText = res.stats.total_hari_ini;
+            document.getElementById('widget-transit').innerText = res.stats.perjalanan;
+            document.getElementById('widget-complete').innerText = res.stats.selesai;
+            document.getElementById('widget-failed').innerText = res.stats.tertunda;
+          }
         }
       })
       .catch(err => console.error("Error updating radar:", err));
@@ -240,6 +252,83 @@
     container.innerHTML = html;
   }
 
+  // Helper to smoothly animate marker coordinates
+  function animateMarkerTo(marker, newCoord, duration = 4000) {
+    if (!marker) return;
+    const startLatLng = marker.getLatLng();
+    const startLat = startLatLng.lat;
+    const startLng = startLatLng.lng;
+    const destLat = newCoord[0];
+    const destLng = newCoord[1];
+    
+    // If position hasn't changed, do nothing
+    if (startLat === destLat && startLng === destLng) return;
+    
+    const startTime = performance.now();
+    
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function (easeOutQuad)
+      const easeProgress = progress * (2 - progress);
+      
+      const curLat = startLat + (destLat - startLat) * easeProgress;
+      const curLng = startLng + (destLng - startLng) * easeProgress;
+      
+      marker.setLatLng([curLat, curLng]);
+      
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+    
+    requestAnimationFrame(step);
+  }
+
+  // Update detailed info card if it is currently open and active
+  function updateOpenInfoCard(list) {
+    const card = document.getElementById('info-card');
+    if (card.classList.contains('hidden')) return;
+
+    // Find the courier item currently selected
+    const openDriverName = document.getElementById('card-driver-name').innerText;
+    const openSjNumber = document.getElementById('card-sj-number').innerText;
+    
+    const currentItem = list.find(item => 
+      (item.courier_name || 'Driver') === openDriverName && 
+      (item.nomor_surat || '-') === openSjNumber
+    );
+
+    if (currentItem) {
+      // Just update speed, status, and ETA dynamically
+      document.getElementById('card-status').innerText = currentItem.status_pengiriman;
+      document.getElementById('card-speed').innerText = currentItem.latest_location ? `${parseFloat(currentItem.latest_location.speed).toFixed(1)} km/jam` : '-';
+      
+      // Calculate ETA
+      let dist = 12.5;
+      if (currentItem.latest_location) {
+        const clientAddress = currentItem.alamat_tujuan;
+        let hash = 0;
+        for (let i = 0; i < clientAddress.length; i++) {
+          hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const latOffset = (hash % 100) / 1500;
+        const lngOffset = ((hash >> 2) % 100) / 1500;
+        const customerLocation = [headquarterCoords[0] + latOffset, headquarterCoords[1] + lngOffset];
+        
+        dist = getDistance(
+          parseFloat(currentItem.latest_location.latitude), 
+          parseFloat(currentItem.latest_location.longitude), 
+          customerLocation[0], 
+          customerLocation[1]
+        );
+      }
+      const etaMins = Math.round((dist / 35) * 60);
+      document.getElementById('card-eta').innerHTML = `${dist.toFixed(1)} KM &bull; ~${etaMins} Menit`;
+    }
+  }
+
   // Update markers on the map
   function updateMapMarkers(list) {
     // Custom Premium Courier Icon (Black car)
@@ -266,7 +355,7 @@
 
         if (markers[id]) {
           // Pindahkan marker yang ada secara smooth
-          markers[id].setLatLng(coord);
+          animateMarkerTo(markers[id], coord, 3800);
         } else {
           // Buat marker baru jika belum ada
           const marker = L.marker(coord, {icon: activeCarIcon}).addTo(map);
@@ -275,6 +364,9 @@
         }
       }
     });
+
+    // Refresh dynamic values on open info card
+    updateOpenInfoCard(list);
 
     // Bersihkan marker kurir yang sudah tidak aktif (selesai/batal)
     for (let id in markers) {
@@ -287,7 +379,7 @@
 
   // Focus Map view onto selected courier
   function focusCourier(id) {
-    const item = currentActiveDeliveries.find(d => d.id_pengiriman === id);
+    const item = currentActiveDeliveries.find(d => d.id_pengiriman == id);
     if (item && item.latest_location) {
       const lat = parseFloat(item.latest_location.latitude);
       const lng = parseFloat(item.latest_location.longitude);
@@ -304,6 +396,7 @@
     document.getElementById('card-client-name').innerText = item.client_name;
     document.getElementById('card-sj-number').innerText = item.nomor_surat || '-';
     document.getElementById('card-status').innerText = item.status_pengiriman;
+    document.getElementById('card-speed').innerText = item.latest_location ? `${parseFloat(item.latest_location.speed).toFixed(1)} km/jam` : '-';
 
     // Calculate simulated ETA based on headquarter coordinates
     let dist = 12.5; // fallback

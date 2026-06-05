@@ -656,8 +656,9 @@
         kurirMapObj.panTo(coords);
       }
 
-      // Send to API
-      updateCourierLocation(coords[0], coords[1], 45.0); // 45 km/h simulated speed
+      // Send to API with dynamic speed simulation
+      const simulatedSpeed = (35 + Math.random() * 20).toFixed(1);
+      updateCourierLocation(coords[0], coords[1], simulatedSpeed);
 
       currentSimStep++;
     }, 3000);

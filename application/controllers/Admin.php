@@ -10,9 +10,13 @@ class Admin extends CI_Controller {
         $this->load->model('Sourcing_model');
         $this->load->model('Delivery_model');
         
-        // Auto-run schema updates & user seeding for Manager role
-        $this->db->query("ALTER TABLE users MODIFY COLUMN role ENUM('manager', 'admin', 'client') NOT NULL DEFAULT 'client'");
+        // Auto-run schema updates & user seeding for administrative roles
+        $this->db->query("ALTER TABLE users MODIFY COLUMN role ENUM('manager', 'admin', 'staff', 'kurir', 'client') NOT NULL DEFAULT 'client'");
         
+        // Sync roles for kurir and staff to ensure consistency with the database schema
+        $this->db->query("UPDATE users SET role = 'kurir' WHERE username = 'kurir' AND role != 'kurir'");
+        $this->db->query("UPDATE users SET role = 'staff' WHERE username = 'staff' AND role != 'staff'");
+
         // Seed Manager if not exists
         $manager = $this->db->get_where('users', array('role' => 'manager'))->row_array();
         if (!$manager) {
@@ -26,15 +30,38 @@ class Admin extends CI_Controller {
             ));
         }
 
-        // Enforce administrative authentication (including manager)
-        if (!$this->session->userdata('user_id') || !in_array($this->session->userdata('role'), array('admin', 'manager'))) {
-            // Auto authenticate as admin for demonstration convenience if requested
-            $this->session->set_userdata(array(
-                'user_id' => 1,
-                'username' => 'admin',
-                'fullname' => 'Super Administrator',
-                'role' => 'admin'
-            ));
+        // Enforce administrative authentication (including manager, admin, staff, and kurir)
+        if (!$this->session->userdata('user_id') || !in_array($this->session->userdata('role'), array('admin', 'manager', 'staff', 'kurir'))) {
+            // Auto authenticate as admin for demonstration convenience if not logged in
+            if (!$this->session->userdata('user_id')) {
+                $this->session->set_userdata(array(
+                    'user_id' => 1,
+                    'username' => 'admin',
+                    'fullname' => 'Super Administrator',
+                    'role' => 'admin'
+                ));
+            } else {
+                // If logged in as client, redirect to customer dashboard
+                redirect('booking/dashboard');
+            }
+        }
+
+        // Restrict Courier to Courier-only pages
+        $method = $this->router->fetch_method();
+        $allowed_courier_methods = array(
+            'kurir', 
+            'update_delivery_status_p', 
+            'upload_delivery_proof_p', 
+            'change_kurir_password', 
+            'update_location_api', 
+            'get_tracking_data_api',
+            'surat_jalan'
+        );
+
+        if ($this->session->userdata('role') === 'kurir' && !in_array($method, $allowed_courier_methods)) {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Kurir hanya dapat mengakses portal kurir.');
+            redirect('admin/kurir');
+            return;
         }
     }
 
@@ -245,8 +272,8 @@ class Admin extends CI_Controller {
      * Courier Dashboard Portal
      */
     public function kurir() {
-        // Enforce Admin/Manager role for Courier dashboard
-        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager') {
+        // Enforce Admin/Manager/Kurir role for Courier dashboard
+        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager' && $this->session->userdata('role') !== 'kurir') {
             redirect('mobil');
         }
 
@@ -770,8 +797,25 @@ class Admin extends CI_Controller {
         $deliveries = $this->Delivery_model->get_all_deliveries();
         
         $active_tracking = array();
+        $stats = array(
+            'total_hari_ini' => 0,
+            'perjalanan' => 0,
+            'selesai' => 0,
+            'tertunda' => 0
+        );
+        $today = date('Y-m-d');
+
         foreach ($deliveries as $d) {
-            if (in_array($d['status_pengiriman'], array('Kurir Ditugaskan', 'Kendaraan Dipersiapkan', 'Dalam Perjalanan', 'Tiba di Lokasi', 'Kendaraan Diserahkan', 'Diserahkan ke Pembeli'))) {
+            $d_date = date('Y-m-d', strtotime($d['tanggal_pengiriman'] ?? ''));
+            if ($d_date === $today) {
+                $stats['total_hari_ini']++;
+            }
+            if ($d['status_pengiriman'] === 'Selesai') {
+                $stats['selesai']++;
+            } elseif ($d['status_pengiriman'] === 'Gagal Kirim') {
+                $stats['tertunda']++;
+            } elseif (in_array($d['status_pengiriman'], array('Kurir Ditugaskan', 'Kendaraan Dipersiapkan', 'Dalam Perjalanan', 'Tiba di Lokasi', 'Kendaraan Diserahkan', 'Diserahkan ke Pembeli'))) {
+                $stats['perjalanan']++;
                 $latest = $this->Delivery_model->get_latest_tracking($d['id_pengiriman']);
                 if (!$latest) {
                     $latest = array(
@@ -788,7 +832,8 @@ class Admin extends CI_Controller {
 
         echo json_encode(array(
             'status' => 'success',
-            'data' => $active_tracking
+            'data' => $active_tracking,
+            'stats' => $stats
         ));
     }
 
