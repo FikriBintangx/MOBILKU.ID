@@ -528,14 +528,20 @@
     document.getElementById('track-destination-addr').innerText = address;
     document.getElementById('quick-status-select').value = status;
 
-    // Calculate customer destination coordinate based on address text hash
-    let hash = 0;
-    for (let i = 0; i < address.length; i++) {
-      hash = address.charCodeAt(i) + ((hash << 5) - hash);
+    // Calculate customer destination coordinate based on address text or parsed coordinates
+    let destinationCoords = null;
+    const coordMatch = address.match(/Koordinat:\s*(-?\d+\.\d+),\s*(-?\d+\.\d+)/) || address.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+    if (coordMatch) {
+      destinationCoords = [parseFloat(coordMatch[1]), parseFloat(coordMatch[2])];
+    } else {
+      let hash = 0;
+      for (let i = 0; i < address.length; i++) {
+        hash = address.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const latOffset = (hash % 100) / 1500;
+      const lngOffset = ((hash >> 2) % 100) / 1500;
+      destinationCoords = [showroomCoords[0] + latOffset, showroomCoords[1] + lngOffset];
     }
-    const latOffset = (hash % 100) / 1500;
-    const lngOffset = ((hash >> 2) % 100) / 1500;
-    const destinationCoords = [showroomCoords[0] + latOffset, showroomCoords[1] + lngOffset];
 
     // Generate simulation coordinates path (10 steps)
     simSteps = [];

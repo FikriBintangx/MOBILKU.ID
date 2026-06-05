@@ -309,13 +309,19 @@
       let dist = 12.5;
       if (currentItem.latest_location) {
         const clientAddress = currentItem.alamat_tujuan;
-        let hash = 0;
-        for (let i = 0; i < clientAddress.length; i++) {
-          hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+        let customerLocation = null;
+        const coordMatch = clientAddress.match(/Koordinat:\s*(-?\d+\.\d+),\s*(-?\d+\.\d+)/) || clientAddress.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+        if (coordMatch) {
+          customerLocation = [parseFloat(coordMatch[1]), parseFloat(coordMatch[2])];
+        } else {
+          let hash = 0;
+          for (let i = 0; i < clientAddress.length; i++) {
+            hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+          }
+          const latOffset = (hash % 100) / 1500;
+          const lngOffset = ((hash >> 2) % 100) / 1500;
+          customerLocation = [headquarterCoords[0] + latOffset, headquarterCoords[1] + lngOffset];
         }
-        const latOffset = (hash % 100) / 1500;
-        const lngOffset = ((hash >> 2) % 100) / 1500;
-        const customerLocation = [headquarterCoords[0] + latOffset, headquarterCoords[1] + lngOffset];
         
         dist = getDistance(
           parseFloat(currentItem.latest_location.latitude), 
@@ -401,15 +407,20 @@
     // Calculate simulated ETA based on headquarter coordinates
     let dist = 12.5; // fallback
     if (item.latest_location) {
-      // Dummy destination coordinate hash
       const clientAddress = item.alamat_tujuan;
-      let hash = 0;
-      for (let i = 0; i < clientAddress.length; i++) {
-        hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+      let customerLocation = null;
+      const coordMatch = clientAddress.match(/Koordinat:\s*(-?\d+\.\d+),\s*(-?\d+\.\d+)/) || clientAddress.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+      if (coordMatch) {
+        customerLocation = [parseFloat(coordMatch[1]), parseFloat(coordMatch[2])];
+      } else {
+        let hash = 0;
+        for (let i = 0; i < clientAddress.length; i++) {
+          hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const latOffset = (hash % 100) / 1500;
+        const lngOffset = ((hash >> 2) % 100) / 1500;
+        customerLocation = [headquarterCoords[0] + latOffset, headquarterCoords[1] + lngOffset];
       }
-      const latOffset = (hash % 100) / 1500;
-      const lngOffset = ((hash >> 2) % 100) / 1500;
-      const customerLocation = [headquarterCoords[0] + latOffset, headquarterCoords[1] + lngOffset];
       
       dist = getDistance(
         parseFloat(item.latest_location.latitude), 

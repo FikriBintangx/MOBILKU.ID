@@ -308,16 +308,21 @@
     // Pusat showroom DRIVE.X (Start point)
     const startPoint = [-6.200000, 106.816666]; // Jakarta Pusat
     
-    // Dummy target koordinat berdasarkan hash alamat tujuan agar konsisten
-    let hash = 0;
-    for (let i = 0; i < clientAddress.length; i++) {
-      hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+    // Parse koordinat jika alamat menggunakan format "Koordinat: lat, lng"
+    let customerLocation = null;
+    const coordMatch = clientAddress.match(/Koordinat:\s*(-?\d+\.\d+),\s*(-?\d+\.\d+)/) || clientAddress.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+    if (coordMatch) {
+      customerLocation = [parseFloat(coordMatch[1]), parseFloat(coordMatch[2])];
+    } else {
+      // Dummy target koordinat berdasarkan hash alamat tujuan agar konsisten
+      let hash = 0;
+      for (let i = 0; i < clientAddress.length; i++) {
+        hash = clientAddress.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const latOffset = (hash % 100) / 1500;
+      const lngOffset = ((hash >> 2) % 100) / 1500;
+      customerLocation = [startPoint[0] + latOffset, startPoint[1] + lngOffset];
     }
-    const latOffset = (hash % 100) / 1500;
-    const lngOffset = ((hash >> 2) % 100) / 1500;
-    
-    // Koordinat Rumah Pelanggan
-    const customerLocation = [startPoint[0] + latOffset, startPoint[1] + lngOffset];
 
     // Inisialisasi Peta Leaflet (Light Premium Style)
     const map = L.map('map-container').setView(startPoint, 13);

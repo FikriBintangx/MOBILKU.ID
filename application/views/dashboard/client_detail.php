@@ -561,8 +561,13 @@
 
             <!-- Address input wrapper (displayed only if delivery is selected) -->
             <div class="flex flex-col gap-2 hidden" id="addressInputWrapper">
-              <label class="text-neutral-700 font-bold">Alamat Pengiriman Lengkap:</label>
-              <textarea name="delivery_address" placeholder="Tulis alamat rumah lengkap Anda..." class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans p-4 rounded-xl h-24 outline-none resize-none transition-all duration-200"></textarea>
+              <div class="flex justify-between items-center mb-1">
+                <label class="text-neutral-700 font-bold">Alamat Pengiriman Lengkap:</label>
+                <button type="button" onclick="detectUserLocation('locationBtn2', 'deliveryAddressInput2')" id="locationBtn2" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#DADADA] bg-white text-black hover:border-black font-mono text-[9px] font-bold uppercase transition-all shadow-sm">
+                  <i class="fa-solid fa-location-crosshairs text-[10px]"></i> Bagikan Lokasi Saya
+                </button>
+              </div>
+              <textarea name="delivery_address" id="deliveryAddressInput2" placeholder="Tulis alamat rumah lengkap Anda..." class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans p-4 rounded-xl h-24 outline-none resize-none transition-all duration-200"></textarea>
             </div>
 
             <button type="submit" class="w-full text-center py-4 bg-black text-white hover:bg-neutral-800 rounded-xl font-bold uppercase tracking-wider text-[11px] transition-all duration-300 shadow-sm">
@@ -660,12 +665,32 @@
       });
     }
 
+    // Alur Form Serah Terima Setelah STNK Selesai
+    const deliveryTypeSelector = document.getElementById('deliveryTypeSelector');
+    const addressInputWrapper = document.getElementById('addressInputWrapper');
+    const deliveryAddressInput2 = document.getElementById('deliveryAddressInput2');
+
+    if (deliveryTypeSelector) {
+      deliveryTypeSelector.addEventListener('change', function() {
+        if (this.value === 'delivery') {
+          addressInputWrapper.style.display = 'block';
+          deliveryAddressInput2.setAttribute('required', 'required');
+        } else {
+          addressInputWrapper.style.display = 'none';
+          deliveryAddressInput2.removeAttribute('required');
+        }
+      });
+    }
+
     // Trigger initial state checks on load
     if (deliveryTypeSelect) {
       deliveryTypeSelect.dispatchEvent(new Event('change'));
     }
     if (paymentMethodSelect) {
       paymentMethodSelect.dispatchEvent(new Event('change'));
+    }
+    if (deliveryTypeSelector) {
+      deliveryTypeSelector.dispatchEvent(new Event('change'));
     }
 
     // Anime.js interactive Timeline height calculations
@@ -698,9 +723,9 @@
   });
 
   // Geolocation sharing logic using browser API + OSM Nominatim Reverse Geocoding
-  function detectUserLocation() {
-    const btn = document.getElementById('locationBtn');
-    const input = document.getElementById('deliveryAddressInput');
+  function detectUserLocation(btnId = 'locationBtn', inputId = 'deliveryAddressInput') {
+    const btn = document.getElementById(btnId);
+    const input = document.getElementById(inputId);
     
     if (!navigator.geolocation) {
       alert('Browser Anda tidak mendukung fitur Geolocation / GPS.');
@@ -723,7 +748,7 @@
           .then(response => response.json())
           .then(data => {
             if (data && data.display_name) {
-              input.value = data.display_name;
+              input.value = `${data.display_name} (Koordinat: ${lat}, ${lon})`;
               btn.innerHTML = '<i class="fa-solid fa-check text-[10px] text-emerald-600"></i> Lokasi Terisi';
               btn.style.borderColor = '#10b981';
             } else {
