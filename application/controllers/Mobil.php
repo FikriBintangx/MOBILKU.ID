@@ -17,10 +17,14 @@ class Mobil extends CI_Controller {
      * Home / Catalog Landing Page
      */
     public function index() {
-        $data['cars'] = $this->Mobil_model->get_all_cars('available');
+        $this->db->select('*');
+        $this->db->from('cars');
+        $this->db->where_in('status', array('available', 'booked'));
+        $this->db->order_by('created_at', 'DESC');
+        $data['cars'] = $this->db->get()->result_array();
         $data['brands'] = $this->Mobil_model->get_unique_brands();
         $data['types'] = $this->Mobil_model->get_unique_types();
-        $data['title'] = 'MOBILKU - Premium Second-Hand Car Platform';
+        $data['title'] = 'DRIVE.X - Premium Second-Hand Car Platform';
         
         $this->load->view('layout/header', $data);
         $this->load->view('home', $data);
@@ -55,7 +59,7 @@ class Mobil extends CI_Controller {
         }
 
         $data['car'] = $car;
-        $data['title'] = $car['brand'] . ' ' . $car['model'] . ' | MOBILKU';
+        $data['title'] = $car['brand'] . ' ' . $car['model'] . ' | DRIVE.X';
         
         $this->load->view('layout/header', $data);
         $this->load->view('detail', $data);

@@ -3,10 +3,7 @@
 // Hero with dynamic product card slider from DB + filter + catalog grid
 ?>
 <!-- DRIVE.X Hero Section with Dynamic Product Card Slider -->
-<section id="beranda" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative overflow-hidden" data-aos="fade-down">
-  <div class="absolute inset-x-0 top-0 h-[1px] bg-[#EAEAEA]"></div>
-  <div class="absolute inset-y-0 left-0 w-[1px] bg-[#EAEAEA] hidden lg:block"></div>
-  <div class="absolute inset-y-0 right-0 w-[1px] bg-[#EAEAEA] hidden lg:block"></div>
+<section id="beranda" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative" data-aos="fade-down">
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative py-8">
 
@@ -94,16 +91,16 @@
                 <span class="text-[9px] font-mono text-black dot-matrix font-semibold blink-dot">● <?php echo $sc['year']; ?></span>
               </div>
 
-              <!-- SUBHEADER: Model Name + Year Number -->
+              <!-- SUBHEADER: Model Name + OTR Price -->
               <div class="grid grid-cols-2 items-start px-5 pb-3">
                 <div>
                   <p class="text-[7px] font-mono text-[#AAAAAA] tracking-[0.18em] uppercase mb-0.5">MODEL</p>
                   <h3 class="font-display font-extrabold text-[18px] text-black leading-none tracking-tight uppercase"><?php echo strtoupper($sc['brand']); ?>-<?php echo strtoupper(strtok($sc['model'], ' ')); ?></h3>
                   <p class="text-[8px] font-mono text-[#AAAAAA] mt-1 uppercase tracking-widest"><?php echo strtoupper($sc['type']); ?></p>
                 </div>
-                <div class="text-right self-end">
-                  <p class="text-[7px] font-mono text-[#AAAAAA] tracking-[0.18em] uppercase mb-0.5">YEAR</p>
-                  <span class="font-matrix font-bold text-[22px] text-black tracking-wider"><?php echo $sc['year']; ?></span>
+                <div class="text-right">
+                  <p class="text-[7px] font-mono text-[#AAAAAA] tracking-[0.18em] uppercase mb-0.5">OTR PRICE</p>
+                  <span class="font-matrix font-bold text-[22px] text-black tracking-wider">Rp <?php echo number_format($sc['price']/1000000, 0, ',', '.'); ?>M</span>
                 </div>
               </div>
 
@@ -188,8 +185,13 @@
                     <span class="text-[7px] font-mono text-[#AAAAAA] uppercase tracking-[0.15em]">STATUS</span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-black inline-block blink-dot"></span>
-                    <span class="font-mono font-bold text-black text-[10px] tracking-widest uppercase">AVAILABLE</span>
+                    <?php if ($sc['status'] === 'booked'): ?>
+                      <span class="w-2 h-2 rounded-full bg-blue-500 inline-block blink-dot"></span>
+                      <span class="font-mono font-bold text-blue-600 text-[10px] tracking-widest uppercase">BOOKED</span>
+                    <?php else: ?>
+                      <span class="w-2 h-2 rounded-full bg-black inline-block blink-dot"></span>
+                      <span class="font-mono font-bold text-black text-[10px] tracking-widest uppercase">AVAILABLE</span>
+                    <?php endif; ?>
                   </div>
                 </div>
                 <div class="flex flex-col items-end gap-1.5">
@@ -205,13 +207,7 @@
                 </div>
               </div>
 
-              <!-- Price overlay badge -->
-              <div class="absolute top-[72px] right-4">
-                <span class="text-[8px] font-mono text-[#666666] block text-right mb-0.5">OTR PRICE</span>
-                <div class="bg-black text-white rounded-full px-3 py-1">
-                  <span class="text-[10px] font-mono font-bold">Rp <?php echo number_format($sc['price']/1000000, 0, ',', '.'); ?>M</span>
-                </div>
-              </div>
+
 
             </div>
           </div>
@@ -478,9 +474,18 @@
       <!-- Keyword Search -->
       <div class="flex flex-col gap-2 lg:col-span-2">
         <label class="text-[10px] text-[#666666] font-mono tracking-wider uppercase">Cari Kata Kunci</label>
-        <div class="relative">
-          <input type="text" id="filterSearch" placeholder="Cari Civic, Avanza, Fortuner..." class="w-full cyber-input text-xs pr-10">
-          <i class="fa-solid fa-search absolute right-4 top-4.5 text-[#999999] text-xs"></i>
+        <div class="relative search-bar-container group">
+          <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <i class="fa-solid fa-magnifying-glass search-icon text-[#999999] text-xs transition-colors duration-300"></i>
+          </div>
+          <input type="text" id="filterSearch" placeholder="Cari Civic, Avanza, Fortuner..." class="w-full cyber-input text-xs pl-10 pr-10 transition-all duration-300 focus:shadow-[0_8px_30px_rgba(0,0,0,0.06)]" autocomplete="off">
+          <button type="button" id="clearSearchBtn" class="absolute inset-y-0 right-4 flex items-center text-[#999999] hover:text-black opacity-0 pointer-events-none transition-all duration-200">
+            <i class="fa-solid fa-circle-xmark text-xs"></i>
+          </button>
+          
+          <!-- Floating Suggestions Box -->
+          <div id="searchSuggestions" class="absolute left-0 right-0 mt-2 bg-white/95 backdrop-blur-md border border-[#EAEAEA] rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.08)] overflow-hidden hidden z-50 transition-all duration-300">
+          </div>
         </div>
       </div>
     </form>
@@ -490,11 +495,11 @@
 <!-- Cars Catalog Grid Section (Framer & Nothing OS 3-Column layout) -->
 <section id="katalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32" data-aos="fade-up">
   <div class="flex items-center justify-between mb-8 pb-4 border-b border-[#EAEAEA]">
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 flex-wrap">
       <i class="fa-solid fa-cube text-black"></i>
       <h3 class="font-display font-bold text-lg text-black">DAFTAR KATALOG AKTIF</h3>
+      <span class="text-[10px] font-mono text-[#666666] bg-white border border-[#EAEAEA] px-3 py-1 rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.02)]" id="carsCount">Menampilkan <?php echo count($cars); ?> unit</span>
     </div>
-    <span class="text-xs font-mono text-[#666666]" id="carsCount">Menampilkan <?php echo count($cars); ?> unit</span>
   </div>
 
   <!-- Responsive grid layout -->
@@ -536,7 +541,11 @@
             </div>
             <div>
               <span class="text-[#999999] block text-[8px] uppercase">STATUS</span>
-              <span class="text-black font-semibold dot-matrix blink-dot">● AVAILABLE</span>
+              <?php if ($car['status'] === 'booked'): ?>
+                <span class="text-blue-600 font-semibold dot-matrix blink-dot">● BOOKED</span>
+              <?php else: ?>
+                <span class="text-black font-semibold dot-matrix blink-dot">● AVAILABLE</span>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -561,19 +570,6 @@
 <!-- Homepage Animation & Filter Scripts -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    startAuto();
-  }
-  
-  // Initialize slider with CoverFlow positions instantly
-  showSlide(0, 1, true);
-
-  // Restart auto on hover out
-  const wrapper = document.getElementById('carSliderWrapper');
-  if(wrapper) {
-      wrapper.addEventListener('mouseenter', () => clearInterval(autoTimer));
-      wrapper.addEventListener('mouseleave', () => startAuto());
-  }
-
     // Setup AJAX grid filtering
     const filterBrand  = document.getElementById('filterBrand');
     const filterType   = document.getElementById('filterType');
@@ -583,7 +579,116 @@
     const carsCount    = document.getElementById('carsCount');
 
     [filterBrand, filterType, filterPrice].forEach(el => el && el.addEventListener('change', runFilter));
-    if (filterSearch) filterSearch.addEventListener('input', debounce(runFilter, 300));
+    
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    if (filterSearch) {
+      filterSearch.addEventListener('input', debounce(runFilter, 300));
+      filterSearch.addEventListener('input', function() {
+        if (this.value.length > 0) {
+          clearSearchBtn.classList.remove('opacity-0', 'pointer-events-none');
+          clearSearchBtn.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+          clearSearchBtn.classList.remove('opacity-100', 'pointer-events-auto');
+          clearSearchBtn.classList.add('opacity-0', 'pointer-events-none');
+        }
+      });
+    }
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    if (filterSearch && searchSuggestions) {
+      filterSearch.addEventListener('input', debounce(function() {
+        const query = filterSearch.value.trim();
+        if (query.length === 0) {
+          searchSuggestions.innerHTML = '';
+          searchSuggestions.classList.add('hidden');
+          return;
+        }
+
+        fetch(`<?php echo base_url('mobil/filter'); ?>?search=${encodeURIComponent(query)}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.length === 0) {
+              searchSuggestions.innerHTML = `
+                <div class="p-5 text-center text-xs text-[#999999]">
+                  <i class="fa-solid fa-car-burst mb-2 text-base block text-neutral-400"></i>
+                  Tidak ada unit mobil ditemukan
+                </div>
+              `;
+              searchSuggestions.classList.remove('hidden');
+              return;
+            }
+
+            const suggestions = data.slice(0, 5);
+            let html = `
+              <div class="px-4 py-2.5 border-b border-[#F0F0F0] bg-[#FAFAFA]/80 flex items-center justify-between">
+                <span class="text-[9px] font-mono font-bold tracking-widest text-[#999999]">REKOMENDASI MOBIL</span>
+                <span class="text-[8px] font-mono text-[#999999]">${data.length} unit</span>
+              </div>
+              <div class="flex flex-col p-2 gap-1.5">
+            `;
+            
+            suggestions.forEach(car => {
+              const formattedPrice = new Intl.NumberFormat('id-ID', {
+                style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0
+              }).format(car.price).replace("Rp", "Rp ") + ",-";
+
+              const imgHtml = car.image_url
+                ? `<img src="<?php echo base_url('uploads/'); ?>${car.image_url}" alt="${car.brand} ${car.model}" class="h-10 w-auto object-contain">`
+                : `<i class="fa-solid fa-car-side text-black/20 text-xl"></i>`;
+
+              html += `
+                <div class="flex items-center justify-between p-2.5 rounded-xl hover:bg-neutral-50 border border-transparent hover:border-[#EAEAEA] transition-all duration-300">
+                  <div class="flex items-center gap-3.5 min-w-0">
+                    <div class="w-16 h-12 bg-[#F5F5F5] rounded-lg overflow-hidden flex items-center justify-center border border-[#EAEAEA] flex-shrink-0">
+                      ${imgHtml}
+                    </div>
+                    <div class="min-w-0">
+                      <span class="text-[8px] font-mono text-[#999999] uppercase tracking-wider block mb-0.5">${car.brand}</span>
+                      <h5 class="text-xs font-bold text-black truncate leading-tight">${car.model}</h5>
+                      <span class="text-[10px] font-mono font-semibold text-black/75 mt-0.5 block">${formattedPrice}</span>
+                    </div>
+                  </div>
+                  <a href="<?php echo base_url('mobil/detail/'); ?>${car.id}" class="flex-shrink-0 ml-3 px-4 py-2 rounded-full bg-black text-white hover:bg-neutral-800 text-[9px] font-mono font-bold tracking-wider uppercase transition-all duration-200 shadow-sm flex items-center gap-1.5">
+                    <span>Detail</span>
+                    <i class="fa-solid fa-arrow-right text-[7px]"></i>
+                  </a>
+                </div>
+              `;
+            });
+            
+            html += `</div>`;
+            
+            searchSuggestions.innerHTML = html;
+            searchSuggestions.classList.remove('hidden');
+          })
+          .catch(() => {});
+      }, 250));
+
+      document.addEventListener('click', function(e) {
+        if (!filterSearch.contains(e.target) && !searchSuggestions.contains(e.target)) {
+          searchSuggestions.classList.add('hidden');
+        }
+      });
+
+      filterSearch.addEventListener('focus', function() {
+        if (this.value.trim().length > 0) {
+          searchSuggestions.classList.remove('hidden');
+        }
+      });
+    }
+
+    if (clearSearchBtn && filterSearch) {
+      clearSearchBtn.addEventListener('click', function() {
+        filterSearch.value = '';
+        clearSearchBtn.classList.remove('opacity-100', 'pointer-events-auto');
+        clearSearchBtn.classList.add('opacity-0', 'pointer-events-none');
+        if (searchSuggestions) {
+          searchSuggestions.innerHTML = '';
+          searchSuggestions.classList.add('hidden');
+        }
+        filterSearch.focus();
+        runFilter();
+      });
+    }
 
     function runFilter() {
       const brand     = filterBrand ? filterBrand.value : '';
@@ -650,7 +755,9 @@
                 </div>
                 <div>
                   <span class="text-[#999999] block text-[8px] uppercase">STATUS</span>
-                  <span class="text-black font-semibold dot-matrix blink-dot">● AVAILABLE</span>
+                  ${car.status === 'booked' 
+                    ? `<span class="text-blue-600 font-semibold dot-matrix blink-dot">● BOOKED</span>` 
+                    : `<span class="text-black font-semibold dot-matrix blink-dot">● AVAILABLE</span>`}
                 </div>
               </div>
             </div>

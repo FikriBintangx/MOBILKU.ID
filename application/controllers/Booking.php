@@ -64,9 +64,14 @@ class Booking extends CI_Controller {
     public function pay_booking_fee_sim($booking_id) {
         $booking = $this->Booking_model->get_booking_by_id($booking_id);
         if (!$booking) show_404();
+        if ($booking['status'] === 'cancelled') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Transaksi ini telah dibatalkan/dikunci.');
+            redirect('booking/detail/' . $booking_id);
+            return;
+        }
 
         $data['booking'] = $booking;
-        $data['title'] = 'Bayar Bukti Pesanan | MOBILKU';
+        $data['title'] = 'Bayar Bukti Pesanan | DRIVE.X';
 
         $this->load->view('layout/header', $data);
         $this->load->view('booking_fee_payment', $data);
@@ -77,13 +82,26 @@ class Booking extends CI_Controller {
      * Process simulated payment of booking fee
      */
     public function process_booking_fee($booking_id) {
-        $method = $this->input->post('method');
-        $bank = $this->input->post('bank_name');
-        $account = $this->input->post('bank_account');
-        $holder = $this->input->post('bank_holder');
+        $booking = $this->Booking_model->get_booking_by_id($booking_id);
+        if (!$booking || $booking['status'] === 'cancelled') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Transaksi ini telah dibatalkan/dikunci.');
+            redirect('booking/dashboard');
+            return;
+        }
 
-        // Simulated file upload or placeholder
-        $evidence = 'booking_fee_' . $booking_id . '.png';
+        $method = $this->input->post('method');
+        
+        if ($method === 'cash') {
+            $bank = 'CASH / COD';
+            $account = '-';
+            $holder = 'Bayar di Tempat';
+            $evidence = 'cash_payment_placeholder.png';
+        } else {
+            $bank = $this->input->post('bank_name');
+            $account = $this->input->post('bank_account');
+            $holder = $this->input->post('bank_holder');
+            $evidence = 'booking_fee_' . $booking_id . '.png';
+        }
 
         // Log payment ticket
         $payment_id = $this->Booking_model->log_payment(
@@ -112,7 +130,7 @@ class Booking extends CI_Controller {
         $this->load->model('Sourcing_model');
         $data['bookings'] = $this->Booking_model->get_user_bookings($user_id);
         $data['sourcing'] = $this->Sourcing_model->get_sourcing_by_user($user_id);
-        $data['title'] = 'Portal Pelanggan | MOBILKU';
+        $data['title'] = 'Portal Pelanggan | DRIVE.X';
 
         $this->load->view('layout/header', $data);
         $this->load->view('dashboard/client', $data);
@@ -135,6 +153,19 @@ class Booking extends CI_Controller {
         $data['booking'] = $this->Booking_model->get_booking_by_id($id);
         $data['payments'] = $this->db->get_where('payments', array('booking_id' => $id))->result_array();
         $data['documents'] = $this->db->get_where('documents', array('booking_id' => $id))->result_array();
+        
+        // Fetch courier delivery proof details
+        $this->load->model('Delivery_model');
+        $this->db->select('id_pengiriman');
+        $this->db->from('pengiriman');
+        $this->db->where('id_transaksi', $id);
+        $p_row = $this->db->get()->row_array();
+        
+        $data['delivery'] = null;
+        if ($p_row) {
+            $data['delivery'] = $this->Delivery_model->get_delivery_by_id($p_row['id_pengiriman']);
+        }
+        
         $data['title'] = 'Lacak Pesanan #' . $booking['booking_code'];
 
         $this->load->view('layout/header', $data);
@@ -148,6 +179,11 @@ class Booking extends CI_Controller {
     public function submit_dp_ktp($booking_id) {
         $booking = $this->Booking_model->get_booking_by_id($booking_id);
         if (!$booking) show_404();
+        if ($booking['status'] === 'cancelled') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Transaksi ini telah dibatalkan/dikunci.');
+            redirect('booking/detail/' . $booking_id);
+            return;
+        }
 
         // Configure upload settings
         $config['upload_path']   = './uploads/';
@@ -194,6 +230,11 @@ class Booking extends CI_Controller {
     public function submit_final_payment($booking_id) {
         $booking = $this->Booking_model->get_booking_by_id($booking_id);
         if (!$booking) show_404();
+        if ($booking['status'] === 'cancelled') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Transaksi ini telah dibatalkan/dikunci.');
+            redirect('booking/detail/' . $booking_id);
+            return;
+        }
 
         // 1. Simpan tipe serah terima (Ambil / Kirim)
         $delivery_type = $this->input->post('delivery_type');
@@ -269,6 +310,13 @@ class Booking extends CI_Controller {
      * Configure delivery parameters once Pelunasan and STNK are ready
      */
     public function submit_delivery($booking_id) {
+        $booking = $this->Booking_model->get_booking_by_id($booking_id);
+        if (!$booking || $booking['status'] === 'cancelled') {
+            $this->session->set_flashdata('error', 'Akses Dibatasi: Transaksi ini telah dibatalkan/dikunci.');
+            redirect('booking/detail/' . $booking_id);
+            return;
+        }
+
         $type = $this->input->post('delivery_type');
         $address = $this->input->post('delivery_address');
 

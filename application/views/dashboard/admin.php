@@ -1,7 +1,7 @@
 <!-- 06. DASHBOARD ADMIN WIREFRAME REDESIGN (Framer x Nothing OS Monochrome Layout) -->
 <style>
-  body {
-    background-image: url('<?php echo base_url("assets/images/bg2.png"); ?>');
+  html {
+    background-image: url('<?php echo base_url("assets/images/bg2.png"); ?>') !important;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -655,10 +655,17 @@
                           <div class="flex items-center gap-2 flex-wrap">
                             <span class="font-bold text-black text-[10.5px]"><?php echo $pay['payment_code']; ?></span>
                             <span class="px-2 py-0.5 rounded-full border border-black/10 text-[8px] text-black font-bold uppercase bg-white"><?php echo strtoupper(str_replace('_', ' ', $pay['payment_type'])); ?></span>
+                            <span class="px-2 py-0.5 rounded-full border <?php echo ($pay['payment_method'] ?? 'transfer') === 'cash' ? 'border-amber-200 text-amber-800 bg-amber-50' : 'border-blue-200 text-blue-800 bg-blue-50'; ?> text-[8px] font-bold uppercase">
+                              <?php echo ($pay['payment_method'] ?? 'transfer') === 'cash' ? 'BAYAR DI TEMPAT' : 'BAYAR VIA TRANSFER'; ?>
+                            </span>
                             <span class="text-[9px] text-[#999]"><?php echo date('d M Y - H:i', strtotime($pay['created_at'])); ?></span>
                           </div>
                           <div class="text-[#666666] text-[11px]">
-                            Pengirim: <strong class="text-black font-sans"><?php echo $pay['bank_holder']; ?></strong> (<?php echo strtoupper($pay['bank_name']); ?>) | 
+                            <?php if (($pay['payment_method'] ?? 'transfer') === 'cash'): ?>
+                              Keterangan: <strong class="text-black font-sans">Bayar Cash / Pembayaran di Tempat</strong> | 
+                            <?php else: ?>
+                              Pengirim: <strong class="text-black font-sans"><?php echo $pay['bank_holder']; ?></strong> (<?php echo strtoupper($pay['bank_name']); ?>) | 
+                            <?php endif; ?>
                             Jumlah: <strong class="text-black font-sans font-bold">Rp <?php echo number_format($pay['amount'], 0, ',', '.'); ?></strong>
                           </div>
                         </div>

@@ -1,4 +1,4 @@
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center" data-aos="fade-up">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 text-center" data-aos="fade-up">
   
   <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/10 bg-[#F5F5F5] text-xs text-black font-mono tracking-widest uppercase mb-6 stagger-card">
     <i class="fa-solid fa-tags"></i> PENYEDIAAN KENDARAAN (CAR SOURCING)

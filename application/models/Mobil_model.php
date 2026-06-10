@@ -50,7 +50,7 @@ class Mobil_model extends CI_Model {
     public function filter_cars($brand = '', $type = '', $min_price = 0, $max_price = 0, $search = '') {
         $this->db->select('*');
         $this->db->from('cars');
-        $this->db->where('status', 'available');
+        $this->db->where_in('status', array('available', 'booked'));
 
         if (!empty($brand)) {
             $this->db->where('brand', $brand);

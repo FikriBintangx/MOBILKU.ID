@@ -1,6 +1,6 @@
 <style>
-  body {
-    background-image: url('<?php echo base_url("assets/images/bg1.png"); ?>');
+  html {
+    background-image: url('<?php echo base_url("assets/images/bg1.png"); ?>') !important;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -194,8 +194,31 @@
           <label for="select-all-cb" class="text-xs font-mono font-bold text-black cursor-pointer">Pilih Semua</label>
           <span id="selected-count-badge" class="px-2 py-0.5 bg-black text-white text-[9px] font-mono font-bold rounded-full hidden">0 dipilih</span>
         </div>
-        <div id="heading-label" class="flex items-center gap-2 font-display font-extrabold text-sm tracking-wider text-black uppercase stagger-card">
-          <i class="fa-solid fa-clock-rotate-left"></i> DAFTAR TRANSAKSI AKTIF
+        <div id="heading-label" class="flex flex-col gap-2 stagger-card">
+          <div class="flex items-center gap-2 font-display font-extrabold text-sm tracking-wider text-black uppercase">
+            <i class="fa-solid fa-clock-rotate-left"></i> DAFTAR TRANSAKSI AKTIF
+          </div>
+          <p class="text-[11px] text-neutral-600 font-sans">
+            Berikut adalah daftar transaksi pembelian mobil bekas Anda. Penjelasan status transaksi Anda:
+          </p>
+          <div class="flex flex-wrap gap-4 text-[9px] font-mono text-neutral-500 mt-1 border-t border-[#EAEAEA] pt-2">
+            <div class="flex items-start gap-1.5 max-w-[250px]">
+              <span class="px-1.5 py-0.5 rounded text-[8px] font-bold bg-blue-50 text-blue-800 border border-blue-200">DIPESAN</span>
+              <span>Menunggu pembayaran Booking Fee untuk mengunci ketersediaan unit mobil.</span>
+            </div>
+            <div class="flex items-start gap-1.5 max-w-[250px]">
+              <span class="px-1.5 py-0.5 rounded text-[8px] font-bold bg-purple-50 text-purple-800 border border-purple-200">AKTIF</span>
+              <span>Booking Fee terverifikasi. Transaksi dalam proses pengurusan (DP, Dokumen, Pelunasan).</span>
+            </div>
+            <div class="flex items-start gap-1.5 max-w-[250px]">
+              <span class="px-1.5 py-0.5 rounded text-[8px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">SELESAI</span>
+              <span>Mobil diserahterimakan dan dokumen BPKB telah diserahkan secara resmi.</span>
+            </div>
+            <div class="flex items-start gap-1.5 max-w-[250px]">
+              <span class="px-1.5 py-0.5 rounded text-[8px] font-bold bg-red-50 text-red-800 border border-red-200">DIBATALKAN</span>
+              <span>Pesanan dibatalkan (Booking Fee hangus jika dibatalkan lebih dari 1 minggu).</span>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Cancel select mode button -->
@@ -254,7 +277,13 @@
                       elseif ($b['status'] === 'active') echo 'bg-purple-50 text-purple-800 border-purple-200';
                       elseif ($b['status'] === 'completed') echo 'bg-emerald-50 text-emerald-800 border-emerald-200';
                       else echo 'bg-red-50 text-red-800 border-red-200';
-                    ?>"><?php echo strtoupper($b['status']); ?></span>
+                    ?>"><?php 
+                      if ($b['status'] === 'ordered') echo 'DIPESAN';
+                      elseif ($b['status'] === 'active') echo 'AKTIF';
+                      elseif ($b['status'] === 'completed') echo 'SELESAI';
+                      elseif ($b['status'] === 'cancelled') echo 'DIBATALKAN';
+                      else echo strtoupper($b['status']);
+                    ?></span>
                   </div>
                   <h3 class="font-display font-extrabold text-xl text-black transition-colors">
                     <?php echo $b['brand'] . ' ' . $b['model']; ?>
@@ -594,8 +623,8 @@
 </div>
 
 <!-- ===== DELETE CONFIRM MODAL ===== -->
-<div id="delete-confirm-overlay" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,0.3);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(16px);">
-  <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(32px);width:90%;max-width:380px;border-radius:32px;padding:28px;box-shadow:0 12px 40px rgba(0,0,0,0.08);border:1px solid rgba(255,255,255,0.5);position:relative;transform:translateY(20px);opacity:0;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);" id="delete-confirm-modal">
+<div id="delete-confirm-overlay" onclick="handleModalBackdropClick(event)" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
+  <div style="background:#fff;width:90%;max-width:380px;border-radius:32px;padding:28px;box-shadow:0 32px 80px rgba(0,0,0,0.18);border:1px solid #EAEAEA;position:relative;" id="delete-confirm-box">
     
     <!-- Dot matrix decoration -->
     <div style="position:absolute;inset:0;border-radius:32px;overflow:hidden;pointer-events:none;opacity:0.025;background-image:radial-gradient(#000 1.2px, transparent 1.2px);background-size:14px 14px;"></div>
@@ -755,8 +784,8 @@
     if (count === 0) return;
     updateSelectedCount();
 
-    const modal = document.getElementById('delete-confirm-modal');
-    modal.classList.add('open');
+    const overlay = document.getElementById('delete-confirm-overlay');
+    overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
     if (typeof anime !== 'undefined') {
@@ -772,9 +801,9 @@
   }
 
   function closeDeleteConfirm() {
-    const modal = document.getElementById('delete-confirm-modal');
+    const overlay = document.getElementById('delete-confirm-overlay');
     const box = document.getElementById('delete-confirm-box');
-    if (typeof anime !== 'undefined') {
+    if (typeof anime !== 'undefined' && box) {
       anime({
         targets: box,
         opacity: [1, 0],
@@ -782,18 +811,18 @@
         easing: 'easeInQuad',
         duration: 220,
         complete: () => {
-          modal.classList.remove('open');
+          overlay.style.display = 'none';
           document.body.style.overflow = '';
         }
       });
     } else {
-      modal.classList.remove('open');
+      overlay.style.display = 'none';
       document.body.style.overflow = '';
     }
   }
 
   function handleModalBackdropClick(event) {
-    if (event.target === document.getElementById('delete-confirm-modal')) {
+    if (event.target === document.getElementById('delete-confirm-overlay')) {
       closeDeleteConfirm();
     }
   }

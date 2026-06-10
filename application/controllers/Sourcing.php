@@ -17,7 +17,7 @@ class Sourcing extends CI_Controller {
      * Display Sell Car landing lead form
      */
     public function index() {
-        $data['title'] = 'Jual Mobil Anda | MOBILKU Sourcing';
+        $data['title'] = 'Jual Mobil Anda | DRIVE.X Sourcing';
         
         $this->load->view('layout/header', $data);
         $this->load->view('sourcing_form', $data);

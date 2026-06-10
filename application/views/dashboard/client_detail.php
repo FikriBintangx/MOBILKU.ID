@@ -73,6 +73,7 @@
     }
     $pre_bank = $bf_payment ? $bf_payment['bank_name'] : '';
     $pre_holder = $bf_payment ? $bf_payment['bank_holder'] : '';
+    $bf_method = $bf_payment ? $bf_payment['payment_method'] : 'transfer';
   ?>
 
   <!-- Header Order info -->
@@ -88,7 +89,13 @@
         elseif ($booking['status'] === 'active') echo 'bg-purple-50 text-purple-800 border border-purple-200';
         elseif ($booking['status'] === 'completed') echo 'bg-emerald-50 text-emerald-800 border border-emerald-200';
         else echo 'bg-red-50 text-red-800 border border-red-200';
-      ?>"><?php echo strtoupper($booking['status']); ?></span>
+      ?>"><?php 
+        if ($booking['status'] === 'ordered') echo 'DIPESAN';
+        elseif ($booking['status'] === 'active') echo 'AKTIF';
+        elseif ($booking['status'] === 'completed') echo 'SELESAI';
+        elseif ($booking['status'] === 'cancelled') echo 'DIBATALKAN';
+        else echo strtoupper($booking['status']);
+      ?></span>
       
       <!-- Cancel action if applicable -->
       <?php if (!in_array($booking['status'], array('cancelled', 'completed'))): ?>
@@ -218,17 +225,29 @@
               <div class="grid grid-cols-2 gap-4 mt-3 bg-neutral-50 p-4 rounded-2xl border border-[#EAEAEA] font-mono text-[10px]">
                 <div class="flex flex-col gap-1">
                   <span class="text-neutral-500 uppercase font-semibold">Status STNK (2 Minggu):</span>
-                  <span class="<?php echo ($booking['stnk_status'] === 'completed') ? 'text-emerald-700' : 'text-blue-700 animate-pulse'; ?> font-bold text-xs">
-                    <i class="<?php echo ($booking['stnk_status'] === 'completed') ? 'fa-solid fa-circle-check' : 'fa-solid fa-arrows-spin animate-spin'; ?> mr-1.5"></i>
-                    <?php echo ($booking['stnk_status'] === 'completed') ? 'SELESAI' : 'PROSES PEMBUATAN'; ?>
-                  </span>
+                  <?php if ($booking['dp_status'] !== 'paid'): ?>
+                    <span class="text-neutral-400 font-bold text-xs">
+                      <i class="fa-solid fa-lock mr-1.5"></i> BELUM DIMULAI (MENUNGGU DP)
+                    </span>
+                  <?php else: ?>
+                    <span class="<?php echo ($booking['stnk_status'] === 'completed') ? 'text-emerald-700' : 'text-blue-700 animate-pulse'; ?> font-bold text-xs">
+                      <i class="<?php echo ($booking['stnk_status'] === 'completed') ? 'fa-solid fa-circle-check' : 'fa-solid fa-arrows-spin animate-spin'; ?> mr-1.5"></i>
+                      <?php echo ($booking['stnk_status'] === 'completed') ? 'SELESAI' : 'PROSES PEMBUATAN'; ?>
+                    </span>
+                  <?php endif; ?>
                 </div>
                 <div class="flex flex-col gap-1">
                   <span class="text-neutral-500 uppercase font-semibold">Status BPKB (2 Bulan):</span>
-                  <span class="<?php echo ($booking['bpkb_status'] === 'completed') ? 'text-emerald-700' : 'text-blue-700 animate-pulse'; ?> font-bold text-xs">
-                    <i class="<?php echo ($booking['bpkb_status'] === 'completed') ? 'fa-solid fa-circle-check' : 'fa-solid fa-arrows-spin animate-spin'; ?> mr-1.5"></i>
-                    <?php echo ($booking['bpkb_status'] === 'completed') ? 'SELESAI' : 'PROSES KEPOLISIAN'; ?>
-                  </span>
+                  <?php if ($booking['dp_status'] !== 'paid'): ?>
+                    <span class="text-neutral-400 font-bold text-xs">
+                      <i class="fa-solid fa-lock mr-1.5"></i> BELUM DIMULAI (MENUNGGU DP)
+                    </span>
+                  <?php else: ?>
+                    <span class="<?php echo ($booking['bpkb_status'] === 'completed') ? 'text-emerald-700' : 'text-blue-700 animate-pulse'; ?> font-bold text-xs">
+                      <i class="<?php echo ($booking['bpkb_status'] === 'completed') ? 'fa-solid fa-circle-check' : 'fa-solid fa-arrows-spin animate-spin'; ?> mr-1.5"></i>
+                      <?php echo ($booking['bpkb_status'] === 'completed') ? 'SELESAI' : 'PROSES KEPOLISIAN'; ?>
+                    </span>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -286,6 +305,59 @@
                         <i class="fa-solid fa-location-crosshairs text-[8px] animate-pulse"></i> Lacak Pengiriman
                       </a>
                     </div>
+
+                    <!-- Delivery details, Surat Jalan & Proof -->
+                    <?php if (isset($delivery) && !empty($delivery)): ?>
+                      <div class="mt-4 pt-4 border-t border-dashed border-[#EAEAEA] space-y-4">
+                        <div class="flex items-center justify-between">
+                          <span class="text-neutral-500 font-mono text-[9px] uppercase font-semibold">Dokumen Pengiriman:</span>
+                          <a href="<?php echo base_url('admin/surat_jalan/' . $booking['id']); ?>" target="_blank" class="flex items-center gap-1 text-[9px] font-bold text-black hover:underline">
+                            <i class="fa-solid fa-file-pdf text-[10px]"></i> Lihat Surat Jalan (SJ)
+                          </a>
+                        </div>
+
+                        <?php if (!empty($delivery['foto_serah_terima'])): ?>
+                          <div class="bg-neutral-50 rounded-2xl border border-[#EAEAEA] p-4 space-y-3 font-mono text-[10px] text-[#666666]">
+                            <span class="text-black font-bold uppercase text-[9px] flex items-center gap-1.5">
+                              <i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i> BUKTI SERAH TERIMA UNIT (DARI KURIR)
+                            </span>
+                            <div class="grid grid-cols-3 gap-3">
+                              <!-- Handover Photo -->
+                              <div class="space-y-1">
+                                <span class="text-[#999999] block text-[8px] uppercase">Foto Serah Terima:</span>
+                                <div class="h-20 rounded-lg overflow-hidden bg-neutral-200 border border-[#EAEAEA]">
+                                  <a href="<?php echo base_url('uploads/' . $delivery['foto_serah_terima']); ?>" target="_blank">
+                                    <img src="<?php echo base_url('uploads/' . $delivery['foto_serah_terima']); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- Car Condition Photo -->
+                              <div class="space-y-1">
+                                <span class="text-[#999999] block text-[8px] uppercase">Kondisi Mobil:</span>
+                                <div class="h-20 rounded-lg overflow-hidden bg-neutral-200 border border-[#EAEAEA]">
+                                  <a href="<?php echo base_url('uploads/' . $delivery['foto_kendaraan']); ?>" target="_blank">
+                                    <img src="<?php echo base_url('uploads/' . $delivery['foto_kendaraan']); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- Signature Photo -->
+                              <div class="space-y-1">
+                                <span class="text-[#999999] block text-[8px] uppercase">Tanda Tangan:</span>
+                                <div class="h-20 rounded-lg overflow-hidden bg-neutral-200 border border-[#EAEAEA] p-1 flex items-center justify-center">
+                                  <a href="<?php echo base_url('uploads/' . $delivery['tanda_tangan_penerima']); ?>" target="_blank">
+                                    <img src="<?php echo base_url('uploads/' . $delivery['tanda_tangan_penerima']); ?>" class="max-w-full max-h-full object-contain hover:scale-105 transition-transform">
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="text-[8px] text-[#999999] pt-1 border-t border-[#EAEAEA] flex justify-between">
+                              <span>WAKTU UPLOAD:</span>
+                              <span class="text-black font-semibold"><?php echo date('d M Y - H:i', strtotime($delivery['waktu_upload'])); ?> WIB</span>
+                            </div>
+                          </div>
+                        <?php endif; ?>
+                      </div>
+                    <?php endif; ?>
                   <?php endif; ?>
                 </div>
                 <?php endif; ?>
@@ -338,7 +410,7 @@
       ?>
 
       <!-- Dynamic Form: DP and KTP Upload -->
-      <?php if ($booking['dp_status'] === 'unpaid' && $booking['status'] !== 'cancelled'): ?>
+      <?php if ($booking['booking_fee_status'] === 'paid' && $booking['dp_status'] === 'unpaid' && $booking['status'] !== 'cancelled'): ?>
         <?php if ($dp_pending): ?>
           <div class="bg-white border border-[#EAEAEA] rounded-[28px] p-8 shadow-[0_4px_30px_rgba(0,0,0,0.02)] relative overflow-hidden stagger-card">
             <div class="absolute inset-0 opacity-[0.015] pointer-events-none" style="background-image: radial-gradient(#000 1.2px, transparent 1.2px); background-size: 12px 12px;"></div>
@@ -381,39 +453,42 @@
               <!-- Payment method -->
               <div class="flex flex-col gap-2">
                 <label class="text-neutral-700 font-bold">Metode Pembayaran:</label>
-                <select name="method" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans px-4 py-3.5 rounded-xl transition-all duration-200 outline-none">
-                  <option value="transfer">Transfer Bank</option>
-                  <option value="cash">Tunai (Showroom)</option>
+                <select name="method" id="dpPaymentMethodSelect" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans px-4 py-3.5 rounded-xl transition-all duration-200 outline-none">
+                  <option value="transfer" <?php echo ($bf_method === 'transfer') ? 'selected' : ''; ?>>Transfer Bank</option>
+                  <option value="cash" <?php echo ($bf_method === 'cash') ? 'selected' : ''; ?>>Tunai (Showroom)</option>
                 </select>
               </div>
 
-              <!-- Bank account specs for transfer -->
-              <div onclick="window.copyTextToClipboard('1230009871111', this)" class="copy-tooltip p-4 bg-neutral-50 rounded-2xl border border-[#EAEAEA] flex flex-col gap-1 text-[10px] text-neutral-800 hover:border-black transition-colors select-none">
-                <span class="text-neutral-500 uppercase font-semibold mb-1">Rekening Transfer Perusahaan (Klik Salin):</span>
-                <span class="text-black font-extrabold text-sm"><i class="fa-solid fa-copy mr-1 text-xs text-neutral-400"></i> MANDIRI 123-000-987-1111</span>
-                <span class="text-neutral-700 font-medium">A/N PT MOBILKU INTERNET INDONESIA</span>
-              </div>
-
-              <!-- Upload files input standard -->
+              <!-- Upload KTP (Always required for both methods) -->
               <div class="flex flex-col gap-2">
                 <label class="text-neutral-700 font-bold">1. Unggah Scan KTP Anda:</label>
                 <input type="file" name="ktp_file" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-black file:text-white file:cursor-pointer hover:file:bg-neutral-800 transition-all duration-200">
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-neutral-700 font-bold">2. Bukti Transfer Bank:</label>
-                <input type="file" name="evidence_file" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-black file:text-white file:cursor-pointer hover:file:bg-neutral-800 transition-all duration-200">
-              </div>
-
-              <!-- Bank details input of buyer -->
-              <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col gap-2">
-                  <label class="text-neutral-700 font-bold">Nama Bank Pengirim:</label>
-                  <input type="text" name="bank_name" placeholder="BCA/Mandiri" value="<?php echo htmlspecialchars($pre_bank); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+              <!-- CONTAINER TRANSFER BANK (DP) -->
+              <div id="dpTransferPaymentWrapper" class="space-y-6">
+                <!-- Bank account specs for transfer -->
+                <div onclick="window.copyTextToClipboard('1230009871111', this)" class="copy-tooltip p-4 bg-neutral-50 rounded-2xl border border-[#EAEAEA] flex flex-col gap-1 text-[10px] text-neutral-800 hover:border-black transition-colors select-none">
+                  <span class="text-neutral-500 uppercase font-semibold mb-1">Rekening Transfer Perusahaan (Klik Salin):</span>
+                  <span class="text-black font-extrabold text-sm"><i class="fa-solid fa-copy mr-1 text-xs text-neutral-400"></i> MANDIRI 123-000-987-1111</span>
+                  <span class="text-neutral-700 font-medium">A/N PT MOBILKU INTERNET INDONESIA</span>
                 </div>
+
                 <div class="flex flex-col gap-2">
-                  <label class="text-neutral-700 font-bold">A/N Pengirim:</label>
-                  <input type="text" name="bank_holder" placeholder="Nama Rekening" value="<?php echo htmlspecialchars($pre_holder); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+                  <label class="text-neutral-700 font-bold">2. Bukti Transfer Bank:</label>
+                  <input type="file" name="evidence_file" id="dpEvidenceInput" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-black file:text-white file:cursor-pointer hover:file:bg-neutral-800 transition-all duration-200">
+                </div>
+
+                <!-- Bank details input of buyer -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-2">
+                    <label class="text-neutral-700 font-bold">Nama Bank Pengirim:</label>
+                    <input type="text" name="bank_name" id="dpBankNameInput" placeholder="BCA/Mandiri" value="<?php echo htmlspecialchars($pre_bank); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <label class="text-neutral-700 font-bold">A/N Pengirim:</label>
+                    <input type="text" name="bank_holder" id="dpBankHolderInput" placeholder="Nama Rekening" value="<?php echo htmlspecialchars($pre_holder); ?>" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black px-4 py-3 rounded-xl transition-all duration-200 outline-none">
+                  </div>
                 </div>
               </div>
 
@@ -502,8 +577,8 @@
               <div class="flex flex-col gap-2">
                 <label class="text-neutral-700 font-bold">2. Pilih Metode Pelunasan:</label>
                 <select name="method" id="paymentMethodSelect" required class="w-full bg-neutral-50 border border-[#DADADA] focus:border-black text-black font-sans px-4 py-3.5 rounded-xl transition-all duration-200 outline-none">
-                  <option value="transfer">Transfer Bank Sekarang</option>
-                  <option value="cash" id="cashOptionLabel">Bayar Cash / Tunai di Showroom</option>
+                  <option value="transfer" <?php echo ($bf_method === 'transfer') ? 'selected' : ''; ?>>Transfer Bank Sekarang</option>
+                  <option value="cash" <?php echo ($bf_method === 'cash') ? 'selected' : ''; ?> id="cashOptionLabel">Bayar Cash / Tunai di Showroom</option>
                 </select>
               </div>
 
@@ -665,6 +740,29 @@
       });
     }
 
+    // Down Payment (DP) Form Toggle
+    const dpPaymentMethodSelect = document.getElementById('dpPaymentMethodSelect');
+    const dpTransferPaymentWrapper = document.getElementById('dpTransferPaymentWrapper');
+    const dpEvidenceInput = document.getElementById('dpEvidenceInput');
+    const dpBankNameInput = document.getElementById('dpBankNameInput');
+    const dpBankHolderInput = document.getElementById('dpBankHolderInput');
+
+    if (dpPaymentMethodSelect) {
+      dpPaymentMethodSelect.addEventListener('change', function() {
+        if (this.value === 'transfer') {
+          dpTransferPaymentWrapper.style.display = 'block';
+          if (dpEvidenceInput) dpEvidenceInput.setAttribute('required', 'required');
+          if (dpBankNameInput) dpBankNameInput.setAttribute('required', 'required');
+          if (dpBankHolderInput) dpBankHolderInput.setAttribute('required', 'required');
+        } else {
+          dpTransferPaymentWrapper.style.display = 'none';
+          if (dpEvidenceInput) dpEvidenceInput.removeAttribute('required');
+          if (dpBankNameInput) dpBankNameInput.removeAttribute('required');
+          if (dpBankHolderInput) dpBankHolderInput.removeAttribute('required');
+        }
+      });
+    }
+
     // Alur Form Serah Terima Setelah STNK Selesai
     const deliveryTypeSelector = document.getElementById('deliveryTypeSelector');
     const addressInputWrapper = document.getElementById('addressInputWrapper');
@@ -688,6 +786,9 @@
     }
     if (paymentMethodSelect) {
       paymentMethodSelect.dispatchEvent(new Event('change'));
+    }
+    if (dpPaymentMethodSelect) {
+      dpPaymentMethodSelect.dispatchEvent(new Event('change'));
     }
     if (deliveryTypeSelector) {
       deliveryTypeSelector.dispatchEvent(new Event('change'));

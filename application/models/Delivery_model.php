@@ -87,6 +87,15 @@ class Delivery_model extends CI_Model {
      * Update delivery progress status
      */
     public function update_delivery_status($id_pengiriman, $status, $catatan = '') {
+        // Enforce that only customer/client can confirm completion (Selesai).
+        // If courier tries to set it to Selesai, force it to 'Diserahkan ke Pembeli'.
+        if ($status === 'Selesai' && $this->session->userdata('role') === 'kurir') {
+            $status = 'Diserahkan ke Pembeli';
+            if (empty($catatan)) {
+                $catatan = 'Kendaraan diserahkan oleh kurir, menunggu konfirmasi selesai dari pembeli.';
+            }
+        }
+
         $data = array('status_pengiriman' => $status);
         if (!empty($catatan)) {
             $data['catatan'] = $catatan;
@@ -181,12 +190,13 @@ class Delivery_model extends CI_Model {
      * Get deliveries assigned to a specific courier
      */
     public function get_courier_deliveries($id_kurir) {
-        $this->db->select('p.*, b.booking_code, u.fullname as client_name, u.phone as client_phone, c.brand, c.model, c.plate_number, sj.nomor_surat');
+        $this->db->select('p.*, b.booking_code, u.fullname as client_name, u.phone as client_phone, c.brand, c.model, c.plate_number, sj.nomor_surat, bp.foto_serah_terima, bp.tanda_tangan_penerima, bp.foto_kendaraan');
         $this->db->from('pengiriman p');
         $this->db->join('bookings b', 'p.id_transaksi = b.id');
         $this->db->join('users u', 'b.user_id = u.id');
         $this->db->join('cars c', 'b.car_id = c.id');
         $this->db->join('surat_jalan sj', 'p.id_pengiriman = sj.id_pengiriman', 'left');
+        $this->db->join('bukti_pengiriman bp', 'p.id_pengiriman = bp.id_pengiriman', 'left');
         $this->db->where('p.id_kurir', $id_kurir);
         $this->db->order_by('p.id_pengiriman', 'DESC');
         return $this->db->get()->result_array();

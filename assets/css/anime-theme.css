@@ -9,7 +9,7 @@
   --bg-primary: #121212;
   --bg-secondary: #FAFAFA;
   --text-primary: #000000;
-  --text-secondary: #666666;
+  --text-secondary: #000000;
   --border-light: #EAEAEA;
   --border-medium: #DADADA;
   --accent-dot: rgba(255, 255, 255, 0.25);
@@ -171,6 +171,22 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
+/* Premium Search Bar Enhancements */
+.search-bar-container .cyber-input {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.search-bar-container:focus-within .search-icon {
+  color: #000000 !important;
+  transform: scale(1.1);
+}
+.search-bar-container:hover .cyber-input:not(:focus) {
+  border-color: #888888;
+}
+.search-bar-container .search-icon {
+  transition: all 0.3s ease;
+}
+
 /* Buttons */
 .btn-premium {
   background-color: #000000;
@@ -316,4 +332,31 @@ a, button, select, input, textarea {
   z-index: 99999;
   pointer-events: none;
 }
+
+/* Global Pitch Black Text Color Overrides */
+.text-\[\#666666\],
+.text-\[\#888888\],
+.text-\[\#999999\],
+.text-neutral-400,
+.text-neutral-500,
+.text-neutral-600,
+.text-gray-400,
+.text-gray-500,
+.text-gray-600,
+.text-muted {
+  color: #000000 !important;
+}
+
+/* Make sure links inside nav and headers are pitch black */
+header nav a,
+header nav button,
+#navbarLogoLink span {
+  color: #000000 !important;
+}
+
+header nav a i,
+header nav button i {
+  color: #000000 !important;
+}
+
 

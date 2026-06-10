@@ -221,9 +221,15 @@
                     </button>
 
                     <!-- Upload Proof Button -->
-                    <button onclick="openProofModal(<?php echo $del['id_pengiriman']; ?>)" class="px-4 py-2 rounded-xl bg-black text-white hover:bg-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-                      <i class="fa-solid fa-upload"></i> Upload Bukti
-                    </button>
+                    <?php if (!empty($del['foto_serah_terima'])): ?>
+                      <button onclick="openProofModal(<?php echo $del['id_pengiriman']; ?>, '<?php echo esc($del['foto_serah_terima']); ?>', '<?php echo esc($del['tanda_tangan_penerima']); ?>', '<?php echo esc($del['foto_kendaraan']); ?>')" class="px-4 py-2 rounded-xl border border-emerald-500 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors">
+                        <i class="fa-solid fa-circle-check"></i> Bukti Terunggah (Ubah)
+                      </button>
+                    <?php else: ?>
+                      <button onclick="openProofModal(<?php echo $del['id_pengiriman']; ?>)" class="px-4 py-2 rounded-xl bg-black text-white hover:bg-neutral-800 font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-upload"></i> Upload Bukti
+                      </button>
+                    <?php endif; ?>
                   </div>
                 </div>
 
@@ -373,8 +379,7 @@
                   <option value="Kendaraan Dipersiapkan">Kendaraan Dipersiapkan</option>
                   <option value="Dalam Perjalanan">Dalam Perjalanan</option>
                   <option value="Tiba di Lokasi">Tiba di Lokasi</option>
-                  <option value="Kendaraan Diserahkan">Kendaraan Diserahkan</option>
-                  <option value="Selesai">Selesai (Serah Terima Selesai)</option>
+                  <option value="Diserahkan ke Pembeli">Diserahkan ke Pembeli (Menunggu Konfirmasi Customer)</option>
                 </select>
               </div>
               <div class="flex items-end">
@@ -408,8 +413,7 @@
           <option value="Kendaraan Dipersiapkan">Kendaraan Dipersiapkan</option>
           <option value="Dalam Perjalanan">Dalam Perjalanan</option>
           <option value="Tiba di Lokasi">Tiba di Lokasi</option>
-          <option value="Diserahkan ke Pembeli">Diserahkan ke Pembeli</option>
-          <option value="Selesai">Selesai (Serah Terima Selesai)</option>
+          <option value="Diserahkan ke Pembeli">Diserahkan ke Pembeli (Menunggu Konfirmasi Customer)</option>
           <option value="Gagal Kirim">Gagal Kirim (Ditunda)</option>
           <option value="Dibatalkan">Dibatalkan</option>
         </select>
@@ -430,29 +434,54 @@
 
 <!-- ===== MODAL UPLOAD PROOF ===== -->
 <div id="proof-modal-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.45); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
-  <div style="background:#fff; border-radius:28px; border:1px solid #EAEAEA; box-shadow:0 32px 80px rgba(0,0,0,0.18); padding:32px; width:100%; max-width:480px; position:relative; margin:16px;" font-mono text-xs>
+  <div style="background:#fff; border-radius:28px; border:1px solid #EAEAEA; box-shadow:0 32px 80px rgba(0,0,0,0.18); padding:32px; width:100%; max-width:480px; position:relative; margin:16px;" class="font-mono text-xs">
     <div style="display:flex; align-items:center; justify-content:between; margin-bottom:20px;">
       <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#000; margin:0; text-transform:uppercase;">Unggah Bukti Serah Terima</h3>
       <button type="button" onclick="closeProofModal()" style="border:none;background:none;cursor:pointer;font-size:18px;"><i class="fa-solid fa-xmark text-neutral-400"></i></button>
     </div>
 
     <?php echo form_open_multipart('', ['id' => 'proof-form', 'class' => 'space-y-4 font-mono text-xs']); ?>
-      <div class="flex flex-col gap-1.5">
-        <label class="font-bold text-black uppercase">1. Foto Serah Terima (Wajib):</label>
-        <input type="file" name="foto_serah_terima" required class="text-xs">
+      <!-- Container for existing proofs -->
+      <div id="existing-proofs-container" class="space-y-4" style="display: none;">
+        <p class="font-bold text-black uppercase mb-2">Bukti Terunggah Sebelumnya:</p>
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          <div class="border border-[#EAEAEA] rounded-xl p-2 text-center bg-neutral-50">
+            <span class="block text-[8px] text-[#999999] uppercase mb-1">Serah Terima</span>
+            <img id="preview-serah-terima" class="w-full h-20 object-cover rounded-lg border border-[#EAEAEA]" src="" alt="Serah Terima">
+          </div>
+          <div class="border border-[#EAEAEA] rounded-xl p-2 text-center bg-neutral-50">
+            <span class="block text-[8px] text-[#999999] uppercase mb-1">Tanda Tangan</span>
+            <img id="preview-tanda-tangan" class="w-full h-20 object-cover rounded-lg border border-[#EAEAEA]" src="" alt="Tanda Tangan">
+          </div>
+          <div class="border border-[#EAEAEA] rounded-xl p-2 text-center bg-neutral-50">
+            <span class="block text-[8px] text-[#999999] uppercase mb-1">Kondisi Mobil</span>
+            <img id="preview-kendaraan" class="w-full h-20 object-cover rounded-lg border border-[#EAEAEA]" src="" alt="Kondisi Mobil">
+          </div>
+        </div>
+        <button type="button" onclick="enableReupload()" class="w-full py-2.5 rounded-xl border border-black text-black hover:bg-neutral-50 font-bold uppercase text-center transition-all mb-2">
+          <i class="fa-solid fa-arrows-rotate mr-1"></i> Upload Ulang / Perbarui Bukti
+        </button>
       </div>
-      <div class="flex flex-col gap-1.5">
-        <label class="font-bold text-black uppercase">2. Tanda Tangan Penerima / Digital (Wajib):</label>
-        <input type="file" name="tanda_tangan_penerima" required class="text-xs">
-      </div>
-      <div class="flex flex-col gap-1.5">
-        <label class="font-bold text-black uppercase">3. Foto Kondisi Fisik Mobil (Wajib):</label>
-        <input type="file" name="foto_kendaraan" required class="text-xs">
+
+      <!-- Upload Fields -->
+      <div id="upload-proof-fields" class="space-y-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">1. Foto Serah Terima (Wajib):</label>
+          <input type="file" name="foto_serah_terima" required class="text-xs">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">2. Tanda Tangan Penerima / Digital (Wajib):</label>
+          <input type="file" name="tanda_tangan_penerima" required class="text-xs">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-black uppercase">3. Foto Kondisi Fisik Mobil (Wajib):</label>
+          <input type="file" name="foto_kendaraan" required class="text-xs">
+        </div>
       </div>
 
       <div class="flex justify-end gap-2 pt-4">
         <button type="button" onclick="closeProofModal()" class="px-5 py-2 rounded-xl border border-[#EAEAEA] text-neutral-500 font-bold uppercase">Batal</button>
-        <button type="submit" class="px-5 py-2 rounded-xl bg-black text-white font-bold uppercase">Unggah Bukti</button>
+        <button type="submit" id="btn-submit-proof" class="px-5 py-2 rounded-xl bg-black text-white font-bold uppercase">Unggah Bukti</button>
       </div>
     </form>
   </div>
@@ -718,10 +747,55 @@
     document.getElementById('status-modal-overlay').style.display = 'none';
   }
 
-  function openProofModal(id) {
+  function openProofModal(id, fotoSerahTerima = '', tandaTangan = '', fotoKendaraan = '') {
     const overlay = document.getElementById('proof-modal-overlay');
     overlay.style.display = 'flex';
     document.getElementById('proof-form').action = '<?php echo base_url("admin/upload_delivery_proof_p/"); ?>' + id;
+    
+    const existingContainer = document.getElementById('existing-proofs-container');
+    const uploadFormFields = document.getElementById('upload-proof-fields');
+    const btnUpload = document.getElementById('btn-submit-proof');
+    
+    // Reset file inputs and set them back to required default
+    const fileInputs = uploadFormFields.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => {
+      input.value = '';
+      input.required = true;
+    });
+
+    if (fotoSerahTerima) {
+      // Show existing images preview, hide file inputs
+      existingContainer.style.display = 'block';
+      uploadFormFields.style.display = 'none';
+      btnUpload.style.display = 'none';
+      
+      document.getElementById('preview-serah-terima').src = '<?php echo base_url("uploads/"); ?>' + fotoSerahTerima;
+      document.getElementById('preview-tanda-tangan').src = '<?php echo base_url("uploads/"); ?>' + tandaTangan;
+      document.getElementById('preview-kendaraan').src = '<?php echo base_url("uploads/"); ?>' + fotoKendaraan;
+      
+      // Since it's already uploaded, they don't have to re-upload if they just cancel
+      fileInputs.forEach(input => {
+        input.required = false;
+      });
+    } else {
+      // First time upload, show file inputs
+      existingContainer.style.display = 'none';
+      uploadFormFields.style.display = 'block';
+      btnUpload.style.display = 'block';
+    }
+  }
+
+  function enableReupload() {
+    document.getElementById('existing-proofs-container').style.display = 'none';
+    const uploadFormFields = document.getElementById('upload-proof-fields');
+    uploadFormFields.style.display = 'block';
+    document.getElementById('btn-submit-proof').style.display = 'block';
+    
+    // Set file inputs to required since they choose to re-upload everything
+    const fileInputs = uploadFormFields.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => {
+      input.required = true;
+    });
   }
 
   function closeProofModal() {

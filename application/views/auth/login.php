@@ -1,5 +1,5 @@
 <!-- Premium Minimalist Login Card (Nothing OS & Framer Inspired) -->
-<section class="max-w-md mx-auto px-4 py-20" data-aos="fade-up">
+<section class="max-w-md mx-auto px-4 pt-28 pb-20" data-aos="fade-up">
   <div class="bg-white border border-[#EAEAEA] rounded-[28px] p-8 relative overflow-hidden shadow-sm stagger-card">
     <div class="absolute inset-0 opacity-[0.015] pointer-events-none" style="background-image: radial-gradient(#000 1.2px, transparent 1.2px); background-size: 14px 14px;"></div>
 

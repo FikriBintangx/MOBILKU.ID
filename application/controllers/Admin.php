@@ -30,24 +30,31 @@ class Admin extends CI_Controller {
             ));
         }
 
-        // Enforce administrative authentication (including manager, admin, staff, and kurir)
-        if (!$this->session->userdata('user_id') || !in_array($this->session->userdata('role'), array('admin', 'manager', 'staff', 'kurir'))) {
-            // Auto authenticate as admin for demonstration convenience if not logged in
+        // Enforce administrative authentication (except for printing kwitansi & surat_jalan)
+        $method = $this->router->fetch_method();
+        if ($method !== 'kwitansi' && $method !== 'surat_jalan') {
+            if (!$this->session->userdata('user_id') || !in_array($this->session->userdata('role'), array('admin', 'manager', 'staff', 'kurir'))) {
+                // Auto authenticate as admin for demonstration convenience if not logged in
+                if (!$this->session->userdata('user_id')) {
+                    $this->session->set_userdata(array(
+                        'user_id' => 1,
+                        'username' => 'admin',
+                        'fullname' => 'Super Administrator',
+                        'role' => 'admin'
+                    ));
+                } else {
+                    // If logged in as client, redirect to customer dashboard
+                    redirect('booking/dashboard');
+                }
+            }
+        } else {
+            // For print views, just ensure they are logged in
             if (!$this->session->userdata('user_id')) {
-                $this->session->set_userdata(array(
-                    'user_id' => 1,
-                    'username' => 'admin',
-                    'fullname' => 'Super Administrator',
-                    'role' => 'admin'
-                ));
-            } else {
-                // If logged in as client, redirect to customer dashboard
-                redirect('booking/dashboard');
+                redirect('auth/login');
             }
         }
 
         // Restrict Courier to Courier-only pages
-        $method = $this->router->fetch_method();
         $allowed_courier_methods = array(
             'kurir', 
             'update_delivery_status_p', 
@@ -103,7 +110,7 @@ class Admin extends CI_Controller {
         $data['couriers']   = $this->db->get('kurir')->result_array();
         $data['deliveries'] = $this->Delivery_model->get_all_deliveries();
 
-        $data['title'] = 'Dashboard Admin | MOBILKU';
+        $data['title'] = 'Dashboard Admin | DRIVE.X';
 
         $this->load->view('layout/header', $data);
         $this->load->view('dashboard/admin', $data);
@@ -307,7 +314,7 @@ class Admin extends CI_Controller {
         
         // Get deliveries assigned to this courier with details
         $data['deliveries'] = $this->Delivery_model->get_courier_deliveries($id_kurir);
-        $data['title'] = 'Portal Kurir | MOBILKU';
+        $data['title'] = 'Portal Kurir | DRIVE.X';
 
         $this->load->view('layout/header', $data);
         $this->load->view('dashboard/kurir', $data);
@@ -684,11 +691,8 @@ class Admin extends CI_Controller {
         redirect('admin');
     }
 
-    /**
-     * RESET DATABASE TO FRESH CLEAN TRANSACTION STATE
-     */
     public function reset_db() {
-        if ($this->session->userdata('role') !== 'admin') {
+        if ($this->session->userdata('role') !== 'admin' && $this->session->userdata('role') !== 'manager') {
             show_error('Akses Dibatasi.');
         }
         
@@ -697,6 +701,12 @@ class Admin extends CI_Controller {
         $this->db->query("TRUNCATE TABLE documents");
         $this->db->query("TRUNCATE TABLE bookings");
         $this->db->query("TRUNCATE TABLE car_sourcing");
+        $this->db->query("TRUNCATE TABLE pengiriman");
+        $this->db->query("TRUNCATE TABLE surat_jalan");
+        $this->db->query("TRUNCATE TABLE bukti_pengiriman");
+        $this->db->query("TRUNCATE TABLE tracking_lokasi");
+        $this->db->query("TRUNCATE TABLE riwayat_status");
+        $this->db->query("TRUNCATE TABLE ratings");
         $this->db->query("UPDATE cars SET status = 'available', stock = 5");
         $this->db->query("SET FOREIGN_KEY_CHECKS = 1");
         

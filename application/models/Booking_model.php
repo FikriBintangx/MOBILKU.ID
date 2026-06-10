@@ -21,6 +21,14 @@ class Booking_model extends CI_Model {
         $this->db->from('bookings b');
         $this->db->join('users u', 'b.user_id = u.id');
         $this->db->join('cars c', 'b.car_id = c.id');
+        // Filter out bookings that are in 'ordered' status and have no payment submissions
+        $this->db->group_start();
+        $this->db->where('b.status !=', 'ordered');
+        $this->db->or_group_start();
+        $this->db->where('b.status', 'ordered');
+        $this->db->where('(SELECT COUNT(*) FROM payments p WHERE p.booking_id = b.id) >', 0);
+        $this->db->group_end();
+        $this->db->group_end();
         $this->db->order_by('b.created_at', 'DESC');
         return $this->db->get()->result_array();
     }
@@ -33,6 +41,14 @@ class Booking_model extends CI_Model {
         $this->db->from('bookings b');
         $this->db->join('cars c', 'b.car_id = c.id');
         $this->db->where('b.user_id', $user_id);
+        // Filter out bookings that are in 'ordered' status and have no payment submissions
+        $this->db->group_start();
+        $this->db->where('b.status !=', 'ordered');
+        $this->db->or_group_start();
+        $this->db->where('b.status', 'ordered');
+        $this->db->where('(SELECT COUNT(*) FROM payments p WHERE p.booking_id = b.id) >', 0);
+        $this->db->group_end();
+        $this->db->group_end();
         $this->db->order_by('b.created_at', 'DESC');
         return $this->db->get()->result_array();
     }
@@ -348,11 +364,12 @@ class Booking_model extends CI_Model {
         $this->db->where('id', $booking_id);
         $this->db->update('bookings', array('status' => 'cancelled'));
 
-        // Increase stock count of the car by 1
+        // Increase stock count of the car by 1 and set status back to available!
         $car = $this->Mobil_model->get_car_by_id($booking['car_id']);
         if ($car) {
-            $new_stock = $car['stock'] + 1;
+            $new_stock = $car['stock'] > 0 ? $car['stock'] : 1;
             $this->Mobil_model->update_car_stock($booking['car_id'], $new_stock);
+            $this->Mobil_model->update_car_status($booking['car_id'], 'available');
         }
 
         return array(
@@ -380,11 +397,12 @@ class Booking_model extends CI_Model {
             $this->db->where('id', $b['id']);
             $this->db->update('bookings', array('status' => 'cancelled'));
             
-            // Increase stock count of the car by 1
+            // Increase stock count of the car by 1 and set status back to available!
             $car = $this->Mobil_model->get_car_by_id($b['car_id']);
             if ($car) {
-                $new_stock = $car['stock'] + 1;
+                $new_stock = $car['stock'] > 0 ? $car['stock'] : 1;
                 $this->Mobil_model->update_car_stock($b['car_id'], $new_stock);
+                $this->Mobil_model->update_car_status($b['car_id'], 'available');
             }
             $cancelled_count++;
         }

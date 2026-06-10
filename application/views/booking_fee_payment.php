@@ -1,5 +1,5 @@
 <!-- Premium Booking Fee Payment Screen (Nothing OS & Framer Inspired) -->
-<section class="max-w-2xl mx-auto px-4 py-16" data-aos="fade-up">
+<section class="max-w-2xl mx-auto px-4 pt-28 pb-16" data-aos="fade-up">
   <div class="bg-white border border-[#EAEAEA] rounded-[28px] p-8 relative overflow-hidden shadow-sm stagger-card">
     <div class="absolute inset-0 opacity-[0.015] pointer-events-none" style="background-image: radial-gradient(#000 1.2px, transparent 1.2px); background-size: 14px 14px;"></div>
 
@@ -51,14 +51,14 @@
       <!-- Payment Method -->
       <div class="flex flex-col gap-2">
         <label class="text-[9px] text-[#666666] font-mono tracking-wider uppercase font-semibold">Metode Pembayaran</label>
-        <select name="method" required class="w-full h-12 px-4 rounded-xl border border-[#DADADA] bg-white text-xs text-black focus:border-black focus:outline-none transition-colors font-sans">
-          <option value="transfer">Transfer Bank (Verifikasi Instan)</option>
-          <option value="ewallet">E-Wallet (QRIS / ShopeePay / GoPay)</option>
+        <select name="method" id="paymentMethodSelect" required class="w-full h-12 px-4 rounded-xl border border-[#DADADA] bg-white text-xs text-black focus:border-black focus:outline-none transition-colors font-sans">
+          <option value="transfer">Transfer Bank (Verifikasi Manual)</option>
+          <option value="cash">Pembayaran di Tempat (Cash / COD)</option>
         </select>
       </div>
 
       <!-- Bank Details / Simulated Instruction -->
-      <div onclick="window.copyTextToClipboard('8004567890', this)" class="copy-tooltip bg-[#F5F5F5] border border-[#EAEAEA] rounded-[20px] p-5 font-mono text-xs text-[#666666] space-y-2 hover:border-black transition-colors select-none">
+      <div id="bankInstructionWrapper" onclick="window.copyTextToClipboard('8004567890', this)" class="copy-tooltip bg-[#F5F5F5] border border-[#EAEAEA] rounded-[20px] p-5 font-mono text-xs text-[#666666] space-y-2 hover:border-black transition-colors select-none">
         <span class="text-[9px] text-[#999999] tracking-wider uppercase font-semibold block mb-1">REKENING TUJUAN (KLIK UNTUK SALIN)</span>
         <div class="flex justify-between">
           <span>BANK / PROV:</span>
@@ -75,7 +75,7 @@
       </div>
 
       <!-- Bank Sender Information Form -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div id="bankFieldsWrapper" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div class="flex flex-col gap-2">
           <label class="text-[9px] text-[#666666] font-mono tracking-wider uppercase font-semibold">Bank Pengirim</label>
           <input type="text" name="bank_name" id="bankNameInput" required placeholder="Contoh: BCA / Mandiri" 
@@ -96,7 +96,7 @@
       <!-- Submit Button -->
       <button type="submit" id="paymentSubmitBtn" 
               class="w-full h-14 rounded-full bg-black text-white hover:bg-neutral-800 transition-all flex items-center justify-center font-bold text-xs tracking-widest uppercase mt-6 gap-2 shadow-sm opacity-40 cursor-not-allowed pointer-events-none" disabled>
-        <i class="fa-solid fa-lock text-[10px]"></i> Konfirmasi Pembayaran Instan
+        <i class="fa-solid fa-lock text-[10px]"></i> Konfirmasi Pemesanan
       </button>
 
     </form>
@@ -117,13 +117,22 @@
       easing: 'easeOutExpo'
     });
 
-    // Form inputs monitoring logic
+    const methodSelect = document.getElementById('paymentMethodSelect');
+    const bankInstruction = document.getElementById('bankInstructionWrapper');
+    const bankFields = document.getElementById('bankFieldsWrapper');
+
     const bankName = document.getElementById('bankNameInput');
     const bankAccount = document.getElementById('bankAccountInput');
     const bankHolder = document.getElementById('bankHolderInput');
     const submitBtn = document.getElementById('paymentSubmitBtn');
 
     function validateForm() {
+      if (methodSelect.value === 'cash') {
+        submitBtn.removeAttribute('disabled');
+        submitBtn.classList.remove('opacity-40', 'cursor-not-allowed', 'pointer-events-none');
+        return;
+      }
+      
       const isNameFilled = bankName.value.trim() !== "";
       const isAccountFilled = bankAccount.value.trim() !== "";
       const isHolderFilled = bankHolder.value.trim() !== "";
@@ -135,6 +144,27 @@
         submitBtn.setAttribute('disabled', 'true');
         submitBtn.classList.add('opacity-40', 'cursor-not-allowed', 'pointer-events-none');
       }
+    }
+
+    if (methodSelect) {
+      methodSelect.addEventListener('change', function() {
+        if (this.value === 'cash') {
+          bankInstruction.style.display = 'none';
+          bankFields.style.display = 'none';
+          bankName.removeAttribute('required');
+          bankAccount.removeAttribute('required');
+          bankHolder.removeAttribute('required');
+        } else {
+          bankInstruction.style.display = 'block';
+          bankFields.style.display = 'grid';
+          bankName.setAttribute('required', 'required');
+          bankAccount.setAttribute('required', 'required');
+          bankHolder.setAttribute('required', 'required');
+        }
+        validateForm();
+      });
+      // Initial trigger
+      methodSelect.dispatchEvent(new Event('change'));
     }
 
     // Restrict bank account field to digits only

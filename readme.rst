@@ -200,7 +200,6 @@ Terinspirasi oleh:
 ## 🚀 Future Roadmap
 
 - [ ] Live Vehicle Tracking
-- [ ] AI Vehicle Valuation
 - [ ] Online Financing
 - [ ] WhatsApp Integration
 - [ ] E-Signature

@@ -198,15 +198,15 @@
             </span>
           <?php else: ?>
             <div class="space-y-3">
-              <a href="<?php echo base_url('booking/checkout/' . $car['id']); ?>" onclick="return confirm('Apakah Anda yakin ingin membooking unit mobil ini? Unit akan langsung dikunci khusus untuk Anda, dan Anda akan diarahkan ke halaman Pembayaran Booking Fee.')" class="w-full h-14 rounded-full bg-black text-white hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 font-bold text-xs tracking-widest uppercase shadow-sm">
+              <button onclick="openBookingConfirmModal(<?php echo $car['id']; ?>, '<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>', <?php echo $car['price']; ?>)" class="w-full h-14 rounded-full bg-black text-white hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 font-bold text-xs tracking-widest uppercase shadow-sm cursor-pointer">
                 <i class="fa-solid fa-cart-shopping text-[10px]"></i> Beli Sekarang
-              </a>
-              <a href="#" class="w-full h-14 rounded-full border border-[#DADADA] bg-white text-black hover:bg-[#F5F5F5] transition-all flex items-center justify-center gap-2 font-bold text-xs tracking-widest uppercase">
+              </button>
+              <button onclick="openCreditModal(<?php echo $car['price']; ?>, '<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>')" class="w-full h-14 rounded-full border border-[#DADADA] bg-white text-black hover:bg-[#F5F5F5] transition-all flex items-center justify-center gap-2 font-bold text-xs tracking-widest uppercase cursor-pointer">
                 Ajukan Kredit
-              </a>
-              <a href="#" class="w-full h-14 rounded-full border border-[#DADADA] bg-white text-black hover:bg-[#F5F5F5] transition-all flex items-center justify-center gap-2 font-bold text-xs tracking-widest uppercase">
+              </button>
+              <button onclick="openContactAdminModal('<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>', <?php echo $car['year']; ?>)" class="w-full h-14 rounded-full border border-[#DADADA] bg-white text-black hover:bg-[#F5F5F5] transition-all flex items-center justify-center gap-2 font-bold text-xs tracking-widest uppercase cursor-pointer">
                 <i class="fa-solid fa-comment"></i> Hubungi Admin
-              </a>
+              </button>
             </div>
             <span class="block text-[10px] font-mono text-[#999999] text-center mt-3 leading-relaxed">
               *Tenggat waktu pembayaran DP 30% dan scan KTP adalah 1 minggu setelah booking fee diverifikasi.
@@ -245,3 +245,309 @@
     document.getElementById('tab-' + tabId).className = 'text-black font-bold border-b-2 border-black pb-3 outline-none';
   }
 </script>
+
+  <!-- Modal: Booking Confirmation -->
+  <div id="bookingConfirmModal" class="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+    <div class="relative max-w-md w-full bg-white border border-[#EAEAEA] rounded-[32px] p-8 shadow-[0_24px_50px_rgba(0,0,0,0.15)] scale-90 opacity-0 transition-all duration-300 ease-out" id="bookingConfirmCard">
+      <div class="text-center text-black">
+        <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+          <i class="fa-solid fa-key text-xl"></i>
+        </div>
+        <h3 class="font-display font-extrabold text-2xl text-black leading-tight mb-3">Konfirmasi Booking</h3>
+        <p class="text-xs text-black/75 leading-relaxed font-sans mb-6">
+          Apakah Anda yakin ingin membooking unit <span id="confirmCarName" class="font-bold text-black"></span>? 
+          Unit ini akan langsung dikunci khusus untuk Anda selama <span class="font-bold text-black">1 minggu</span> agar tidak dapat dipesan orang lain.
+        </p>
+        
+        <div class="bg-[#FAFAFA] rounded-2xl p-4 border border-[#EAEAEA] text-left font-mono text-[11px] mb-8 space-y-2 text-black">
+          <div class="flex justify-between">
+            <span>Booking Fee (Mengunci Unit):</span>
+            <span class="font-bold">Rp 500.000,-</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Uang Muka (DP 30%):</span>
+            <span class="font-bold" id="confirmDP"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button onclick="closeBookingConfirmModal()" class="flex-1 h-12 rounded-full border border-[#DADADA] bg-white text-black hover:bg-neutral-50 transition-all font-bold text-xs uppercase tracking-wider cursor-pointer">
+            Batal
+          </button>
+          <a id="confirmBookingBtn" href="#" class="flex-1 h-12 rounded-full bg-black text-white hover:bg-neutral-800 transition-all flex items-center justify-center font-bold text-xs uppercase tracking-wider shadow-sm text-center">
+            Setuju & Lanjut
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Credit Simulator -->
+  <div id="creditModal" class="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+    <div class="relative max-w-lg w-full bg-white border border-[#EAEAEA] rounded-[32px] p-8 shadow-[0_24px_50px_rgba(0,0,0,0.15)] scale-90 opacity-0 transition-all duration-300 ease-out" id="creditCard">
+      <button onclick="closeCreditModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 border border-black/5 text-black flex items-center justify-center transition-all duration-300">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+      
+      <h3 class="font-display font-extrabold text-2xl text-black leading-tight mb-2">Simulasi Kredit</h3>
+      <p class="text-xs text-black/60 font-sans mb-6">Simulasikan angsuran bulanan unit <span id="creditCarName" class="font-semibold text-black"></span>.</p>
+
+      <div class="space-y-5 text-black">
+        <!-- Car Price -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[9px] font-mono tracking-wider uppercase font-semibold text-black/60">Harga OTR Kendaraan</label>
+          <div class="h-12 px-4 rounded-xl border border-[#DADADA] bg-neutral-50 flex items-center text-xs font-mono font-bold" id="simPriceLabel"></div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Down Payment Percentage -->
+          <div class="flex flex-col gap-1.5">
+            <label class="text-[9px] font-mono tracking-wider uppercase font-semibold text-black/60">Uang Muka (Min. 30%)</label>
+            <div class="relative">
+              <input type="number" id="simDpPct" min="30" max="90" value="30" oninput="calculateInstallment()" 
+                     class="w-full h-12 pl-4 pr-10 rounded-xl border border-[#DADADA] bg-white text-xs font-mono text-black focus:border-black focus:outline-none transition-colors">
+              <span class="absolute right-4 top-3.5 text-xs font-mono text-black/60">%</span>
+            </div>
+          </div>
+
+          <!-- Tenor -->
+          <div class="flex flex-col gap-1.5">
+            <label class="text-[9px] font-mono tracking-wider uppercase font-semibold text-black/60">Tenor (Bulan)</label>
+            <select id="simTenor" onchange="calculateInstallment()" 
+                    class="w-full h-12 px-4 rounded-xl border border-[#DADADA] bg-white text-xs font-mono text-black focus:border-black focus:outline-none transition-colors">
+              <option value="12">12 Bulan (1 Tahun)</option>
+              <option value="24">24 Bulan (2 Tahun)</option>
+              <option value="36">36 Bulan (3 Tahun)</option>
+              <option value="48" selected>48 Bulan (4 Tahun)</option>
+              <option value="60">60 Bulan (5 Tahun)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Calculated Summary Card -->
+        <div class="bg-black/5 rounded-2xl p-4 border border-black/10 font-mono text-xs space-y-2.5">
+          <div class="flex justify-between">
+            <span>Nominal Uang Muka (DP):</span>
+            <span class="font-bold" id="resDp"></span>
+          </div>
+          <div class="flex justify-between">
+            <span>Pokok Pinjaman (Kredit):</span>
+            <span class="font-bold" id="resPrincipal"></span>
+          </div>
+          <div class="flex justify-between py-2 border-t border-black/10 text-sm">
+            <span>Angsuran per Bulan:</span>
+            <span class="font-bold text-black" id="resInstallment"></span>
+          </div>
+        </div>
+
+        <button onclick="submitCreditSimulation()" class="w-full h-12 rounded-full bg-black text-white hover:bg-neutral-800 transition-all font-bold text-xs uppercase tracking-wider shadow-sm mt-4 cursor-pointer">
+          Ajukan Simulasi Kredit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Contact Admin -->
+  <div id="contactAdminModal" class="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+    <div class="relative max-w-sm w-full bg-white border border-[#EAEAEA] rounded-[32px] p-8 shadow-[0_24px_50px_rgba(0,0,0,0.15)] scale-90 opacity-0 transition-all duration-300 ease-out" id="contactAdminCard">
+      <button onclick="closeContactAdminModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 border border-black/5 text-black flex items-center justify-center transition-all duration-300">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="text-center text-black">
+        <div class="w-16 h-16 bg-[#121212] text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+          <i class="fa-solid fa-comment-dots text-xl"></i>
+        </div>
+        <h3 class="font-display font-extrabold text-2xl text-black leading-tight mb-2">Hubungi Admin</h3>
+        <p class="text-xs text-black/60 font-sans mb-6">Pilih salah satu metode kontak untuk terhubung dengan tim showroom kami.</p>
+
+        <div class="space-y-3 mb-8 text-left font-mono text-xs">
+          <div class="flex items-center gap-3 p-3.5 rounded-xl border border-[#EAEAEA] bg-[#FAFAFA] hover:border-black transition-colors duration-300">
+            <i class="fa-solid fa-location-dot text-black text-base w-5 text-center"></i>
+            <div>
+              <span class="block text-[8px] text-black/50 font-bold uppercase tracking-wider">Showroom Kantor</span>
+              <span class="text-[10px] text-black font-bold">DRIVE.X Head Office, Jakarta</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3.5 rounded-xl border border-[#EAEAEA] bg-[#FAFAFA] hover:border-black transition-colors duration-300">
+            <i class="fa-solid fa-phone text-black text-base w-5 text-center"></i>
+            <div>
+              <span class="block text-[8px] text-black/50 font-bold uppercase tracking-wider">Telepon & WhatsApp</span>
+              <span class="text-[10px] text-black font-bold">0811-1222-333</span>
+            </div>
+          </div>
+        </div>
+
+        <a id="whatsappBtn" href="#" target="_blank" class="w-full h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white transition-all flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-sm text-center">
+          <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp Chat Instan
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global state variables for simulation
+    let currentCarPrice = 0;
+    let currentCarModel = '';
+
+    // ==========================================
+    // 1. Booking Confirmation Modal Logic
+    // ==========================================
+    function openBookingConfirmModal(carId, carModel, price) {
+      const modal = document.getElementById('bookingConfirmModal');
+      const card = document.getElementById('bookingConfirmCard');
+      const nameSpan = document.getElementById('confirmCarName');
+      const dpSpan = document.getElementById('confirmDP');
+      const confirmBtn = document.getElementById('confirmBookingBtn');
+
+      if (modal && card) {
+        nameSpan.textContent = carModel;
+        
+        // Calculate DP 30%
+        const dpVal = price * 0.30;
+        const formattedDP = new Intl.NumberFormat('id-ID', {
+          style: 'currency', currency: 'IDR', minimumFractionDigits: 0
+        }).format(dpVal).replace('Rp', 'Rp ') + ',-';
+        dpSpan.textContent = formattedDP;
+
+        // Set action href
+        confirmBtn.setAttribute('href', '<?php echo base_url("booking/checkout/"); ?>' + carId);
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+        card.classList.remove('scale-90', 'opacity-0');
+        card.classList.add('scale-100', 'opacity-100');
+      }
+    }
+
+    function closeBookingConfirmModal() {
+      const modal = document.getElementById('bookingConfirmModal');
+      const card = document.getElementById('bookingConfirmCard');
+      if (modal && card) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100');
+        card.classList.add('scale-90', 'opacity-0');
+        card.classList.remove('scale-100', 'opacity-100');
+      }
+    }
+
+    // ==========================================
+    // 2. Credit Simulator Modal Logic
+    // ==========================================
+    function openCreditModal(price, carModel) {
+      currentCarPrice = price;
+      currentCarModel = carModel;
+
+      const modal = document.getElementById('creditModal');
+      const card = document.getElementById('creditCard');
+      const nameSpan = document.getElementById('creditCarName');
+      const priceLabel = document.getElementById('simPriceLabel');
+
+      if (modal && card) {
+        nameSpan.textContent = carModel;
+        
+        const formattedPrice = new Intl.NumberFormat('id-ID', {
+          style: 'currency', currency: 'IDR', minimumFractionDigits: 0
+        }).format(price).replace('Rp', 'Rp ') + ',-';
+        priceLabel.textContent = formattedPrice;
+
+        // Reset DP to 30%
+        document.getElementById('simDpPct').value = 30;
+
+        calculateInstallment();
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+        card.classList.remove('scale-90', 'opacity-0');
+        card.classList.add('scale-100', 'opacity-100');
+      }
+    }
+
+    function closeCreditModal() {
+      const modal = document.getElementById('creditModal');
+      const card = document.getElementById('creditCard');
+      if (modal && card) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100');
+        card.classList.add('scale-90', 'opacity-0');
+        card.classList.remove('scale-100', 'opacity-100');
+      }
+    }
+
+    // Real-time Credit Calculations
+    function calculateInstallment() {
+      let dpPct = parseFloat(document.getElementById('simDpPct').value);
+      
+      // Enforce minimum 30% Down Payment (per business requirements)
+      if (isNaN(dpPct) || dpPct < 30) {
+        dpPct = 30;
+      }
+      if (dpPct > 90) dpPct = 90;
+
+      const tenor = parseInt(document.getElementById('simTenor').value);
+      
+      const dpValue = currentCarPrice * (dpPct / 100);
+      const principal = currentCarPrice - dpValue;
+
+      // Rate simulation: 5% flat interest per year
+      const annualRate = 0.05; 
+      const totalInterest = principal * annualRate * (tenor / 12);
+      const monthlyInstallment = (principal + totalInterest) / tenor;
+
+      // Format & Render outputs
+      const f = (val) => new Intl.NumberFormat('id-ID', {
+        style: 'currency', currency: 'IDR', minimumFractionDigits: 0
+      }).format(val).replace('Rp', 'Rp ') + ',-';
+
+      document.getElementById('resDp').textContent = f(dpValue) + ` (${dpPct}%)`;
+      document.getElementById('resPrincipal').textContent = f(principal);
+      document.getElementById('resInstallment').textContent = f(monthlyInstallment) + ' / Bulan';
+    }
+
+    function submitCreditSimulation() {
+      const dpPct = document.getElementById('simDpPct').value;
+      const tenor = document.getElementById('simTenor').value;
+      alert(`Pengajuan Simulasi Kredit untuk unit ${currentCarModel} dengan Tenor ${tenor} Bulan & DP ${dpPct}% berhasil didaftarkan!\n\nSilakan klik "Hubungi Admin" untuk proses persetujuan dan pengiriman berkas persyaratan.`);
+      closeCreditModal();
+    }
+
+    // ==========================================
+    // 3. Contact Admin Modal Logic
+    // ==========================================
+    function openContactAdminModal(carModel, year) {
+      const modal = document.getElementById('contactAdminModal');
+      const card = document.getElementById('contactAdminCard');
+      const waBtn = document.getElementById('whatsappBtn');
+
+      if (modal && card) {
+        // Build custom whatsapp text
+        const waText = encodeURIComponent(`Halo Admin DRIVE.X, saya tertarik dengan unit mobil *${carModel}* tahun *${year}*. Bisa bantu informasi selengkapnya mengenai unit ini dan pengurusan pembeliannya?`);
+        waBtn.setAttribute('href', 'https://wa.me/628111222333?text=' + waText);
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+        card.classList.remove('scale-90', 'opacity-0');
+        card.classList.add('scale-100', 'opacity-100');
+      }
+    }
+
+    function closeContactAdminModal() {
+      const modal = document.getElementById('contactAdminModal');
+      const card = document.getElementById('contactAdminCard');
+      if (modal && card) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100');
+        card.classList.add('scale-90', 'opacity-0');
+        card.classList.remove('scale-100', 'opacity-100');
+      }
+    }
+
+    // Close modals on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeBookingConfirmModal();
+        closeCreditModal();
+        closeContactAdminModal();
+      }
+    });
+  </script>
